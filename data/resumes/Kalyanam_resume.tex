@@ -1,0 +1,112 @@
+\documentclass[10pt,letterpaper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{array}
+
+% Page setup - tighter margins
+\geometry{margin=0.4in}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt}
+
+% Section formatting - reduced spacing
+\titleformat{\section}{\normalsize\bfseries}{}{0em}{}[\titlerule]
+\titlespacing{\section}{0pt}{8pt}{4pt}
+
+% Subsection formatting - tighter spacing
+\titleformat{\subsection}{\small\bfseries}{}{0em}{}
+\titlespacing{\subsection}{0pt}{4pt}{2pt}
+
+% Hyperlink setup
+\hypersetup{
+    colorlinks=true,
+    linkcolor=black,
+    urlcolor=blue,
+    citecolor=black
+}
+
+\begin{document}
+
+% Header - more compact
+\begin{center}
+    {\large \textbf{Lakshmi Kavya Kalyanam}} \\
+    \vspace{1pt}
+    {\normalsize GPU/ML Engineer Specializing in Neural Networks} \\
+    \vspace{1pt}
+    {\small Tampa, FL $\cdot$ +1-813-609-9796 $\cdot$ kavyakalyanam@gmail.com \\
+    \href{https://linkedin.com/in/lakshmikavy}{LinkedIn} $\cdot$ 
+    \href{https://github.com/kavyakl}{GitHub}}
+\end{center}
+
+\vspace{6pt}
+
+% Summary - more concise
+\section{Professional Summary}
+Machine Learning Engineer with 5+ years experience in neural network compression, CUDA optimization, and edge computing. Author of 9 peer-reviewed publications and 3 patents in model compression and GPU optimization. Passionate about advancing scalable, hardware-efficient AI solutions.
+
+% Skills - clean and technical
+\section{Skills}
+\textbf{Programming Languages:} Python, C++, CUDA, Embedded C \\
+\textbf{ML/AI Frameworks:} PyTorch, TensorFlow, ONNX, scikit-learn \\
+\textbf{Optimization Techniques:} Structured/Unstructured Pruning, Quantization, Dynamic Sparsity (RigL) \\
+\textbf{Hardware Platforms:} Arduino, FPGA \\
+\textbf{Tools:} Docker, Git, Linux \\
+
+% Professional Experience - condensed
+\section{Professional Experience}
+\subsection{Research Engineer and PhD Fellow | University of South Florida}
+\textit{Tampa, FL} \hfill Jan 2019 - Present \\
+$\bullet$ Architected 5-stage MLLR-inspired compression pipeline using PyTorch 2.0+cu124 on NVIDIA GTX 1080 Ti \\
+$\bullet$ Designed activation-aware FP16 model compression achieving 82% sparsity and 37% hardware savings \\
+$\bullet$ Built distributed object detection framework using Darknet and YOLOv4 on ARM Cortex-M4 microcontrollers \\
+$\bullet$ Developed ONNX graph rewriting algorithms for sparse model deployment, enabling 60% speed-up \\
+
+% Research & Publications - condensed
+\section{Research \& Publications}
+S. Boyidapu, L. K. Kalyanam and S. Katkoori (2024). "Automated Hidden Neuron Optimization for Multilayer Perceptrons for Classification Tasks." \textit{International Conference on Cyber Physical Systems, Power Electronics and Electric Vehicles (ICPEEV)}. \\
+L. K. Kalyanam, S. Katkoori (2023). "Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation." \textit{IEEE International Symposium on Smart Electronic Systems (iSES)}, DOI: 10.1109/iSES58672.2023.00025. \\
+L. K. Kalyanam, S. Katkoori (2023). "Sigmod-based Neuron Pruning Technique for MLPs on IoT Edge Devices." \textit{International Conference on Cyber Physical Systems, Power Electronics and Electric Vehicles (ICPEEV)}, DOI: 10.1109/ICPEEV58650.2023.10391875. \\
+Kalyanam, L.K., Joshi, R., Katkoori, S. (2023). "Layer-Wise Filter Thresholding Based CNN Pruning for Efficient IoT Edge Implementations." \textit{IFIP Advances in Information and Communication Technology}, Springer, Cham. \\
+
+% Key Projects - expanded to show range from compiler to LLMs
+\section{Key Projects}
+\subsection{Distributed Real-Time Object Detection Framework}
+\textbf{Methodology:} Advanced ML optimization | \textbf{Tools:} PYNQ Z1 AP-SoC (Xilinx Zynq), Binarized Neural Networks (BNNs), Embedded Computer Vision \\
+Built a scalable, low-latency distributed system using PYNQ-Z1 AP-SoCs for real-time object detection via Binarized Neural Networks (BNNs), achieving 19.23 FPS across 3 edge nodes. \\
+$\bullet$ Heterogeneous computing on FPGA-based SoCs \\
+
+\subsection{Dynamic Sparsity Optimization for CNNs}
+\textbf{Methodology:} Compiler optimization | \textbf{Tools:} PyTorch 2.6.0+cu124, CUDA 12.3, NVIDIA GTX 1080 Ti \\
+Designed a modular, compiler-aware optimization pipeline for compressing and deploying convolutional neural networks (CNNs), achieving over 98% sparsity and 4.33× speedup using MLIR-inspired transformations, ONNX runtime, and structured pruning. \\
+$\bullet$ Achieved 98.98% sparsity with <1% accuracy loss \\
+
+\subsection{Neural Network Optimization Framework}
+\textbf{Methodology:} Neural network pruning | \textbf{Tools:} Deep Neural Networks (DNNs), ONNX Runtime and Graph Transformations, Arduino and Embedded Microcontrollers \\
+Engineered a unified, correlation-based pruning framework for deep neural networks (DNNs) applied across 9 diverse datasets, incorporating activation-aware optimization, ONNX export, and real microcontroller deployment for end-to-end benchmarking and deployment guidance. \\
+$\bullet$ Reduced model size by 75% \\
+
+\subsection{LitBot: AI Literature Survey Assistant}
+\textbf{Methodology:} Advanced ML optimization | \textbf{Tools:} OpenAI GPT models, FAISS vector search, PyMuPDF PDF processing \\
+Developed LitBot, a GPT + FAISS-powered AI assistant for automating literature surveys, semantic search, and citation analysis across 200+ research papers, streamlining academic workflows. \\
+$\bullet$ Successfully integrated semantic chunking, summarization, and citation linking a... \\
+$\bullet$ AI/ML-specific document preprocessing and semantic chunking \\
+
+\subsection{Resume Editor Bot}
+\textbf{Methodology:} Advanced ML optimization | \textbf{Tools:} Python 3.9+, FastAPI, LangChain \\
+An intelligent resume editing assistant powered by Retrieval-Augmented Generation (RAG) and large language models (LLMs), designed to help users create, optimize, and tailor their resumes dynamically based on job descriptions. Features project-based resume generation, smart project ranking, and job-specific content tailoring.
+ \\
+
+% Education - added Master's
+\section{Education}
+\textbf{Ph.D. in Computer Science} — \textit{University of South Florida} \hfill Expected 2025 \\
+\textbf{Focus:} Sparse model optimization, embedded ML, neural network compression \\
+\textbf{Achievements:} 9 peer-reviewed publications, 3 patents filed, 2 Best Paper Awards \\
+
+\textbf{Master of Science in Computer Science} — \textit{University of South Florida} \hfill 2021 \\
+\textbf{Focus:} Machine Learning, Computer Vision, Embedded Systems \\
+\textbf{GPA:} 3.9/4.0 \\
+
+\end{document}

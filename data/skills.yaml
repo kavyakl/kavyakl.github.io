@@ -1,0 +1,108 @@
+categories:
+  - name: "Core Programming & GPU"
+    priority: 1
+    items:
+      - name: "C++ (C++17)"
+        level: "expert"
+        evidence: ["CUDA kernels", "performance-critical systems", "compiler-aware optimization"]
+      - name: "CUDA"
+        level: "expert"
+        evidence: ["GPU optimization", "sparse inference", "kernel-level tuning"]
+      - name: "Python"
+        level: "expert"
+        evidence: ["ML pipelines", "ONNX tooling", "research automation"]
+      - name: "C"
+        level: "advanced"
+        evidence: ["Embedded systems", "MCU deployment"]
+
+  - name: "ML Frameworks & Runtimes"
+    priority: 2
+    items:
+      - name: "PyTorch"
+        level: "expert"
+        evidence: ["model pruning", "sparse training", "research prototypes"]
+      - name: "ONNX"
+        level: "expert"
+        evidence: ["graph rewrites", "IR-level transformations", "deployment pipelines"]
+      - name: "TensorFlow"
+        level: "advanced"
+        evidence: ["model training", "baseline evaluation"]
+      - name: "TFLite"
+        level: "advanced"
+        evidence: ["edge deployment", "quantized inference"]
+      - name: "scikit-learn"
+        level: "working"
+        evidence: ["classical ML", "experimentation"]
+
+  - name: "Model Optimization Techniques"
+    priority: 3
+    items:
+      - name: "Structured Pruning"
+        level: "expert"
+        evidence: ["CNN filter pruning", "hardware-aware sparsity"]
+      - name: "Unstructured Pruning"
+        level: "expert"
+        evidence: ["MLP sparsity", "activation-aware pruning"]
+      - name: "Quantization / QAT"
+        level: "advanced"
+        evidence: ["edge inference", "memory reduction"]
+      - name: "Dynamic Sparsity (RigL)"
+        level: "advanced"
+        evidence: ["sparse CNN training"]
+      - name: "XAI"
+        level: "working"
+        evidence: ["model analysis", "interpretability"]
+
+  - name: "GPU, Embedded & Edge Platforms"
+    priority: 4
+    items:
+      - name: "NVIDIA GPUs"
+        level: "expert"
+        evidence: ["GTX-class GPUs", "CUDA profiling"]
+      - name: "PYNQ-Z1"
+        level: "expert"
+        evidence: ["FPGA-based inference", "distributed edge systems"]
+      - name: "Arduino / MCUs"
+        level: "advanced"
+        evidence: ["real-time inference", "memory-constrained deployment"]
+      - name: "FPGA (Virtex-7)"
+        level: "advanced"
+        evidence: ["hardware acceleration", "Vivado workflows"]
+      - name: "Embedded C"
+        level: "advanced"
+        evidence: ["firmware-level integration"]
+
+  - name: "GenAI, RAG & Systems Tooling"
+    priority: 5
+    items:
+      - name: "Retrieval-Augmented Generation (RAG)"
+        level: "advanced"
+        evidence: ["literature analysis", "semantic search"]
+      - name: "FAISS"
+        level: "advanced"
+        evidence: ["vector search", "document retrieval"]
+      - name: "OpenAI / LLM APIs"
+        level: "working"
+        evidence: ["research tooling", "automation"]
+      - name: "PyMuPDF"
+        level: "working"
+        evidence: ["PDF parsing", "document pipelines"]
+      - name: "NLTK"
+        level: "working"
+        evidence: ["text preprocessing"]
+
+  - name: "ML Systems, Deployment & Tooling"
+    priority: 6
+    items:
+      - name: "Linux"
+        level: "expert"
+        evidence: ["development environments", "GPU systems", "performance debugging"]
+      - name: "Git"
+        level: "expert"
+        evidence: ["research codebases", "collaboration", "experiment tracking"]
+      - name: "Docker"
+        level: "advanced"
+        evidence: ["containerized ML inference", "reproducible benchmarking"]
+      - name: "Cloud GPU Environments (AWS/GCP)"
+        level: "advanced"
+        evidence: ["ONNX/TensorRT inference", "GPU benchmarking"]

@@ -1,0 +1,50 @@
+[
+  {
+    "enrolled as":"Teacher",
+    "nickname":null,
+    "published":"YesThis course has been published.",
+    "term":"Summer 21",
+    "source_file":"Teaching assistant 23a03a884d5c80a3be5bdef198099f5b_all.csv",
+    "role_canonical":"Teacher",
+    "course_title":"CDA4253.001U21.55224 Field Prgm Gate Array Design",
+    "course_code":"CDA4253",
+    "course_name":"Field Prgm Gate Array Design",
+    "course_level":"Undergraduate"
+  },
+  {
+    "enrolled as":"Teacher",
+    "nickname":null,
+    "published":"YesThis course has been published.",
+    "term":"Summer 21",
+    "source_file":"Teaching assistant 23a03a884d5c80a3be5bdef198099f5b_all.csv",
+    "role_canonical":"Teacher",
+    "course_title":"EEL4935.001U21.56414 Field Prgm Gate Array Design",
+    "course_code":"EEL4935",
+    "course_name":"Field Prgm Gate Array Design",
+    "course_level":"Undergraduate"
+  },
+  {
+    "enrolled as":"Teacher",
+    "nickname":null,
+    "published":"YesThis course has been published.",
+    "term":"Default Term",
+    "source_file":"Untitled 23a03a884d5c8045bd2ac73ce2223a58.csv",
+    "role_canonical":"Teacher",
+    "course_title":"Defenses",
+    "course_code":null,
+    "course_name":"Defenses",
+    "course_level":null
+  },
+  {
+    "enrolled as":"Teacher",
+    "nickname":null,
+    "published":"YesThis course has been published.",
+    "term":"Default Term",
+    "source_file":"Untitled 23a03a884d5c8045bd2ac73ce2223a58_all.csv",
+    "role_canonical":"Teacher",
+    "course_title":"Defenses",
+    "course_code":null,
+    "course_name":"Defenses",
+    "course_level":null
+  }
+]

@@ -1,0 +1,61 @@
+title: Neural Network Optimization Framework
+slug: neural-network-optimization-framework
+description: Engineered a unified, correlation-based pruning framework for deep neural
+  networks (DNNs) applied across 9 diverse datasets, incorporating activation-aware
+  optimization, ONNX export, and real microcontroller deployment for end-to-end benchmarking
+  and deployment guidance.
+role: Lead Developer
+technologies:
+- Deep Neural Networks (DNNs)
+- ONNX Runtime & Graph Transformations
+- Arduino & Embedded Microcontrollers
+- C++17 & Embedded C
+- PyTorch (Model Training and Pruning)
+- Microcontroller Profiling Tools
+methods:
+- Activation-aware structured pruning strategies tailored for ReLU, Sigmoid, and Tanh
+  activations
+- Multi-activation function analysis to optimize pruning heuristics
+- Correlation-based neuron scoring for adaptive sparsity selection
+- Deployment validation on real microcontroller hardware (Arduino MKR1000, NodeMCU)
+- Developed PyTorch-to-C model conversion pipeline for embedded inference
+- Hardware-aware model size and latency optimization techniques
+results: "Achieved 37\u201375% reduction in model size and 36.6% average latency improvement\
+  \ across diverse datasets with a 95% successful deployment rate. Maintained accuracy\
+  \ within 1.4% of baseline unpruned models."
+impact: Delivered the first systematic, activation-aware pruning evaluation validated
+  on real embedded devices, providing actionable TinyML deployment guidelines for
+  hardware-constrained AI applications.
+duration: 14 months
+team_size: 1
+challenges:
+- Balancing pruning aggressiveness and accuracy across activation functions
+- Ensuring ONNX export compatibility with custom pruning patterns
+- Achieving efficient, reliable deployment on constrained microcontrollers
+created_at: '2025-07-23T16:00:00.000000'
+sections:
+- research
+- project
+relevance_tags:
+- pruning
+- tinyml
+- activation-aware
+- onnx
+- embedded-ai
+- microcontrollers
+- pytorch
+- model-compression
+- deployment
+featured: true
+source_text: I engineered a unified pruning framework targeting deep neural networks
+  on embedded microcontrollers, validated across nine datasets and three activation
+  types (ReLU, Sigmoid, Tanh). The framework employs correlation-based neuron scoring
+  combined with activation-aware heuristics for structured pruning, ensuring high
+  sparsity while maintaining model accuracy within 1.4% of baseline. Developed a PyTorch-to-C
+  conversion pipeline to facilitate microcontroller deployment, achieving model size
+  reductions up to 75% and average latency improvements of 36.6%. The work provides
+  the first end-to-end systematic benchmarking and deployment validation on Arduino
+  MKR1000 and NodeMCU hardware platforms, advancing TinyML model compression best
+  practices.
+filename: neural_network_optimization_framework
+section: research

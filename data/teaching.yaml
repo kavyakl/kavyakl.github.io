@@ -1,0 +1,16 @@
+teaching:
+  - role: "Judge"
+    organization: "USF Virtual Graduate Research Symposium"
+    duration: "2022, 2023"
+    description: "Evaluated graduate research presentations across multiple disciplines"
+    
+  - role: "Teaching Assistant"
+    course: "Computer Architecture"
+    organization: "University of South Florida"
+    duration: "2019-2021"
+    description: "Assisted with instruction and grading for undergraduate computer architecture courses"
+    
+  - role: "Research Mentor"
+    organization: "University of South Florida"
+    duration: "2020-2023"
+    description: "Mentored undergraduate and graduate students in ML optimization and embedded systems research"

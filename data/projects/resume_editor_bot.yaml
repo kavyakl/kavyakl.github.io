@@ -1,0 +1,55 @@
+title: Resume Editor Bot
+slug: resume-editor-bot
+description: 'An intelligent resume editing assistant powered by Retrieval-Augmented
+  Generation (RAG) and large language models (LLMs), designed to help users create,
+  optimize, and tailor their resumes dynamically based on job descriptions. Features
+  project-based resume generation, smart project ranking, and job-specific content
+  tailoring.
+
+  '
+role: Sole Developer & AI Engineer
+technologies:
+- Python 3.9+
+- FastAPI
+- LangChain
+- OpenAI GPT Models
+- Pydantic
+- python-docx
+- Git & GitHub
+methods:
+- Modular FastAPI microservices architecture for scalable API design
+- Dynamic content generation pipeline leveraging LangChain and OpenAI prompts
+- Skills database construction with job-description-driven filtering and ranking
+- Automated DOCX resume document generation with python-docx, supporting customizable
+  templates
+- Integration of RAG methodology to augment resume content with relevant project details
+results: 'Successfully developed a fully automated system generating tailored resumes
+  in DOCX format, matching projects and skills precisely to input job descriptions,
+  significantly reducing time spent on resume customization.
+
+  '
+impact: 'Streamlines and automates resume tailoring workflows for job seekers, increasing
+  application efficiency and relevance, with potential to scale to broader career
+  services.
+
+  '
+github_url: https://github.com/kavyakl/resume-editor-bot
+duration: Ongoing
+team_size: 1
+challenges: 'Debugging complex LLM prompt chains, managing asynchronous API workflows,
+  ensuring reliable state management, and producing consistently well-formatted resume
+  documents.
+
+  '
+sections:
+- project
+relevance_tags:
+- genai
+- rag
+- nlp
+- tooling
+- web-app
+- automation
+featured: true
+created_at: '2025-07-24T17:00:00.000000'
+section: project

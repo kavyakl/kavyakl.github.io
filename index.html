@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lakshmi Kavya Kalyanam</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/js-yaml/4.1.0/js-yaml.min.js"></script>
     <style>
         * {
             margin: 0;
@@ -370,8 +371,142 @@
         </div>
     </section>
 
+    <section class="section">
+        <h2 class="section-title">Projects</h2>
+        <div id="projects-container"></div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Publications</h2>
+        <div id="publications-container"></div>
+    </section>
+
+    <section class="section">
+        <h2 class="section-title">Teaching & Mentoring</h2>
+        <div id="teaching-container"></div>
+    </section>
+
     <a href="Lk_resume.pdf" class="download-btn" target="_blank">
         <i class="fas fa-download"></i> Download PDF
     </a>
+
+    <script>
+        // Load and parse YAML data
+        async function loadYAMLData() {
+            try {
+                // Load profile data
+                const profileResponse = await fetch('data/profile.yaml');
+                const profileText = await profileResponse.text();
+                const profile = jsyaml.load(profileText);
+                
+                // Update header with profile data
+                document.querySelector('.name').textContent = profile.name;
+                document.querySelector('.title').textContent = profile.headline;
+                
+                // Load skills data
+                const skillsResponse = await fetch('data/skills.yaml');
+                const skillsText = await skillsResponse.text();
+                const skillsData = jsyaml.load(skillsText);
+                
+                // Update skills section
+                const skillsContainer = document.querySelector('.skills-container');
+                skillsContainer.innerHTML = '';
+                skillsData.categories.forEach(category => {
+                    category.items.forEach(skill => {
+                        const skillTag = document.createElement('span');
+                        skillTag.className = 'skill-tag';
+                        skillTag.textContent = skill.name;
+                        skillsContainer.appendChild(skillTag);
+                    });
+                });
+                
+                // Load publications data
+                const publicationsResponse = await fetch('data/publications.yaml');
+                const publicationsText = await publicationsResponse.text();
+                const publicationsData = jsyaml.load(publicationsText);
+                
+                // Update publications section
+                const publicationsContainer = document.getElementById('publications-container');
+                publicationsData.publications.forEach(pub => {
+                    const pubDiv = document.createElement('div');
+                    pubDiv.className = 'award-item';
+                    pubDiv.innerHTML = `
+                        <div class="award-title">${pub.title}</div>
+                        <div class="award-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
+                        <div class="award-date">${pub.award || ''}</div>
+                    `;
+                    publicationsContainer.appendChild(pubDiv);
+                });
+                
+                // Load teaching data
+                const teachingResponse = await fetch('data/teaching.yaml');
+                const teachingText = await teachingResponse.text();
+                const teachingData = jsyaml.load(teaching);
+                
+                // Update teaching section
+                const teachingContainer = document.getElementById('teaching-container');
+                teachingData.teaching.forEach(item => {
+                    const teachingDiv = document.createElement('div');
+                    teachingDiv.className = 'award-item';
+                    teachingDiv.innerHTML = `
+                        <div class="award-title">${item.role}</div>
+                        <div class="award-subtitle">${item.organization}${item.course ? ' • ' + item.course : ''}</div>
+                        <div class="award-date">${item.duration}</div>
+                    `;
+                    teachingContainer.appendChild(teachingDiv);
+                });
+                
+                // Load projects data
+                const projectsResponse = await fetch('data/projects/dynamic_sparsity_optimization.yaml');
+                const projectsText = await projectsResponse.text();
+                const projectData = jsyaml.load(projectsText);
+                
+                // Add first project
+                const projectsContainer = document.getElementById('projects-container');
+                const projectDiv = document.createElement('div');
+                projectDiv.className = 'experience-item';
+                projectDiv.innerHTML = `
+                    <div class="item-header">
+                        <div class="item-title">${projectData.title}</div>
+                        <div class="item-subtitle">${projectData.role}</div>
+                        <div class="item-date">${projectData.duration || '2023-2024'}</div>
+                    </div>
+                    <div class="item-content">
+                        <p>${projectData.description}</p>
+                        <p><strong>Technologies:</strong> ${projectData.technologies.slice(0, 5).join(', ')}</p>
+                        <p><strong>Key Results:</strong> ${projectData.results}</p>
+                    </div>
+                `;
+                projectsContainer.appendChild(projectDiv);
+                
+                // Load second project
+                const project2Response = await fetch('data/projects/distributed_real_time_object_detection_framework.yaml');
+                const project2Text = await project2Response.text();
+                const project2Data = jsyaml.load(project2Text);
+                
+                const project2Div = document.createElement('div');
+                project2Div.className = 'experience-item';
+                project2Div.innerHTML = `
+                    <div class="item-header">
+                        <div class="item-title">${project2Data.title}</div>
+                        <div class="item-subtitle">${project2Data.role}</div>
+                        <div class="item-date">${project2Data.duration}</div>
+                    </div>
+                    <div class="item-content">
+                        <p>${project2Data.description}</p>
+                        <p><strong>Technologies:</strong> ${project2Data.technologies.slice(0, 5).join(', ')}</p>
+                        <p><strong>Key Results:</strong> ${project2Data.results}</p>
+                    </div>
+                `;
+                projectsContainer.appendChild(project2Div);
+                
+            } catch (error) {
+                console.error('Error loading YAML data:', error);
+            }
+        }
+        
+        // Load data when page loads
+        document.addEventListener('DOMContentLoaded', loadYAMLData);
+    </script>
 </body>
 </html>
