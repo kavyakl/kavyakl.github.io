@@ -3,63 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lakshmi Kavya Kalyanam's Resume</title>
+    <title>Lakshmi Kavya Kalyanam - Resume</title>
     <style>
-        :root {
-            --background-light: #ffffff;
-            --background-dark: #121212;
-            --text-light: #000000;
-            --text-dark: #ffffff;
-            --accent-color: #6200ea;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
-
         body {
-            background-color: var(--background-light);
-            color: var(--text-light);
-            font-family: Arial, sans-serif;
-            transition: background-color 0.3s, color 0.3s;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
         }
-
-        .dark-mode {
-            background-color: var(--background-dark);
-            color: var(--text-dark);
+        .container {
+            background: white;
+            padding: 60px 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 600px;
+            width: 100%;
+            text-align: center;
         }
-
-        .toggle-button {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            background-color: var(--accent-color);
-            border: none;
-            color: white;
-            padding: 10px;
-            cursor: pointer;
+        h1 {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.2em;
+            color: #666;
+            animation: pulse 2s infinite;
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.6; }
         }
     </style>
 </head>
 <body>
-    <button class="toggle-button" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-    <h1>Lakshmi Kavya Kalyanam</h1>
-    <section id="research">
-        <h2>Research</h2>
-        <p>Details about research work.</p>
-    </section>
-    <section id="projects">
-        <h2>Projects</h2>
-        <p>Details about projects.</p>
-    </section>
-    <section id="publications">
-        <h2>Publications</h2>
-        <p>Details about publications.</p>
-    </section>
-    <section id="contact">
-        <h2>Contact</h2>
-        <p>Contact information here.</p>
-    </section>
-    <script>
-        function toggleDarkMode() {
-            document.body.classList.toggle('dark-mode');
-        }
-    </script>
+    <div class="container">
+        <h1>Lakshmi Kavya Kalyanam</h1>
+        <p>📄 resume loading...</p>
+    </div>
 </body>
 </html>
