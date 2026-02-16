@@ -394,105 +394,163 @@
         // Load and parse YAML data
         async function loadYAMLData() {
             try {
-                // Load profile data
-                const profileResponse = await fetch('data/profile.yaml');
-                const profileText = await profileResponse.text();
-                const profile = jsyaml.load(profileText);
+                console.log('Starting to load YAML data...');
                 
-                // Update header with profile data
-                document.querySelector('.name').textContent = profile.name;
-                document.querySelector('.title').textContent = profile.headline;
+                // Load profile data
+                try {
+                    const profileResponse = await fetch('data/profile.yaml');
+                    const profileText = await profileResponse.text();
+                    const profile = jsyaml.load(profileText);
+                    console.log('Profile loaded:', profile);
+                    
+                    // Update header with profile data
+                    document.querySelector('.name').textContent = profile.name;
+                    document.querySelector('.title').textContent = profile.headline;
+                    
+                    // Update contact info
+                    const contactInfo = document.querySelector('.contact-info');
+                    contactInfo.innerHTML = `
+                        <a href="mailto:${profile.email}" class="contact-item">
+                            <i class="fas fa-envelope"></i> ${profile.email}
+                        </a>
+                        <a href="${profile.links.linkedin}" class="contact-item" target="_blank">
+                            <i class="fab fa-linkedin"></i> LinkedIn
+                        </a>
+                        <a href="${profile.links.github}" class="contact-item" target="_blank">
+                            <i class="fab fa-github"></i> GitHub
+                        </a>
+                        <a href="#" class="contact-item">
+                            <i class="fas fa-map-marker-alt"></i> ${profile.location}
+                        </a>
+                    `;
+                } catch (error) {
+                    console.error('Error loading profile:', error);
+                }
                 
                 // Load skills data
-                const skillsResponse = await fetch('data/skills.yaml');
-                const skillsText = await skillsResponse.text();
-                const skillsData = jsyaml.load(skillsText);
-                
-                // Update skills section
-                const skillsContainer = document.querySelector('.skills-container');
-                skillsContainer.innerHTML = '';
-                skillsData.categories.forEach(category => {
-                    category.items.forEach(skill => {
-                        const skillTag = document.createElement('span');
-                        skillTag.className = 'skill-tag';
-                        skillTag.textContent = skill.name;
-                        skillsContainer.appendChild(skillTag);
-                    });
-                });
+                try {
+                    const skillsResponse = await fetch('data/skills.yaml');
+                    const skillsText = await skillsResponse.text();
+                    const skillsData = jsyaml.load(skillsText);
+                    console.log('Skills loaded:', skillsData);
+                    
+                    // Update skills section
+                    const skillsContainer = document.querySelector('.skills-container');
+                    if (skillsContainer && skillsData.categories) {
+                        skillsContainer.innerHTML = '';
+                        skillsData.categories.forEach(category => {
+                            if (category.items) {
+                                category.items.forEach(skill => {
+                                    const skillTag = document.createElement('span');
+                                    skillTag.className = 'skill-tag';
+                                    skillTag.textContent = skill.name;
+                                    skillsContainer.appendChild(skillTag);
+                                });
+                            }
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading skills:', error);
+                }
                 
                 // Load publications data
-                const publicationsResponse = await fetch('data/publications.yaml');
-                const publicationsText = await publicationsResponse.text();
-                const publicationsData = jsyaml.load(publicationsText);
-                
-                // Update publications section
-                const publicationsContainer = document.getElementById('publications-container');
-                publicationsData.publications.forEach(pub => {
-                    const pubDiv = document.createElement('div');
-                    pubDiv.className = 'award-item';
-                    pubDiv.innerHTML = `
-                        <div class="award-title">${pub.title}</div>
-                        <div class="award-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
-                        <div class="award-date">${pub.award || ''}</div>
-                    `;
-                    publicationsContainer.appendChild(pubDiv);
-                });
+                try {
+                    const publicationsResponse = await fetch('data/publications.yaml');
+                    const publicationsText = await publicationsResponse.text();
+                    const publicationsData = jsyaml.load(publicationsText);
+                    console.log('Publications loaded:', publicationsData);
+                    
+                    // Update publications section
+                    const publicationsContainer = document.getElementById('publications-container');
+                    if (publicationsContainer && publicationsData.publications) {
+                        publicationsContainer.innerHTML = '';
+                        publicationsData.publications.forEach(pub => {
+                            const pubDiv = document.createElement('div');
+                            pubDiv.className = 'award-item';
+                            pubDiv.innerHTML = `
+                                <div class="award-title">${pub.title}</div>
+                                <div class="award-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
+                                <div class="award-date">${pub.award || ''}</div>
+                            `;
+                            publicationsContainer.appendChild(pubDiv);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading publications:', error);
+                }
                 
                 // Load teaching data
-                const teachingResponse = await fetch('data/teaching.yaml');
-                const teachingText = await teachingResponse.text();
-                const teachingData = jsyaml.load(teaching);
-                
-                // Update teaching section
-                const teachingContainer = document.getElementById('teaching-container');
-                teachingData.teaching.forEach(item => {
-                    const teachingDiv = document.createElement('div');
-                    teachingDiv.className = 'award-item';
-                    teachingDiv.innerHTML = `
-                        <div class="award-title">${item.role}</div>
-                        <div class="award-subtitle">${item.organization}${item.course ? ' • ' + item.course : ''}</div>
-                        <div class="award-date">${item.duration}</div>
-                    `;
-                    teachingContainer.appendChild(teachingDiv);
-                });
+                try {
+                    const teachingResponse = await fetch('data/teaching.yaml');
+                    const teachingText = await teachingResponse.text();
+                    const teachingData = jsyaml.load(teachingText);
+                    console.log('Teaching loaded:', teachingData);
+                    
+                    // Update teaching section
+                    const teachingContainer = document.getElementById('teaching-container');
+                    if (teachingContainer && teachingData.teaching) {
+                        teachingContainer.innerHTML = '';
+                        teachingData.teaching.forEach(item => {
+                            const teachingDiv = document.createElement('div');
+                            teachingDiv.className = 'award-item';
+                            teachingDiv.innerHTML = `
+                                <div class="award-title">${item.role}</div>
+                                <div class="award-subtitle">${item.organization}${item.course ? ' • ' + item.course : ''}</div>
+                                <div class="award-date">${item.duration}</div>
+                            `;
+                            teachingContainer.appendChild(teachingDiv);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading teaching:', error);
+                }
                 
                 // Load all projects data
-                const projectsContainer = document.getElementById('projects-container');
-                const projectFiles = [
-                    'data/projects/dynamic_sparsity_optimization.yaml',
-                    'data/projects/distributed_real_time_object_detection_framework.yaml',
-                    'data/projects/litbot_ai_literature_survey_assistant.yaml',
-                    'data/projects/neural_network_optimization_analysis_framework.yaml',
-                    'data/projects/resume_editor_bot.yaml'
-                ];
-                
-                for (const projectFile of projectFiles) {
-                    try {
-                        const projectResponse = await fetch(projectFile);
-                        const projectText = await projectResponse.text();
-                        const projectData = jsyaml.load(projectText);
+                try {
+                    const projectsContainer = document.getElementById('projects-container');
+                    const projectFiles = [
+                        'data/projects/dynamic_sparsity_optimization.yaml',
+                        'data/projects/distributed_real_time_object_detection_framework.yaml',
+                        'data/projects/litbot_ai_literature_survey_assistant.yaml',
+                        'data/projects/neural_network_optimization_analysis_framework.yaml',
+                        'data/projects/resume_editor_bot.yaml'
+                    ];
+                    
+                    if (projectsContainer) {
+                        projectsContainer.innerHTML = '';
                         
-                        if (projectData && projectData.title) {
-                            const projectDiv = document.createElement('div');
-                            projectDiv.className = 'experience-item';
-                            projectDiv.innerHTML = `
-                                <div class="item-header">
-                                    <div class="item-title">${projectData.title}</div>
-                                    <div class="item-subtitle">${projectData.role || 'Lead Developer'}</div>
-                                    <div class="item-date">${projectData.duration || 'Ongoing'}</div>
-                                </div>
-                                <div class="item-content">
-                                    <p>${projectData.description}</p>
-                                    <p><strong>Technologies:</strong> ${projectData.technologies ? projectData.technologies.slice(0, 6).join(', ') : 'Various ML frameworks'}</p>
-                                    ${projectData.results ? `<p><strong>Key Results:</strong> ${projectData.results}</p>` : ''}
-                                    ${projectData.impact ? `<p><strong>Impact:</strong> ${projectData.impact}</p>` : ''}
-                                </div>
-                            `;
-                            projectsContainer.appendChild(projectDiv);
+                        for (const projectFile of projectFiles) {
+                            try {
+                                const projectResponse = await fetch(projectFile);
+                                const projectText = await projectResponse.text();
+                                const projectData = jsyaml.load(projectText);
+                                console.log(`Project loaded from ${projectFile}:`, projectData);
+                                
+                                if (projectData && projectData.title) {
+                                    const projectDiv = document.createElement('div');
+                                    projectDiv.className = 'experience-item';
+                                    projectDiv.innerHTML = `
+                                        <div class="item-header">
+                                            <div class="item-title">${projectData.title}</div>
+                                            <div class="item-subtitle">${projectData.role || 'Lead Developer'}</div>
+                                            <div class="item-date">${projectData.duration || 'Ongoing'}</div>
+                                        </div>
+                                        <div class="item-content">
+                                            <p>${projectData.description}</p>
+                                            <p><strong>Technologies:</strong> ${projectData.technologies ? projectData.technologies.slice(0, 6).join(', ') : 'Various ML frameworks'}</p>
+                                            ${projectData.results ? `<p><strong>Key Results:</strong> ${projectData.results}</p>` : ''}
+                                            ${projectData.impact ? `<p><strong>Impact:</strong> ${projectData.impact}</p>` : ''}
+                                        </div>
+                                    `;
+                                    projectsContainer.appendChild(projectDiv);
+                                }
+                            } catch (error) {
+                                console.log(`Could not load project: ${projectFile}`, error);
+                            }
                         }
-                    } catch (error) {
-                        console.log(`Could not load project: ${projectFile}`, error);
                     }
+                } catch (error) {
+                    console.error('Error loading projects:', error);
                 }
                 
             } catch (error) {
