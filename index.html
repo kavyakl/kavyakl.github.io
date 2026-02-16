@@ -456,49 +456,44 @@
                     teachingContainer.appendChild(teachingDiv);
                 });
                 
-                // Load projects data
-                const projectsResponse = await fetch('data/projects/dynamic_sparsity_optimization.yaml');
-                const projectsText = await projectsResponse.text();
-                const projectData = jsyaml.load(projectsText);
-                
-                // Add first project
+                // Load all projects data
                 const projectsContainer = document.getElementById('projects-container');
-                const projectDiv = document.createElement('div');
-                projectDiv.className = 'experience-item';
-                projectDiv.innerHTML = `
-                    <div class="item-header">
-                        <div class="item-title">${projectData.title}</div>
-                        <div class="item-subtitle">${projectData.role}</div>
-                        <div class="item-date">${projectData.duration || '2023-2024'}</div>
-                    </div>
-                    <div class="item-content">
-                        <p>${projectData.description}</p>
-                        <p><strong>Technologies:</strong> ${projectData.technologies.slice(0, 5).join(', ')}</p>
-                        <p><strong>Key Results:</strong> ${projectData.results}</p>
-                    </div>
-                `;
-                projectsContainer.appendChild(projectDiv);
+                const projectFiles = [
+                    'data/projects/dynamic_sparsity_optimization.yaml',
+                    'data/projects/distributed_real_time_object_detection_framework.yaml',
+                    'data/projects/litbot_ai_literature_survey_assistant.yaml',
+                    'data/projects/neural_network_optimization_analysis_framework.yaml',
+                    'data/projects/resume_editor_bot.yaml'
+                ];
                 
-                // Load second project
-                const project2Response = await fetch('data/projects/distributed_real_time_object_detection_framework.yaml');
-                const project2Text = await project2Response.text();
-                const project2Data = jsyaml.load(project2Text);
-                
-                const project2Div = document.createElement('div');
-                project2Div.className = 'experience-item';
-                project2Div.innerHTML = `
-                    <div class="item-header">
-                        <div class="item-title">${project2Data.title}</div>
-                        <div class="item-subtitle">${project2Data.role}</div>
-                        <div class="item-date">${project2Data.duration}</div>
-                    </div>
-                    <div class="item-content">
-                        <p>${project2Data.description}</p>
-                        <p><strong>Technologies:</strong> ${project2Data.technologies.slice(0, 5).join(', ')}</p>
-                        <p><strong>Key Results:</strong> ${project2Data.results}</p>
-                    </div>
-                `;
-                projectsContainer.appendChild(project2Div);
+                for (const projectFile of projectFiles) {
+                    try {
+                        const projectResponse = await fetch(projectFile);
+                        const projectText = await projectResponse.text();
+                        const projectData = jsyaml.load(projectText);
+                        
+                        if (projectData && projectData.title) {
+                            const projectDiv = document.createElement('div');
+                            projectDiv.className = 'experience-item';
+                            projectDiv.innerHTML = `
+                                <div class="item-header">
+                                    <div class="item-title">${projectData.title}</div>
+                                    <div class="item-subtitle">${projectData.role || 'Lead Developer'}</div>
+                                    <div class="item-date">${projectData.duration || 'Ongoing'}</div>
+                                </div>
+                                <div class="item-content">
+                                    <p>${projectData.description}</p>
+                                    <p><strong>Technologies:</strong> ${projectData.technologies ? projectData.technologies.slice(0, 6).join(', ') : 'Various ML frameworks'}</p>
+                                    ${projectData.results ? `<p><strong>Key Results:</strong> ${projectData.results}</p>` : ''}
+                                    ${projectData.impact ? `<p><strong>Impact:</strong> ${projectData.impact}</p>` : ''}
+                                </div>
+                            `;
+                            projectsContainer.appendChild(projectDiv);
+                        }
+                    } catch (error) {
+                        console.log(`Could not load project: ${projectFile}`, error);
+                    }
+                }
                 
             } catch (error) {
                 console.error('Error loading YAML data:', error);
