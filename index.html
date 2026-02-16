@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lakshmi Kavya Kalyanam - Resume</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .header {
+            text-align: center;
+            border-bottom: 2px solid #667eea;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+        }
+        .name {
+            font-size: 2.5em;
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 15px;
+        }
+        .contact-item {
+            color: #666;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: color 0.3s;
+        }
+        .contact-item:hover {
+            color: #667eea;
+        }
+        .section {
+            margin-bottom: 30px;
+        }
+        .section-title {
+            font-size: 1.5em;
+            color: #667eea;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+            padding-left: 10px;
+        }
+        .experience-item, .education-item, .project-item {
+            margin-bottom: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #e0e0e0;
+        }
+        .item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 5px;
+        }
+        .item-title {
+            font-weight: bold;
+            color: #333;
+        }
+        .item-date {
+            color: #666;
+            font-size: 0.9em;
+        }
+        .item-subtitle {
+            color: #667eea;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill-tag {
+            background: #667eea;
+            color: white;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .download-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #667eea;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+        @media (max-width: 768px) {
+            .container {
+                padding: 20px;
+            }
+            .name {
+                font-size: 2em;
+            }
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+            }
+            .item-header {
+                flex-direction: column;
+            }
+        }
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            .container {
+                box-shadow: none;
+                padding: 20px;
+            }
+            .download-btn {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="name">Lakshmi Kavya Kalyanam</h1>
+            <div class="contact-info">
+                <a href="mailto:kavyakalyanamk@gmail.com" class="contact-item">
+                    <i class="fas fa-envelope"></i> kavyakalyanamk@gmail.com
+                </a>
+                <a href="tel:+1234567890" class="contact-item">
+                    <i class="fas fa-phone"></i> Available upon request
+                </a>
+                <a href="https://linkedin.com/in/lakshmikavya-kalyanam-a88633131" class="contact-item" target="_blank">
+                    <i class="fab fa-linkedin"></i> LinkedIn
+                </a>
+                <a href="https://github.com/kavyakl" class="contact-item" target="_blank">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <a href="#" class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i> Tampa, FL
+                </a>
+            </div>
+        </header>
+
+        <section class="section">
+            <h2 class="section-title">Professional Summary</h2>
+            <p>Machine Learning Engineer with 5+ years of experience in model compression, pruning, quantization, and embedded AI deployment. Author of 9 peer-reviewed publications and 3 patents in hardware-aware and compiler-integrated ML optimization. Skilled in neural network sparsification, ONNX graph transformations, and deployment across microcontrollers, GPUs, and FPGAs. Experienced in analyzing compute–memory trade-offs and building optimization pipelines for efficient real-time, on-device inference. Passionate about making ML systems smaller, faster, and reliable for production edge and cloud platforms.</p>
+        </section>
+
+        <section class="section">å
+            <h2 class="section-title">Education</h2>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Ph.D. in Computer Science and Engineering</div>
+                        <div class="item-subtitle">University of South Florida</div>
+                    </div>
+                    <div class="item-date">2019 - December 2025</div>
+                </div>
+                <p>• Focus: Sparse model optimization, embedded ML, compiler-aware inference</p>
+                <p>• 9 peer-reviewed publications, 3 patents filed, 2 Best Paper Awards</p>
+            </div>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">M.S., Computer Science and Engineering</div>
+                        <div class="item-subtitle">University of South Florida</div>
+                    </div>
+                    <div class="item-date">2020</div>
+                </div>
+                <p>• Thesis: Real-time object detection using BNNs on PYNQ-Z1 (19.23 FPS) - IEEE iSES 2020 Best Paper</p>
+                <p>• Focus: Embedded Deep Learning, Edge Inference Systems, Distributed Computing</p>
+            </div>
+            <div class="education-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">B.Tech., Electronics & Communication Engineering</div>
+                        <div class="item-subtitle">GITAM University</div>
+                    </div>
+                    <div class="item-date">2017</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Lead Research Engineer & PhD Fellow</div>
+                        <div class="item-subtitle">University of South Florida</div>
+                    </div>
+                    <div class="item-date">Jan 2019 – Dec 2025</div>
+                </div>
+                <p>• Developed multi-stage compression and pruning pipelines for CNNs using PyTorch and ONNX Runtime, achieving up to 98% sparsity and 60% model compression with minimal accuracy loss.</p>
+                <p>• Designed activation-aware pruning for MLPs, achieving 82% sparsity and 37% hardware savings (<1.5% accuracy drop) and deployed on ARM Cortex-M4 microcontrollers with a 95% success rate.</p>
+                <p>• Built a distributed real-time object detection system using PYNQ-Z1 AP-SoCs and BNNs, achieving 19.23 FPS across a 3-node edge network with minimal communication latency.</p>
+                <p>• Developed ONNX graph rewrites simulating compiler IR transformations, enabling 4.33× inference speedup through structure-preserving sparsity optimizations.</p>
+                <p>• Engineered a RAG-based literature analysis system using local LLM inference and FAISS-based vector search, reducing manual review time by 80% across 200+ scientific papers.</p>
+                <p>• Modeled compute–memory trade-offs and implemented optimization techniques for real-time embedded inference and performance scalability.</p>
+                <p>• Ran optimized models on cloud-based GPU platforms using ONNX Runtime and TensorRT.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Skills</h2>
+            <div class="skills-container">
+                <span class="skill-tag">C++17</span>
+                <span class="skill-tag">Python</span>
+                <span class="skill-tag">Embedded C</span>
+                <span class="skill-tag">CUDA 12.3</span>
+                <span class="skill-tag">OpenCL</span>
+                <span class="skill-tag">PyTorch 2.6.0</span>
+                <span class="skill-tag">TensorFlow</span>
+                <span class="skill-tag">ONNX Runtime</span>
+                <span class="skill-tag">TensorRT</span>
+                <span class="skill-tag">TFLite</span>
+                <span class="skill-tag">Model Pruning</span>
+                <span class="skill-tag">Quantization</span>
+                <span class="skill-tag">FPGA</span>
+                <span class="skill-tag">Docker</span>
+                <span class="skill-tag">Git</span>
+                <span class="skill-tag">Linux CLI</span>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Patents</h2>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Layer-Wise Filter Thresholding Based CNN Pruning for Efficient IoT Edge Implementations</div>
+                        <div class="item-subtitle">Provisional Patent USF Ref: 24T085US</div>
+                    </div>
+                    <div class="item-date">2024</div>
+                </div>
+                <p>• Thresholding-based CNN pruning method for efficient IoT edge deployment</p>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation</div>
+                        <div class="item-subtitle">Patent USF23/00331, Tech ID: 24T063</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+                <p>• Unstructured pruning techniques for MLPs with tanh activation</p>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Range-Based Hardware Optimization of Multi-Layer Perceptrons with ReLUs</div>
+                        <div class="item-subtitle">Patent USF Ref: 23T078US</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+                <p>• Range-based hardware optimization of MLPs with ReLU activation</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">Awards & Honors</h2>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Best Paper Award</div>
+                        <div class="item-subtitle">IEEE iSES 2023</div>
+                    </div>
+                    <div class="item-date">2023</div>
+                </div>
+                <p>• Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation</p>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Best Paper Award</div>
+                        <div class="item-subtitle">IEEE iSES 2020</div>
+                    </div>
+                    <div class="item-date">2020</div>
+                </div>
+                <p>• Distributed Real-Time Object Detection with IoT Edge Nodes</p>
+            </div>
+            <div class="experience-item">
+                <div class="item-header">
+                    <div>
+                        <div class="item-title">Judge</div>
+                        <div class="item-subtitle">USF Virtual Graduate Research Symposium</div>
+                    </div>
+                    <div class="item-date">2022, 2023</div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <a href="Lk_resume.pdf" class="download-btn" target="_blank">
+        <i class="fas fa-download"></i> Download PDF
+    </a>
+</body>
+</html>
