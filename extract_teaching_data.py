@@ -1,0 +1,159 @@
+#!/usr/bin/env python3
+import json
+import yaml
+from collections import defaultdict
+from datetime import datetime
+
+def load_json_data(filename):
+    """Load teaching data from JSON file"""
+    with open(filename, 'r') as f:
+        return json.load(f)
+
+def extract_unique_courses(data):
+    """Extract unique courses with their terms"""
+    courses = defaultdict(set)  # Use set to avoid duplicate terms
+    
+    for entry in data:
+        if entry.get('enrolled as') == 'Ta':
+            course_code = entry.get('course_code')
+            course_name = entry.get('course_name', '')
+            course_level = entry.get('course_level', '')
+            term = entry.get('term', '')
+            
+            if course_code and course_name:
+                # Clean up course name
+                clean_name = course_name.replace(' And ', ' and ').title()
+                
+                # Special handling for course codes with multiple levels
+                if course_code == 'CIS4930':
+                    # Differentiate by course title for CIS4930
+                    if 'Wireless' in course_name:
+                        clean_name = 'Wireless and Mobile Computing'
+                    elif 'Hardware Security' in course_name and 'Hands' in course_name:
+                        clean_name = 'Hands-on Hardware Security'
+                    elif 'Hardware Security' in course_name:
+                        clean_name = 'Practical Hardware Security'
+                    elif 'IoT' in course_name:
+                        clean_name = 'IoT System Design'
+                
+                key = (course_code, clean_name, course_level)
+                courses[key].add(term)
+    
+    return courses
+
+def convert_term_to_readable(terms):
+    """Convert term codes to readable format"""
+    term_mapping = {
+        'Fall 18': 'Fall 2018',
+        'Spring 19': 'Spring 2019', 
+        'Fall 19': 'Fall 2019',
+        'Spring 20': 'Spring 2020',
+        'Summer 20': 'Summer 2020',
+        'Fall 20': 'Fall 2020',
+        'Spring 21': 'Spring 2021',
+        'Summer 21': 'Summer 2021',
+        'Fall 21': 'Fall 2021',
+        'Spring 22': 'Spring 2022',
+        'Summer 22': 'Summer 2022',
+        'Fall 22': 'Fall 2022',
+        'Spring 23': 'Spring 2023',
+        'Summer 23': 'Summer 2023',
+        'Fall 23': 'Fall 2023',
+        'Spring 24': 'Spring 2024',
+        'Summer 24': 'Summer 2024',
+        'Fall 24': 'Fall 2024',
+        'Spring 25': 'Spring 2025',
+    }
+    
+    readable_terms = []
+    for term in sorted(set(terms)):
+        readable_term = term_mapping.get(term, term)
+        if readable_term:
+            readable_terms.append(readable_term)
+    
+    return ', '.join(readable_terms)
+
+def generate_teaching_yaml(courses):
+    """Generate teaching YAML structure"""
+    teaching_entries = []
+    
+    # Sort courses by code and level
+    sorted_courses = sorted(courses.items(), key=lambda x: (x[0][0], x[0][2]))
+    
+    for (course_code, course_name, course_level), terms in sorted_courses:
+        if course_code:  # Only include courses with valid codes
+            readable_duration = convert_term_to_readable(terms)
+            
+            # Determine course level description
+            level_desc = "graduate" if course_level == "Graduate" else "undergraduate"
+            
+            # Create description based on course content
+            if "CMOS" in course_name or "VLSI" in course_name:
+                description = f"Assisted with {level_desc} CMOS-VLSI design courses"
+            elif "Logic" in course_name or "Computer Logic" in course_name:
+                description = f"Assisted with {level_desc} computer logic and design courses"
+            elif "Organization" in course_name:
+                description = f"Supported {level_desc} computer organization course"
+            elif "IT Concepts" in course_name:
+                description = f"Supported {level_desc} IT concepts course across multiple semesters"
+            elif "FPGA" in course_name or "Gate Array" in course_name:
+                description = f"Assisted with {level_desc} FPGA design course"
+            elif "Wireless" in course_name or "Mobile" in course_name:
+                description = f"Assisted with {level_desc} wireless and mobile computing course"
+            elif "Hardware Security" in course_name:
+                description = f"Supported hands-on hardware security course for {level_desc} students"
+            elif "IoT" in course_name:
+                description = f"Assisted with IoT system design course for {level_desc} students"
+            elif "Computer Architecture" in course_name:
+                description = f"Currently assisting with computer architecture course for {level_desc} students"
+            elif "Networks" in course_name:
+                description = f"Assisted with computer networks lab course"
+            else:
+                description = f"Assisted with {level_desc} course"
+            
+            teaching_entry = {
+                'role': 'Teaching Assistant',
+                'course': f"{course_name} ({course_code})",
+                'organization': 'University of South Florida',
+                'duration': readable_duration,
+                'description': description
+            }
+            
+            teaching_entries.append(teaching_entry)
+    
+    # Add research mentor entry
+    teaching_entries.append({
+        'role': 'Research Mentor',
+        'organization': 'University of South Florida',
+        'duration': '2020-2025',
+        'description': 'Mentored undergraduate and graduate students in ML optimization and embedded systems research'
+    })
+    
+    return {'teaching': teaching_entries}
+
+def main():
+    """Main function to extract and save teaching data"""
+    print("Loading teaching data from JSON...")
+    json_data = load_json_data('data/ta_courses_confirmed.json')
+    
+    print("Extracting unique courses...")
+    courses = extract_unique_courses(json_data)
+    
+    print(f"Found {len(courses)} unique courses")
+    
+    print("Generating YAML structure...")
+    teaching_yaml = generate_teaching_yaml(courses)
+    
+    print("Saving to teaching.yaml...")
+    with open('data/teaching.yaml', 'w') as f:
+        yaml.dump(teaching_yaml, f, default_flow_style=False, sort_keys=False, indent=2)
+    
+    print("✅ Teaching data successfully extracted and saved!")
+    
+    # Print summary
+    print("\n📊 Summary:")
+    for entry in teaching_yaml['teaching'][:-1]:  # Exclude research mentor
+        print(f"  • {entry['course']} - {entry['duration']}")
+
+if __name__ == "__main__":
+    main()

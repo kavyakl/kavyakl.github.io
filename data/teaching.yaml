@@ -1,64 +1,73 @@
 teaching:
-  - role: "Judge"
-    organization: "USF Virtual Graduate Research Symposium"
-    duration: "2022, 2023"
-    description: "Evaluated graduate research presentations across multiple disciplines"
-    
-  - role: "Teaching Assistant"
-    course: "Computer Logic and Design (CDA3201)"
-    organization: "University of South Florida"
-    duration: "Fall 2018, Spring 2019"
-    description: "Assisted with computer logic and design courses for graduate students"
-    
-  - role: "Teaching Assistant"
-    course: "Computer Organization (CDA3103)"
-    organization: "University of South Florida"
-    duration: "Spring 2020"
-    description: "Supported computer organization course for graduate students"
-    
-  - role: "Teaching Assistant"
-    course: "CMOS-VLSI Design (CDA4213)"
-    organization: "University of South Florida"
-    duration: "Fall 2021, Fall 2022, Fall 2023"
-    description: "Assisted with undergraduate CMOS-VLSI design courses and labs"
-    
-  - role: "Teaching Assistant"
-    course: "IT Concepts (CGS3303)"
-    organization: "University of South Florida"
-    duration: "Fall 2019, Spring 2020, Spring 2021, Spring 2022, Summer 2020, Summer 2022"
-    description: "Supported IT concepts course for graduate students across multiple semesters"
-    
-  - role: "Teaching Assistant"
-    course: "Wireless and Mobile Computing (CIS4930/CIS6930)"
-    organization: "University of South Florida"
-    duration: "Spring 2024"
-    description: "Assisted with wireless and mobile computing courses for both undergraduate and graduate levels"
-    
-  - role: "Teaching Assistant"
-    course: "Hardware Security (CIS4930)"
-    organization: "University of South Florida"
-    duration: "Summer 2023, Fall 2022"
-    description: "Supported hands-on and practical hardware security courses"
-    
-  - role: "Teaching Assistant"
-    course: "IoT System Design (CIS4930)"
-    organization: "University of South Florida"
-    duration: "Fall 2020"
-    description: "Assisted with IoT system design course for undergraduate students"
-    
-  - role: "Teaching Assistant"
-    course: "Field Programmable Gate Array Design (CDA4253)"
-    organization: "University of South Florida"
-    duration: "Spring 2021"
-    description: "Supported FPGA design course for undergraduate students"
-    
-  - role: "Teaching Assistant"
-    course: "Principles of Computer Architecture (EEL6764)"
-    organization: "University of South Florida"
-    duration: "Spring 2025"
-    description: "Currently assisting with computer architecture course for graduate students"
-    
-  - role: "Research Mentor"
-    organization: "University of South Florida"
-    duration: "2020-2023"
-    description: "Mentored undergraduate and graduate students in ML optimization and embedded systems research"
+- role: Teaching Assistant
+  course: Computer Organization (CDA3103)
+  organization: University of South Florida
+  duration: Spring 2020
+  description: Supported undergraduate computer organization course
+- role: Teaching Assistant
+  course: Computer Logic And Design (CDA3201)
+  organization: University of South Florida
+  duration: Fall 2018, Spring 2019
+  description: Assisted with undergraduate computer logic and design courses
+- role: Teaching Assistant
+  course: Cmos Vlsi Design (CDA4213)
+  organization: University of South Florida
+  duration: Fall 2021, Fall 2022, Fall 2023
+  description: Assisted with undergraduate course
+- role: Teaching Assistant
+  course: Field Prgm Gate Array Design (CDA4253)
+  organization: University of South Florida
+  duration: Spring 2021
+  description: Assisted with undergraduate FPGA design course
+- role: Teaching Assistant
+  course: It Concepts (CGS3303)
+  organization: University of South Florida
+  duration: Fall 2019, Spring 2020, Spring 2021, Spring 2022, Summer 2020, Summer
+    2022
+  description: Assisted with graduate course
+- role: Teaching Assistant
+  course: It Concepts (CGS3303)
+  organization: University of South Florida
+  duration: Fall 2019, Spring 2020, Spring 2021, Spring 2022, Summer 2022
+  description: Assisted with undergraduate course
+- role: Teaching Assistant
+  course: Wireless and Mobile Computing (CIS4930)
+  organization: University of South Florida
+  duration: Spring 2024
+  description: Assisted with undergraduate wireless and mobile computing course
+- role: Teaching Assistant
+  course: Hands-on Hardware Security (CIS4930)
+  organization: University of South Florida
+  duration: Summer 2023
+  description: Supported hands-on hardware security course for undergraduate students
+- role: Teaching Assistant
+  course: Iot System Design (CIS4930)
+  organization: University of South Florida
+  duration: Fall 2020
+  description: Assisted with undergraduate course
+- role: Teaching Assistant
+  course: Practical Hardware Security (CIS4930)
+  organization: University of South Florida
+  duration: Fall 2022
+  description: Supported hands-on hardware security course for undergraduate students
+- role: Teaching Assistant
+  course: Wireless And Mobile Computing (CIS6930)
+  organization: University of South Florida
+  duration: Spring 2024
+  description: Assisted with graduate wireless and mobile computing course
+- role: Teaching Assistant
+  course: Cmos Vlsi Design (CIS6930)
+  organization: University of South Florida
+  duration: Fall 2024
+  description: Assisted with graduate course
+- role: Teaching Assistant
+  course: Princ Of Computer Architecture (EEL6764)
+  organization: University of South Florida
+  duration: Spring 2025
+  description: Currently assisting with computer architecture course for graduate
+    students
+- role: Research Mentor
+  organization: University of South Florida
+  duration: 2020-2025
+  description: Mentored undergraduate and graduate students in ML optimization and
+    embedded systems research
