@@ -14,13 +14,34 @@ def extract_unique_courses(data):
     courses = defaultdict(set)  # Use set to avoid duplicate terms
     
     for entry in data:
-        if entry.get('enrolled as') == 'Ta':
+        # Handle both old and new JSON formats
+        enrolled_as = entry.get('enrolled_as') or entry.get('enrolled as')
+        role_canonical = entry.get('role_canonical')
+        
+        if enrolled_as == 'TA' and role_canonical == 'TA':
+            # Handle new format
             course_code = entry.get('course_code')
             course_name = entry.get('course_name', '')
             course_level = entry.get('course_level', '')
             term = entry.get('term', '')
             
-            if course_code and course_name:
+            # Clean course name by removing the "cannot be added to the courses menu..." text
+            if 'cannot be added to the courses menu' in course_name:
+                course_name = course_name.split(' cannot be added to the courses menu')[0]
+            
+            # Clean course title similarly
+            course_title = entry.get('course_title', '')
+            if 'cannot be added to the courses menu' in course_title:
+                course_title = course_title.split(' cannot be added to the courses menu')[0]
+            
+            # Handle special case for EEL6764 with "Click to remove" text
+            if course_code == 'Click' and 'EEL6764' in course_title:
+                course_code = 'EEL6764'
+                course_name = 'Principles of Computer Architecture'
+                course_level = 'Graduate'
+                term = 'Spring 25'
+            
+            if course_code and course_code != 'Click' and course_name:
                 # Clean up course name
                 clean_name = course_name.replace(' And ', ' and ').title()
                 
@@ -35,7 +56,7 @@ def extract_unique_courses(data):
                         clean_name = 'Practical Hardware Security'
                     elif 'IoT' in course_name:
                         clean_name = 'IoT System Design'
-                elif course_code in ['CDA4213', 'CIS6930'] and ('Cmos' in course_name.lower() or 'Vlsi' in course_name.lower()):
+                elif course_code in ['CDA4213', 'CIS6930'] and ('Cmos' in course_name.lower() or 'Vlsi' in course_name.lower() or 'CMOS' in course_name):
                     # Handle CMOS-VLSI Design courses
                     clean_name = 'CMOS-VLSI Design'
                 elif course_code == 'EEL6764':
@@ -48,7 +69,7 @@ def extract_unique_courses(data):
                     clean_name = 'Computer Logic and Design'
                 elif 'Organization' in course_name:
                     clean_name = 'Computer Organization'
-                elif 'It Concepts' in course_name.lower() or 'It Concepts' in course_name:
+                elif 'It Concepts' in course_name.lower() or 'IT Concepts' in course_name:
                     clean_name = 'IT Concepts'
                 
                 key = (course_code, clean_name, course_level)
@@ -77,6 +98,25 @@ def convert_term_to_readable(terms):
         'Spring 24': 'Spring 2024',
         'Summer 24': 'Summer 2024',
         'Fall 24': 'Fall 2024',
+        'Spring 25': 'Spring 2025',
+        'Fall 2018': 'Fall 2018',
+        'Spring 2019': 'Spring 2019', 
+        'Fall 2019': 'Fall 2019',
+        'Spring 2020': 'Spring 2020',
+        'Summer 2020': 'Summer 2020',
+        'Fall 2020': 'Fall 2020',
+        'Spring 2021': 'Spring 2021',
+        'Summer 2021': 'Summer 2021',
+        'Fall 2021': 'Fall 2021',
+        'Spring 2022': 'Spring 2022',
+        'Summer 2022': 'Summer 2022',
+        'Fall 2022': 'Fall 2022',
+        'Spring 2023': 'Spring 2023',
+        'Summer 2023': 'Summer 2023',
+        'Fall 2023': 'Fall 2023',
+        'Spring 2024': 'Spring 2024',
+        'Summer 2024': 'Summer 2024',
+        'Fall 2024': 'Fall 2024',
         'Spring 25': 'Spring 2025',
     }
     
