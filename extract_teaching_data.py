@@ -35,6 +35,21 @@ def extract_unique_courses(data):
                         clean_name = 'Practical Hardware Security'
                     elif 'IoT' in course_name:
                         clean_name = 'IoT System Design'
+                elif course_code in ['CDA4213', 'CIS6930'] and ('Cmos' in course_name.lower() or 'Vlsi' in course_name.lower()):
+                    # Handle CMOS-VLSI Design courses
+                    clean_name = 'CMOS-VLSI Design'
+                elif course_code == 'EEL6764':
+                    # Handle Computer Architecture
+                    clean_name = 'Principles of Computer Architecture'
+                elif course_code == 'CDA4253':
+                    # Handle FPGA Design
+                    clean_name = 'Field Programmable Gate Array Design'
+                elif 'Logic' in course_name:
+                    clean_name = 'Computer Logic and Design'
+                elif 'Organization' in course_name:
+                    clean_name = 'Computer Organization'
+                elif 'It Concepts' in course_name.lower() or 'It Concepts' in course_name:
+                    clean_name = 'IT Concepts'
                 
                 key = (course_code, clean_name, course_level)
                 courses[key].add(term)
@@ -88,23 +103,25 @@ def generate_teaching_yaml(courses):
             level_desc = "graduate" if course_level == "Graduate" else "undergraduate"
             
             # Create description based on course content
-            if "CMOS" in course_name or "VLSI" in course_name:
+            if "CMOS-VLSI Design" in course_name:
                 description = f"Assisted with {level_desc} CMOS-VLSI design courses"
-            elif "Logic" in course_name or "Computer Logic" in course_name:
+            elif "Computer Logic and Design" in course_name:
                 description = f"Assisted with {level_desc} computer logic and design courses"
-            elif "Organization" in course_name:
+            elif "Computer Organization" in course_name:
                 description = f"Supported {level_desc} computer organization course"
             elif "IT Concepts" in course_name:
                 description = f"Supported {level_desc} IT concepts course across multiple semesters"
-            elif "FPGA" in course_name or "Gate Array" in course_name:
+            elif "Field Programmable Gate Array Design" in course_name:
                 description = f"Assisted with {level_desc} FPGA design course"
-            elif "Wireless" in course_name or "Mobile" in course_name:
+            elif "Wireless and Mobile Computing" in course_name:
                 description = f"Assisted with {level_desc} wireless and mobile computing course"
-            elif "Hardware Security" in course_name:
+            elif "Hands-on Hardware Security" in course_name:
                 description = f"Supported hands-on hardware security course for {level_desc} students"
-            elif "IoT" in course_name:
+            elif "Practical Hardware Security" in course_name:
+                description = f"Supported practical hardware security course for {level_desc} students"
+            elif "IoT System Design" in course_name:
                 description = f"Assisted with IoT system design course for {level_desc} students"
-            elif "Computer Architecture" in course_name:
+            elif "Principles of Computer Architecture" in course_name:
                 description = f"Currently assisting with computer architecture course for {level_desc} students"
             elif "Networks" in course_name:
                 description = f"Assisted with computer networks lab course"
