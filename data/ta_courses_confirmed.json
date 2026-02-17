@@ -9,7 +9,7 @@
     "course_title":"CDA3201.001S19.10698 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -21,7 +21,7 @@
     "course_title":"CDA3103.001S20.11056 Computer Organization",
     "course_code":"CDA3103",
     "course_name":"Computer Organization",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -33,7 +33,7 @@
     "course_title":"CDA3201.001F18 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -45,7 +45,7 @@
     "course_title":"CDA3201.002S19.20993 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -57,7 +57,7 @@
     "course_title":"CDA3201L.001F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.001F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -69,7 +69,7 @@
     "course_title":"CDA3201L.004S21.17915 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004S21.17915 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -81,7 +81,7 @@
     "course_title":"CDA3201L.002S19.10700 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.002S19.10700 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -93,7 +93,7 @@
     "course_title":"CDA3201L.002F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.002F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -105,7 +105,7 @@
     "course_title":"CDA3201L.003S19.12253 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003S19.12253 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -117,7 +117,7 @@
     "course_title":"CDA3201L.003F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -129,7 +129,7 @@
     "course_title":"CDA3201L.003F19.80805 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003F19.80805 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -141,7 +141,7 @@
     "course_title":"CDA3201L.004S19.18742 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004S19.18742 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -153,7 +153,7 @@
     "course_title":"CDA3201L.001S19.10699 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.001S19.10699 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -165,7 +165,7 @@
     "course_title":"CDA3201L.004F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -189,7 +189,7 @@
     "course_title":"CDA3201L.005F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.005F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -201,7 +201,7 @@
     "course_title":"CDA4213L.001F23.87766 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.001F23.87766 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -213,7 +213,7 @@
     "course_title":"CDA4213L.001F21.84230 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.001F21.84230 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -237,7 +237,7 @@
     "course_title":"CDA3201L.005S19.18743 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.005S19.18743 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -249,7 +249,7 @@
     "course_title":"CDA4213L.001F22.83989 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.001F22.83989 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -273,7 +273,7 @@
     "course_title":"CGS3303.001S21.12159 IT Concepts",
     "course_code":"CGS3303",
     "course_name":"It Concepts",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -285,7 +285,7 @@
     "course_title":"CGS3303.001S20.12208 IT Concepts",
     "course_code":"CGS3303",
     "course_name":"It Concepts",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -297,7 +297,7 @@
     "course_title":"CGS3303.701U22.51414 IT Concepts",
     "course_code":"CGS3303",
     "course_name":"It Concepts",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -309,7 +309,7 @@
     "course_title":"CGS3303.001S22.12158 IT Concepts",
     "course_code":"CGS3303",
     "course_name":"It Concepts",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -321,7 +321,7 @@
     "course_title":"CGS3303.001F19.94000 IT Concepts",
     "course_code":"CGS3303",
     "course_name":"It Concepts",
-    "course_level":"Graduate"
+    "course_level": "Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -345,7 +345,7 @@
     "course_title":"CDA4213L.003F24.96620 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.003F24.96620 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -441,7 +441,7 @@
     "course_title":"CNT4104L.003S24.17494 Computer Networks Lab for IT",
     "course_code":null,
     "course_name":"Cnt4104L.003S24.17494 Computer Networks Lab For It",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -465,7 +465,7 @@
     "course_title":"CDA3103.001S20.11056 Computer Organization",
     "course_code":"CDA3103",
     "course_name":"Computer Organization",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -477,7 +477,7 @@
     "course_title":"CDA3201.001F18 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -489,7 +489,7 @@
     "course_title":"CDA3201.001S19.10698 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -501,7 +501,7 @@
     "course_title":"CDA3201.002S19.20993 Computer Logic and Design",
     "course_code":"CDA3201",
     "course_name":"Computer Logic And Design",
-    "course_level":"Graduate"
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -513,7 +513,7 @@
     "course_title":"CDA3201L.001F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.001F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -525,7 +525,7 @@
     "course_title":"CDA3201L.001S19.10699 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.001S19.10699 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -537,7 +537,7 @@
     "course_title":"CDA3201L.002F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.002F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -549,7 +549,7 @@
     "course_title":"CDA3201L.002S19.10700 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.002S19.10700 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -561,7 +561,7 @@
     "course_title":"CDA3201L.003F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -573,7 +573,7 @@
     "course_title":"CDA3201L.003F19.80805 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003F19.80805 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -585,7 +585,7 @@
     "course_title":"CDA3201L.003S19.12253 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.003S19.12253 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -597,7 +597,7 @@
     "course_title":"CDA3201L.004F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -609,7 +609,7 @@
     "course_title":"CDA3201L.004S19.18742 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004S19.18742 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -621,7 +621,7 @@
     "course_title":"CDA3201L.004S21.17915 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.004S21.17915 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -633,7 +633,7 @@
     "course_title":"CDA3201L.005F18 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.005F18 Computer Logic Design Lab",
-    "course_level":null
+    "course_level": "Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -645,7 +645,7 @@
     "course_title":"CDA3201L.005S19.18743 Computer Logic Design Lab",
     "course_code":null,
     "course_name":"Cda3201L.005S19.18743 Computer Logic Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -693,7 +693,7 @@
     "course_title":"CDA4213L.001F21.84230 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.001F21.84230 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",
@@ -729,7 +729,7 @@
     "course_title":"CDA4213L.003F24.96620 CMOS-VLSI Design Lab",
     "course_code":null,
     "course_name":"Cda4213L.003F24.96620 Cmos-Vlsi Design Lab",
-    "course_level":null
+    "course_level":"Undergraduate"
   },
   {
     "enrolled as":"Ta",

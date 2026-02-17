@@ -182,183 +182,65 @@
             box-shadow: 0 6px 25px rgba(139, 69, 19, 0.3);
         }
 
-        /* Teaching Dropdown Styles */
-        .teaching-dropdown {
-            background: #f5f5dc;
-            border: 2px solid #8b4513;
-            border-radius: 12px;
-            margin-bottom: 2rem;
-            overflow: hidden;
-            transition: all 0.3s ease;
+
+        /* Teaching Section (Clean Minimal Version) */
+        .teaching-container {
+            border: 1px solid #e5e5e5;
+            border-radius: 8px;
+            padding: 24px;
+            background: #fafafa;
         }
 
-        .teaching-header {
-            background: linear-gradient(135deg, #8b4513, #a0522d);
-            color: #f5f5dc;
-            padding: 1.5rem;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: background 0.3s ease;
-        }
-
-        .teaching-header:hover {
-            background: linear-gradient(135deg, #a0522d, #8b4513);
-        }
-
-        .teaching-summary {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .teaching-stats {
-            background: rgba(245, 245, 220, 0.2);
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-size: 0.9rem;
+        .teaching-container summary {
+            font-size: 1.1rem;
             font-weight: 500;
+            cursor: pointer;
+            list-style: none;
         }
 
-        .teaching-chevron {
-            transition: transform 0.3s ease;
-            font-size: 1.2rem;
+        .teaching-container summary::-webkit-details-marker {
+            display: none;
         }
 
-        .teaching-chevron.rotated {
+        .teaching-container summary::after {
+            content: "▼";
+            float: right;
+            font-size: 0.8rem;
+            transition: transform 0.2s ease;
+        }
+
+        .teaching-container[open] summary::after {
             transform: rotate(180deg);
         }
 
         .teaching-content {
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.5s ease;
-            background: #faf0e6;
-        }
-
-        .teaching-content.expanded {
-            max-height: 2000px;
-        }
-
-        .teaching-overview {
-            display: flex;
-            justify-content: space-around;
-            padding: 2rem;
-            background: #f5f5dc;
-            border-bottom: 1px solid #d2b48c;
-        }
-
-        .teaching-stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2rem;
-            font-weight: bold;
-            color: #8b4513;
-        }
-
-        .stat-label {
-            display: block;
-            font-size: 0.9rem;
-            color: #654321;
-            margin-top: 0.5rem;
-        }
-
-        .teaching-categories {
-            padding: 2rem;
+            margin-top: 24px;
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 2rem;
+            gap: 32px;
         }
 
-        .category-title {
-            color: #8b4513;
-            font-size: 1.2rem;
-            margin-bottom: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .course-list {
-            display: flex;
-            flex-direction: column;
-            gap: 0.8rem;
-        }
-
-        .course-item {
-            background: #f5f5dc;
-            border: 1px solid #d2b48c;
-            border-radius: 8px;
-            padding: 1rem;
-            transition: all 0.3s ease;
-        }
-
-        .course-item:hover {
-            background: #e8dcc0;
-            border-color: #8b4513;
-            transform: translateY(-2px);
-        }
-
-        .mentor-item {
-            background: #e8dcc0;
-            border-color: #8b4513;
-        }
-
-        .judge-item {
-            background: #d2b48c;
-            border-color: #8b4513;
-        }
-
-        .course-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 0.5rem;
-        }
-
-        .course-name {
+        .teaching-column h3 {
+            font-size: 1rem;
             font-weight: 600;
-            color: #654321;
+            margin-bottom: 12px;
+            color: #333;
         }
 
-        .course-code {
-            background: #8b4513;
-            color: #f5f5dc;
-            padding: 0.2rem 0.6rem;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: 500;
+        .teaching-column ul {
+            list-style: none;
+            padding: 0;
         }
 
-        .course-details {
-            color: #654321;
-            font-size: 0.9rem;
-            font-style: italic;
-        }
-
-        .teaching-judge {
-            padding: 0 2rem 2rem;
+        .teaching-column li {
+            margin-bottom: 10px;
+            font-size: 0.95rem;
+            color: #444;
         }
 
         @media (max-width: 768px) {
-            .teaching-categories {
+            .teaching-content {
                 grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-            
-            .teaching-overview {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .teaching-header {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
             }
         }
         
@@ -557,138 +439,9 @@
     </section>
 
     <section class="section">
-        <div class="teaching-dropdown" id="teachingDropdown">
-            <div class="teaching-header" onclick="toggleTeaching()">
-                <h2 class="section-title">Teaching & Mentoring</h2>
-                <div class="teaching-summary">
-                    <span class="teaching-stats">11 Courses • 7+ Years</span>
-                    <i class="fas fa-chevron-down teaching-chevron" id="teachingChevron"></i>
-                </div>
-            </div>
-            
-            <div class="teaching-content" id="teachingContent">
-                <div class="teaching-overview">
-                    <div class="teaching-stat">
-                        <span class="stat-number">6</span>
-                        <span class="stat-label">Graduate Courses</span>
-                    </div>
-                    <div class="teaching-stat">
-                        <span class="stat-number">5</span>
-                        <span class="stat-label">Undergraduate Courses</span>
-                    </div>
-                    <div class="teaching-stat">
-                        <span class="stat-number">7+</span>
-                        <span class="stat-label">Years Experience</span>
-                    </div>
-                </div>
-
-                <div class="teaching-categories">
-                    <div class="teaching-category">
-                        <h3 class="category-title">
-                            <i class="fas fa-graduation-cap"></i>
-                            Graduate Courses
-                        </h3>
-                        <div class="course-list">
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Computer Logic and Design</span>
-                                    <span class="course-code">CDA3201</span>
-                                </div>
-                                <div class="course-details">Fall 2018, Spring 2019</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Computer Organization</span>
-                                    <span class="course-code">CDA3103</span>
-                                </div>
-                                <div class="course-details">Spring 2020</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">IT Concepts</span>
-                                    <span class="course-code">CGS3303</span>
-                                </div>
-                                <div class="course-details">Fall 2019, Spring 2020, Spring 2021, Spring 2022, Summer 2020, Summer 2022</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Wireless and Mobile Computing</span>
-                                    <span class="course-code">CIS6930</span>
-                                </div>
-                                <div class="course-details">Spring 2024</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Principles of Computer Architecture</span>
-                                    <span class="course-code">EEL6764</span>
-                                </div>
-                                <div class="course-details">Spring 2025 (Current)</div>
-                            </div>
-                            <div class="course-item mentor-item">
-                                <div class="course-header">
-                                    <span class="course-name">Research Mentor</span>
-                                    <span class="course-code">Mentorship</span>
-                                </div>
-                                <div class="course-details">2020-2023</div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="teaching-category">
-                        <h3 class="category-title">
-                            <i class="fas fa-book"></i>
-                            Undergraduate Courses
-                        </h3>
-                        <div class="course-list">
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">CMOS-VLSI Design</span>
-                                    <span class="course-code">CDA4213</span>
-                                </div>
-                                <div class="course-details">Fall 2021, Fall 2022, Fall 2023</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Hardware Security</span>
-                                    <span class="course-code">CIS4930</span>
-                                </div>
-                                <div class="course-details">Summer 2023, Fall 2022</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">IoT System Design</span>
-                                    <span class="course-code">CIS4930</span>
-                                </div>
-                                <div class="course-details">Fall 2020</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Field Programmable Gate Array Design</span>
-                                    <span class="course-code">CDA4253</span>
-                                </div>
-                                <div class="course-details">Spring 2021</div>
-                            </div>
-                            <div class="course-item">
-                                <div class="course-header">
-                                    <span class="course-name">Wireless and Mobile Computing</span>
-                                    <span class="course-code">CIS4930</span>
-                                </div>
-                                <div class="course-details">Spring 2024</div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="teaching-judge">
-                    <div class="course-item judge-item">
-                        <div class="course-header">
-                            <span class="course-name">Judge</span>
-                            <span class="course-code">Symposium</span>
-                        </div>
-                        <div class="course-details">USF Virtual Graduate Research Symposium • 2022, 2023</div>
-                    </div>
-                </div>
-            </div>
+        <h2 class="section-title">Teaching & Mentoring</h2>
+        <div id="teaching-container">
+            <!-- Teaching content will be loaded from YAML -->
         </div>
     </section>
 
@@ -697,15 +450,6 @@
     </a>
 
     <script>
-        // Teaching dropdown toggle function
-        function toggleTeaching() {
-            const content = document.getElementById('teachingContent');
-            const chevron = document.getElementById('teachingChevron');
-            
-            content.classList.toggle('expanded');
-            chevron.classList.toggle('rotated');
-        }
-
         // Load and parse YAML data
         async function loadYAMLData() {
             try {
