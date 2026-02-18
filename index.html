@@ -639,6 +639,12 @@
                                     <ul class="conference-list">
                                         ${service.conferences_reviewed.map(conf => `<li>${conf}</li>`).join('')}
                                     </ul>
+                                    ${service.journals_reviewed ? `
+                                        <div class="award-subtitle">Journals Reviewed:</div>
+                                        <ul class="conference-list">
+                                            ${service.journals_reviewed.map(journal => `<li>${journal}</li>`).join('')}
+                                        </ul>
+                                    ` : ''}
                                     <div class="award-description">${service.description}</div>
                                 `;
                             } else {

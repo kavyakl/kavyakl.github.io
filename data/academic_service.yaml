@@ -9,9 +9,11 @@ academic_service:
       - "2023 IEEE International Conference on Computer Design (ICCD 2023)"
       - "IEEE Computer Society Annual Symposium on VLSI (ISVLSI 2023)"
       - "Great Lakes Symposium on VLSI (GLSVLSI 2024)"
-    papers_reviewed: 11
+    journals_reviewed:
+      - "SN Computer Science (Springer Nature, ISSN: 2661-8907)"
+    papers_reviewed: 12
     type: "peer_review"
-    description: "Reviewed 11+ peer-reviewed submissions across international conferences in AI, IoT, and VLSI systems."
+    description: "Reviewed 12+ peer-reviewed submissions across international conferences and journals in AI, IoT, and VLSI systems."
     
   - title: "Graduate Research Judge"
     organization: "USF Virtual Graduate Research Symposium"
