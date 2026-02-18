@@ -171,6 +171,7 @@ def generate_teaching_yaml(courses):
             teaching_entry = {
                 'role': 'Teaching Assistant',
                 'course': f"{course_name} ({course_code})",
+                'level': course_level,
                 'organization': 'University of South Florida',
                 'duration': readable_duration,
                 'description': description

@@ -292,85 +292,62 @@
             }
         }
         
-        /* Teaching Dropdown Styles */
-        .teaching-dropdown {
+        /* Teaching Styles */
+        .teaching-container {
             margin-top: 20px;
-            border: 1px solid #d4a574;
+            border: 1px solid #e5e5e5;
             border-radius: 8px;
-            background: #faf6f0;
-            overflow: hidden;
+            background: #ffffff;
         }
         
-        .teaching-header {
+        .teaching-container summary {
             padding: 16px 20px;
-            background: #d4a574;
-            color: #3d2914;
-            cursor: pointer;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
             font-weight: 600;
-            transition: background-color 0.3s ease;
+            cursor: pointer;
+            border-bottom: 1px solid #e5e5e5;
+            background: #f8f9fa;
         }
         
-        .teaching-header:hover {
-            background: #c19660;
-        }
-        
-        .teaching-title {
-            font-size: 1.1rem;
-        }
-        
-        .teaching-toggle {
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
-        }
-        
-        .teaching-toggle.open {
-            transform: rotate(180deg);
+        .teaching-container summary:hover {
+            background: #f1f3f4;
         }
         
         .teaching-content {
-            padding: 0;
-            max-height: 0;
-            overflow: hidden;
-            transition: max-height 0.3s ease, padding 0.3s ease;
-            background: #faf6f0;
-        }
-        
-        .teaching-content.open {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
             padding: 20px;
-            max-height: 1000px;
         }
         
-        .teaching-item {
-            margin-bottom: 16px;
-            padding: 12px;
-            background: #ffffff;
-            border-radius: 6px;
-            border-left: 4px solid #8b6939;
+        .teaching-column h3 {
+            margin-bottom: 12px;
+            font-size: 1.1rem;
+            color: #1a1a1a;
+            border-bottom: 2px solid #e5e5e5;
+            padding-bottom: 6px;
         }
         
-        .teaching-item:last-child {
-            margin-bottom: 0;
+        .teaching-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
         }
         
-        .teaching-course {
-            font-weight: 600;
-            color: #3d2914;
-            margin-bottom: 4px;
+        .teaching-column li {
+            margin-bottom: 12px;
+            padding: 8px 0;
+            border-bottom: 1px solid #f0f0f0;
         }
         
-        .teaching-details {
-            color: #666;
-            font-size: 0.9rem;
+        .teaching-column li:last-child {
+            border-bottom: none;
         }
         
-        .teaching-duration {
-            color: #8b6939;
-            font-size: 0.85rem;
-            font-weight: 500;
-            margin-top: 4px;
+        @media (max-width: 768px) {
+            .teaching-content {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
         }
     </style>
 </head>
@@ -521,18 +498,22 @@
 
     <section class="section">
         <h2 class="section-title">Teaching & Mentoring</h2>
-        <div class="teaching-dropdown">
-            <div class="teaching-header" onclick="toggleTeaching()">
-                <span class="teaching-title">Teaching Assistant Experience</span>
-                <span class="teaching-toggle open">▲</span>
-            </div>
-            <div class="teaching-content open" id="teaching-container">
-                <!-- Teaching content will be loaded from YAML -->
-                <div class="teaching-item">
-                    <div class="teaching-course">Loading teaching data...</div>
+
+        <details class="teaching-container">
+            <summary>Courses Taught</summary>
+
+            <div class="teaching-content">
+                <div class="teaching-column">
+                    <h3>Graduate Courses</h3>
+                    <ul id="grad-teaching"></ul>
+                </div>
+
+                <div class="teaching-column">
+                    <h3>Undergraduate Courses</h3>
+                    <ul id="ug-teaching"></ul>
                 </div>
             </div>
-        </div>
+        </details>
     </section>
 
     <a href="Lk_resume.pdf" class="download-btn" target="_blank">
@@ -630,28 +611,52 @@
                 
                 // Load teaching data
                 try {
-                    console.log('Attempting to load teaching data...');
                     const teachingResponse = await fetch('data/teaching.yaml');
                     const teachingText = await teachingResponse.text();
-                    console.log('Teaching YAML text:', teachingText.substring(0, 200));
                     
                     if (typeof jsyaml !== 'undefined') {
                         const teachingData = jsyaml.load(teachingText);
                         console.log('Teaching loaded:', teachingData);
                         
-                        // Update teaching section with dropdown structure
-                        const teachingContainer = document.getElementById('teaching-container');
-                        if (teachingContainer && teachingData.teaching) {
-                            teachingContainer.innerHTML = '';
+                        const gradList = document.getElementById('grad-teaching');
+                        const ugList = document.getElementById('ug-teaching');
+
+                        if (gradList && ugList && teachingData.teaching) {
+
+                            gradList.innerHTML = '';
+                            ugList.innerHTML = '';
+
+                            const uniqueCourses = {};
+
                             teachingData.teaching.forEach(item => {
-                                const teachingDiv = document.createElement('div');
-                                teachingDiv.className = 'teaching-item';
-                                teachingDiv.innerHTML = `
-                                    <div class="teaching-course">${item.course}</div>
-                                    <div class="teaching-details">${item.role} • ${item.organization}</div>
-                                    <div class="teaching-duration">${item.duration}</div>
+                                const courseName = item.course;
+                                const level = item.level || '';
+
+                                if (!uniqueCourses[courseName]) {
+                                    uniqueCourses[courseName] = {
+                                        durations: [],
+                                        level: level
+                                    };
+                                }
+
+                                uniqueCourses[courseName].durations.push(item.duration);
+                            });
+
+                            Object.entries(uniqueCourses).forEach(([course, data]) => {
+
+                                const li = document.createElement('li');
+                                li.innerHTML = `
+                                    <strong>${course}</strong><br>
+                                    <span style="font-size:0.85rem;color:#666;">
+                                        ${data.durations.join(', ')}
+                                    </span>
                                 `;
-                                teachingContainer.appendChild(teachingDiv);
+
+                                if (data.level === 'Graduate') {
+                                    gradList.appendChild(li);
+                                } else {
+                                    ugList.appendChild(li);
+                                }
                             });
                         }
                     } else {
@@ -659,22 +664,6 @@
                     }
                 } catch (error) {
                     console.error('Error loading teaching:', error);
-                    // Add fallback content
-                    const teachingContainer = document.getElementById('teaching-container');
-                    if (teachingContainer) {
-                        teachingContainer.innerHTML = `
-                            <div class="teaching-item">
-                                <div class="teaching-course">CMOS-VLSI Design (CDA4213)</div>
-                                <div class="teaching-details">Teaching Assistant • University of South Florida</div>
-                                <div class="teaching-duration">Fall 2021, Fall 2022, Fall 2023</div>
-                            </div>
-                            <div class="teaching-item">
-                                <div class="teaching-course">Principles of Computer Architecture (EEL6764)</div>
-                                <div class="teaching-details">Teaching Assistant • University of South Florida</div>
-                                <div class="teaching-duration">Spring 2025</div>
-                            </div>
-                        `;
-                    }
                 }
                 
                 // Load all projects data
@@ -727,22 +716,6 @@
                 
             } catch (error) {
                 console.error('Error loading YAML data:', error);
-            }
-        }
-        
-        // Teaching dropdown toggle function
-        function toggleTeaching() {
-            const content = document.getElementById('teaching-container');
-            const toggle = document.querySelector('.teaching-toggle');
-            
-            if (content.classList.contains('open')) {
-                content.classList.remove('open');
-                toggle.classList.remove('open');
-                toggle.textContent = '▼';
-            } else {
-                content.classList.add('open');
-                toggle.classList.add('open');
-                toggle.textContent = '▲';
             }
         }
         
