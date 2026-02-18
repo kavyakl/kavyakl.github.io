@@ -219,6 +219,13 @@
             font-size: 0.85rem;
         }
         
+        .award-description {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            font-style: italic;
+        }
+        
         .download-btn {
             position: fixed;
             bottom: 40px;
@@ -487,19 +494,9 @@
 
     <section class="section">
         <h2 class="section-title">Awards & Honors</h2>
-        <div class="award-item">
-            <div class="award-title">Best Paper Award</div>
-            <div class="award-subtitle">IEEE iSES 2023</div>
-            <div class="award-date">2023</div>
+        <div id="awards-container">
+            <!-- Awards will be loaded here -->
         </div>
-        <div class="award-item">
-            <div class="award-title">Best Paper Award</div>
-            <div class="award-subtitle">IEEE iSES 2020</div>
-            <div class="award-date">2020</div>
-        </div>
-        <div class="award-item">
-            <div class="award-title">Judge</div>
-            <div class="award-subtitle">USF Virtual Graduate Research Symposium</div>
     </section>
 
     <section class="section">
@@ -594,6 +591,33 @@
                     }
                 } catch (error) {
                     console.error('Error loading skills:', error);
+                }
+                
+                // Load awards data
+                try {
+                    const awardsResponse = await fetch('data/awards.yaml');
+                    const awardsText = await awardsResponse.text();
+                    const awardsData = jsyaml.load(awardsText);
+                    console.log('Awards loaded:', awardsData);
+                    
+                    // Update awards section
+                    const awardsContainer = document.getElementById('awards-container');
+                    if (awardsContainer && awardsData.awards) {
+                        awardsContainer.innerHTML = '';
+                        awardsData.awards.forEach(award => {
+                            const awardDiv = document.createElement('div');
+                            awardDiv.className = 'award-item';
+                            awardDiv.innerHTML = `
+                                <div class="award-title">${award.title}</div>
+                                <div class="award-subtitle">${award.organization}</div>
+                                <div class="award-date">${award.year}</div>
+                                ${award.description ? `<div class="award-description">${award.description}</div>` : ''}
+                            `;
+                            awardsContainer.appendChild(awardDiv);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading awards:', error);
                 }
                 
                 // Load publications data

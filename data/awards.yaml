@@ -1,0 +1,15 @@
+awards:
+  - title: "Best Paper Award"
+    organization: "IEEE International Symposium on Smart Electronic Systems (iSES)"
+    year: 2023
+    description: "For 'Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation'"
+    
+  - title: "Best Paper Award"
+    organization: "IEEE International Symposium on Smart Electronic Systems (iSES)"
+    year: 2020
+    description: "For 'A Distributed Framework for Real-Time Object Detection at Low Frame Rates with IoT Edge Nodes'"
+    
+  - title: "Judge"
+    organization: "USF Virtual Graduate Research Symposium"
+    year: 2021
+    description: "Served as judge for graduate research presentations"
