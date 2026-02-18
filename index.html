@@ -493,6 +493,13 @@
     </section>
 
     <section class="section">
+        <h2 class="section-title">Peer Review & Academic Engagement</h2>
+        <div id="academic-service-container">
+            <!-- Academic service will be loaded here -->
+        </div>
+    </section>
+
+    <section class="section">
         <h2 class="section-title">Publications</h2>
         <div id="publications-container">
             <!-- Publications will be loaded here -->
@@ -584,6 +591,34 @@
                     }
                 } catch (error) {
                     console.error('Error loading skills:', error);
+                }
+                
+                // Load academic service data
+                try {
+                    const academicServiceResponse = await fetch('data/academic_service.yaml');
+                    const academicServiceText = await academicServiceResponse.text();
+                    const academicServiceData = jsyaml.load(academicServiceText);
+                    console.log('Academic service loaded:', academicServiceData);
+                    
+                    // Update academic service section
+                    const academicServiceContainer = document.getElementById('academic-service-container');
+                    if (academicServiceContainer && academicServiceData.academic_service) {
+                        academicServiceContainer.innerHTML = '';
+                        academicServiceData.academic_service.forEach(service => {
+                            const serviceDiv = document.createElement('div');
+                            serviceDiv.className = 'award-item';
+                            serviceDiv.innerHTML = `
+                                <div class="award-title">${service.title}</div>
+                                <div class="award-subtitle">${service.organization}</div>
+                                <div class="award-date">${service.years || service.year}</div>
+                                ${service.description ? `<div class="award-description">${service.description}</div>` : ''}
+                                ${service.papers_reviewed ? `<div class="award-description">Reviewed ${service.papers_reviewed} papers</div>` : ''}
+                            `;
+                            academicServiceContainer.appendChild(serviceDiv);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading academic service:', error);
                 }
                 
                 // Load publications data

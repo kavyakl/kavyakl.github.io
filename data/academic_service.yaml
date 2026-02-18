@@ -1,0 +1,30 @@
+academic_service:
+  - title: "Judge"
+    organization: "USF Virtual Graduate Research Symposium"
+    years: "2023, 2024"
+    type: "judging"
+    description: "Served as judge for graduate research presentations across multiple years"
+    
+  - title: "Paper Reviewer"
+    organization: "IFIP Internet of Things 2025"
+    papers_reviewed: 3
+    type: "peer_review"
+    description: "Reviewed 3 papers for the IFIP International Internet of Things Conference 2025"
+    
+  - title: "Paper Reviewer"
+    organization: "2023 IEEE International Conference on Computer Design (ICCD 2023)"
+    papers_reviewed: 2
+    type: "peer_review"
+    description: "Reviewed 2 papers for the IEEE International Conference on Computer Design"
+    
+  - title: "Paper Reviewer"
+    organization: "IEEE COMPUTER SOCIETY ANNUAL SYMPOSIUM ON VLSI (ISVLSI 2023)"
+    papers_reviewed: 1
+    type: "peer_review"
+    description: "Reviewed 1 paper for the IEEE Computer Society Annual Symposium on VLSI"
+    
+  - title: "Paper Reviewer"
+    organization: "Great Lakes Symposium on VLSI 2023 (GLSVLSI'23)"
+    papers_reviewed: 1
+    type: "peer_review"
+    description: "Reviewed 1 paper for the Great Lakes Symposium on VLSI"
