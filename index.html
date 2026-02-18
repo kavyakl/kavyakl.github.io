@@ -524,10 +524,13 @@
         <div class="teaching-dropdown">
             <div class="teaching-header" onclick="toggleTeaching()">
                 <span class="teaching-title">Teaching Assistant Experience</span>
-                <span class="teaching-toggle">▼</span>
+                <span class="teaching-toggle open">▲</span>
             </div>
-            <div class="teaching-content" id="teaching-container">
+            <div class="teaching-content open" id="teaching-container">
                 <!-- Teaching content will be loaded from YAML -->
+                <div class="teaching-item">
+                    <div class="teaching-course">Loading teaching data...</div>
+                </div>
             </div>
         </div>
     </section>
@@ -627,28 +630,51 @@
                 
                 // Load teaching data
                 try {
+                    console.log('Attempting to load teaching data...');
                     const teachingResponse = await fetch('data/teaching.yaml');
                     const teachingText = await teachingResponse.text();
-                    const teachingData = jsyaml.load(teachingText);
-                    console.log('Teaching loaded:', teachingData);
+                    console.log('Teaching YAML text:', teachingText.substring(0, 200));
                     
-                    // Update teaching section with dropdown structure
-                    const teachingContainer = document.getElementById('teaching-container');
-                    if (teachingContainer && teachingData.teaching) {
-                        teachingContainer.innerHTML = '';
-                        teachingData.teaching.forEach(item => {
-                            const teachingDiv = document.createElement('div');
-                            teachingDiv.className = 'teaching-item';
-                            teachingDiv.innerHTML = `
-                                <div class="teaching-course">${item.course}</div>
-                                <div class="teaching-details">${item.role} • ${item.organization}</div>
-                                <div class="teaching-duration">${item.duration}</div>
-                            `;
-                            teachingContainer.appendChild(teachingDiv);
-                        });
+                    if (typeof jsyaml !== 'undefined') {
+                        const teachingData = jsyaml.load(teachingText);
+                        console.log('Teaching loaded:', teachingData);
+                        
+                        // Update teaching section with dropdown structure
+                        const teachingContainer = document.getElementById('teaching-container');
+                        if (teachingContainer && teachingData.teaching) {
+                            teachingContainer.innerHTML = '';
+                            teachingData.teaching.forEach(item => {
+                                const teachingDiv = document.createElement('div');
+                                teachingDiv.className = 'teaching-item';
+                                teachingDiv.innerHTML = `
+                                    <div class="teaching-course">${item.course}</div>
+                                    <div class="teaching-details">${item.role} • ${item.organization}</div>
+                                    <div class="teaching-duration">${item.duration}</div>
+                                `;
+                                teachingContainer.appendChild(teachingDiv);
+                            });
+                        }
+                    } else {
+                        console.error('js-yaml library not loaded');
                     }
                 } catch (error) {
                     console.error('Error loading teaching:', error);
+                    // Add fallback content
+                    const teachingContainer = document.getElementById('teaching-container');
+                    if (teachingContainer) {
+                        teachingContainer.innerHTML = `
+                            <div class="teaching-item">
+                                <div class="teaching-course">CMOS-VLSI Design (CDA4213)</div>
+                                <div class="teaching-details">Teaching Assistant • University of South Florida</div>
+                                <div class="teaching-duration">Fall 2021, Fall 2022, Fall 2023</div>
+                            </div>
+                            <div class="teaching-item">
+                                <div class="teaching-course">Principles of Computer Architecture (EEL6764)</div>
+                                <div class="teaching-details">Teaching Assistant • University of South Florida</div>
+                                <div class="teaching-duration">Spring 2025</div>
+                            </div>
+                        `;
+                    }
                 }
                 
                 // Load all projects data
