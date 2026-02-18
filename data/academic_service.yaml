@@ -1,30 +1,20 @@
 academic_service:
-  - title: "Judge"
+  - title: "Peer Review & Academic Engagement"
+    type: "overview"
+    description: "Served as a peer reviewer for international conferences in AI, IoT, and VLSI systems, evaluating submissions on neural network optimization, hardware-aware ML, compiler-level transformations, and embedded system design. Contributed technical reviews focused on methodological rigor, experimental validity, and system-level impact."
+    
+  - title: "Conference Peer Reviewer"
+    conferences_reviewed:
+      - "IFIP International Conference on Internet of Things (IFIP IoT 2025)"
+      - "2023 IEEE International Conference on Computer Design (ICCD 2023)"
+      - "IEEE Computer Society Annual Symposium on VLSI (ISVLSI 2023)"
+      - "Great Lakes Symposium on VLSI (GLSVLSI 2024)"
+    papers_reviewed: 11
+    type: "peer_review"
+    description: "Reviewed 11+ peer-reviewed submissions across international conferences in AI, IoT, and VLSI systems."
+    
+  - title: "Graduate Research Judge"
     organization: "USF Virtual Graduate Research Symposium"
     years: "2023, 2024"
     type: "judging"
-    description: "Served as judge for graduate research presentations across multiple years"
-    
-  - title: "Paper Reviewer"
-    organization: "IFIP Internet of Things 2025"
-    papers_reviewed: 3
-    type: "peer_review"
-    description: "Reviewed 3 papers for the IFIP International Internet of Things Conference 2025"
-    
-  - title: "Paper Reviewer"
-    organization: "2023 IEEE International Conference on Computer Design (ICCD 2023)"
-    papers_reviewed: 2
-    type: "peer_review"
-    description: "Reviewed 2 papers for the IEEE International Conference on Computer Design"
-    
-  - title: "Paper Reviewer"
-    organization: "IEEE COMPUTER SOCIETY ANNUAL SYMPOSIUM ON VLSI (ISVLSI 2023)"
-    papers_reviewed: 1
-    type: "peer_review"
-    description: "Reviewed 1 paper for the IEEE Computer Society Annual Symposium on VLSI"
-    
-  - title: "Paper Reviewer"
-    organization: "Great Lakes Symposium on VLSI 2023 (GLSVLSI'23)"
-    papers_reviewed: 1
-    type: "peer_review"
-    description: "Reviewed 1 paper for the Great Lakes Symposium on VLSI"
+    description: "Served as judge for graduate research presentations, evaluating scholarly work across multiple disciplines and presentation formats."

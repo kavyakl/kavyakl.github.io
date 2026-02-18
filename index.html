@@ -226,6 +226,24 @@
             font-style: italic;
         }
         
+        .academic-overview {
+            color: #2e3440;
+            line-height: 1.6;
+            margin-bottom: 0;
+        }
+        
+        .conference-list {
+            margin: 8px 0;
+            padding-left: 20px;
+            list-style-type: none;
+        }
+        
+        .conference-list li {
+            margin-bottom: 4px;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
         .download-btn {
             position: fixed;
             bottom: 40px;
@@ -607,13 +625,31 @@
                         academicServiceData.academic_service.forEach(service => {
                             const serviceDiv = document.createElement('div');
                             serviceDiv.className = 'award-item';
-                            serviceDiv.innerHTML = `
-                                <div class="award-title">${service.title}</div>
-                                <div class="award-subtitle">${service.organization}</div>
-                                <div class="award-date">${service.years || service.year}</div>
-                                ${service.description ? `<div class="award-description">${service.description}</div>` : ''}
-                                ${service.papers_reviewed ? `<div class="award-description">Reviewed ${service.papers_reviewed} papers</div>` : ''}
-                            `;
+                            
+                            if (service.type === 'overview') {
+                                serviceDiv.innerHTML = `
+                                    <div class="academic-overview">
+                                        <p>${service.description}</p>
+                                    </div>
+                                `;
+                            } else if (service.type === 'peer_review' && service.conferences_reviewed) {
+                                serviceDiv.innerHTML = `
+                                    <div class="award-title">${service.title}</div>
+                                    <div class="award-subtitle">Conferences Reviewed:</div>
+                                    <ul class="conference-list">
+                                        ${service.conferences_reviewed.map(conf => `<li>${conf}</li>`).join('')}
+                                    </ul>
+                                    <div class="award-description">${service.description}</div>
+                                `;
+                            } else {
+                                serviceDiv.innerHTML = `
+                                    <div class="award-title">${service.title}</div>
+                                    <div class="award-subtitle">${service.organization}</div>
+                                    <div class="award-date">${service.years || service.year}</div>
+                                    <div class="award-description">${service.description}</div>
+                                `;
+                            }
+                            
                             academicServiceContainer.appendChild(serviceDiv);
                         });
                     }
