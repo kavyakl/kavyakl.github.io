@@ -493,13 +493,6 @@
     </section>
 
     <section class="section">
-        <h2 class="section-title">Awards & Honors</h2>
-        <div id="awards-container">
-            <!-- Awards will be loaded here -->
-        </div>
-    </section>
-
-    <section class="section">
         <h2 class="section-title">Publications</h2>
         <div id="publications-container">
             <!-- Publications will be loaded here -->
@@ -591,33 +584,6 @@
                     }
                 } catch (error) {
                     console.error('Error loading skills:', error);
-                }
-                
-                // Load awards data
-                try {
-                    const awardsResponse = await fetch('data/awards.yaml');
-                    const awardsText = await awardsResponse.text();
-                    const awardsData = jsyaml.load(awardsText);
-                    console.log('Awards loaded:', awardsData);
-                    
-                    // Update awards section
-                    const awardsContainer = document.getElementById('awards-container');
-                    if (awardsContainer && awardsData.awards) {
-                        awardsContainer.innerHTML = '';
-                        awardsData.awards.forEach(award => {
-                            const awardDiv = document.createElement('div');
-                            awardDiv.className = 'award-item';
-                            awardDiv.innerHTML = `
-                                <div class="award-title">${award.title}</div>
-                                <div class="award-subtitle">${award.organization}</div>
-                                <div class="award-date">${award.year}</div>
-                                ${award.description ? `<div class="award-description">${award.description}</div>` : ''}
-                            `;
-                            awardsContainer.appendChild(awardDiv);
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error loading awards:', error);
                 }
                 
                 // Load publications data
