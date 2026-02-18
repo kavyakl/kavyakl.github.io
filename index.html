@@ -138,14 +138,68 @@
             font-weight: 500;
         }
         
-        .patent-item, .award-item {
+        .patent-item, .award-item, .publication-item {
             margin-bottom: 24px;
             padding-bottom: 24px;
             border-bottom: 1px solid #f0f0f0;
         }
         
-        .patent-item:last-child, .award-item:last-child {
+        .patent-item:last-child, .award-item:last-child, .publication-item:last-child {
             border-bottom: none;
+        }
+        
+        .publication-item {
+            margin-bottom: 20px;
+            padding: 16px;
+            border-radius: 8px;
+            border: 1px solid #e6e8ef;
+            background: #ffffff;
+        }
+        
+        .publication-item.award-winner {
+            border-left: 4px solid #d8d4f2;
+            background: linear-gradient(to right, #fafbff, #ffffff);
+        }
+        
+        .publication-title {
+            font-weight: 600;
+            color: #2e3440;
+            margin-bottom: 6px;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+        
+        .publication-subtitle {
+            color: #6b7280;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+        
+        .publication-doi {
+            color: #6b7280;
+            font-size: 0.85rem;
+            margin-top: 6px;
+        }
+        
+        .publication-doi a {
+            color: #4c4f69;
+            text-decoration: none;
+        }
+        
+        .publication-doi a:hover {
+            text-decoration: underline;
+        }
+        
+        .award-badge {
+            display: inline-block;
+            background: #d8d4f2;
+            color: #2e3440;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            margin-left: 12px;
+            vertical-align: middle;
         }
         
         .patent-title, .award-title {
@@ -555,12 +609,27 @@
                         publicationsContainer.innerHTML = '';
                         publicationsData.publications.forEach(pub => {
                             const pubDiv = document.createElement('div');
-                            pubDiv.className = 'award-item';
-                            pubDiv.innerHTML = `
-                                <div class="award-title">${pub.title}</div>
-                                <div class="award-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
-                                <div class="award-date">${pub.award || ''}</div>
-                            `;
+                            
+                            // Use special styling for award-winning papers
+                            if (pub.award === 'Best Paper Award') {
+                                pubDiv.className = 'publication-item award-winner';
+                                pubDiv.innerHTML = `
+                                    <div class="publication-title">
+                                        ${pub.title}
+                                        <span class="award-badge">🏆 Best Paper Award</span>
+                                    </div>
+                                    <div class="publication-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
+                                    ${pub.doi ? `<div class="publication-doi">DOI: <a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a></div>` : ''}
+                                `;
+                            } else {
+                                pubDiv.className = 'publication-item';
+                                pubDiv.innerHTML = `
+                                    <div class="publication-title">${pub.title}</div>
+                                    <div class="publication-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
+                                    ${pub.doi ? `<div class="publication-doi">DOI: <a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a></div>` : ''}
+                                `;
+                            }
+                            
                             publicationsContainer.appendChild(pubDiv);
                         });
                     }
