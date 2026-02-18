@@ -291,6 +291,87 @@
                 margin-bottom: 32px;
             }
         }
+        
+        /* Teaching Dropdown Styles */
+        .teaching-dropdown {
+            margin-top: 20px;
+            border: 1px solid #d4a574;
+            border-radius: 8px;
+            background: #faf6f0;
+            overflow: hidden;
+        }
+        
+        .teaching-header {
+            padding: 16px 20px;
+            background: #d4a574;
+            color: #3d2914;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        
+        .teaching-header:hover {
+            background: #c19660;
+        }
+        
+        .teaching-title {
+            font-size: 1.1rem;
+        }
+        
+        .teaching-toggle {
+            font-size: 0.9rem;
+            transition: transform 0.3s ease;
+        }
+        
+        .teaching-toggle.open {
+            transform: rotate(180deg);
+        }
+        
+        .teaching-content {
+            padding: 0;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+            background: #faf6f0;
+        }
+        
+        .teaching-content.open {
+            padding: 20px;
+            max-height: 1000px;
+        }
+        
+        .teaching-item {
+            margin-bottom: 16px;
+            padding: 12px;
+            background: #ffffff;
+            border-radius: 6px;
+            border-left: 4px solid #8b6939;
+        }
+        
+        .teaching-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .teaching-course {
+            font-weight: 600;
+            color: #3d2914;
+            margin-bottom: 4px;
+        }
+        
+        .teaching-details {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .teaching-duration {
+            color: #8b6939;
+            font-size: 0.85rem;
+            font-weight: 500;
+            margin-top: 4px;
+        }
     </style>
 </head>
 <body>
@@ -440,8 +521,14 @@
 
     <section class="section">
         <h2 class="section-title">Teaching & Mentoring</h2>
-        <div id="teaching-container">
-            <!-- Teaching content will be loaded from YAML -->
+        <div class="teaching-dropdown">
+            <div class="teaching-header" onclick="toggleTeaching()">
+                <span class="teaching-title">Teaching Assistant Experience</span>
+                <span class="teaching-toggle">▼</span>
+            </div>
+            <div class="teaching-content" id="teaching-container">
+                <!-- Teaching content will be loaded from YAML -->
+            </div>
         </div>
     </section>
 
@@ -545,17 +632,17 @@
                     const teachingData = jsyaml.load(teachingText);
                     console.log('Teaching loaded:', teachingData);
                     
-                    // Update teaching section
+                    // Update teaching section with dropdown structure
                     const teachingContainer = document.getElementById('teaching-container');
                     if (teachingContainer && teachingData.teaching) {
                         teachingContainer.innerHTML = '';
                         teachingData.teaching.forEach(item => {
                             const teachingDiv = document.createElement('div');
-                            teachingDiv.className = 'award-item';
+                            teachingDiv.className = 'teaching-item';
                             teachingDiv.innerHTML = `
-                                <div class="award-title">${item.role}</div>
-                                <div class="award-subtitle">${item.organization}${item.course ? ' • ' + item.course : ''}</div>
-                                <div class="award-date">${item.duration}</div>
+                                <div class="teaching-course">${item.course}</div>
+                                <div class="teaching-details">${item.role} • ${item.organization}</div>
+                                <div class="teaching-duration">${item.duration}</div>
                             `;
                             teachingContainer.appendChild(teachingDiv);
                         });
@@ -614,6 +701,22 @@
                 
             } catch (error) {
                 console.error('Error loading YAML data:', error);
+            }
+        }
+        
+        // Teaching dropdown toggle function
+        function toggleTeaching() {
+            const content = document.getElementById('teaching-container');
+            const toggle = document.querySelector('.teaching-toggle');
+            
+            if (content.classList.contains('open')) {
+                content.classList.remove('open');
+                toggle.classList.remove('open');
+                toggle.textContent = '▼';
+            } else {
+                content.classList.add('open');
+                toggle.classList.add('open');
+                toggle.textContent = '▲';
             }
         }
         
