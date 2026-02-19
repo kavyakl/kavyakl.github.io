@@ -1,28 +1,28 @@
 title: 'LitBot: AI Literature Survey Assistant'
 slug: litbot
-description: Developed LitBot, a GPT + FAISS-powered AI assistant for automating literature
-  surveys, semantic search, and citation analysis across 200+ research papers, streamlining
-  academic workflows.
+description: Developed LitBot, a production-grade hybrid Retrieval-Augmented Generation (RAG) system for large-scale literature analysis. Implements multi-index retrieval (dense + sparse), structured IR, metadata-aware filtering, and cross-paper reasoning to enable ML-focused semantic search and automated survey synthesis across 200+ research papers.
 role: Developer
 technologies:
+- Python 3.9+
 - OpenAI GPT models
-- FAISS vector search
+- SentenceTransformers
+- FAISS (dense vector retrieval)
+- BM25 (sparse keyword retrieval)
 - PyMuPDF PDF processing
-- NLTK natural language processing
-- JSON data storage
-- Python automation
+- NLTK / custom sentence splitting
+- SQLite (metadata indexing)
+- Flask dashboard
+- JSON artifact storage
 methods:
-- AI/ML-specific document preprocessing and semantic chunking
-- Extractive and abstractive summarization using LLMs
-- Citation and reference mapping with section-based analysis
-- Relationship analysis: direct citations, co-citations, bibliographic coupling
-- Batch processing and scalable pipeline automation
-- Structured metadata extraction and caching for efficient retrieval
-results: Successfully integrated semantic chunking, summarization, and citation linking
-  across 200+ papers, reducing literature review time by over 80% and enabling automated
-  generation of structured survey drafts.
-impact: Empowered researchers to perform faster, deeper literature analysis with AI
-  assistance, improving comprehensiveness and accuracy of academic surveys.
+- Designed glass-box RAG architecture: PDF → Canonical Structured IR → Section-aware Chunking → Multi-Index Retrieval → Evidence-based Summarization
+- Implemented hybrid retrieval combining dense semantic embeddings (FAISS) with sparse lexical ranking (BM25) for precision-controlled search
+- Built deterministic chunking pipeline with sentence-boundary safety and automated validators
+- Developed structured entity extraction (methods, datasets, metrics) and claim categorization for cross-paper comparative analysis
+- Engineered metadata-aware filtering layer to enforce structured query constraints before LLM generation
+- Implemented citation graph and relationship analysis (direct citations, co-citations, bibliographic coupling)
+- Created evaluation harness to measure retrieval quality (precision@k / recall@k)
+results: Successfully processed and indexed 200+ research papers into a multi-index retrieval system, enabling sub-second hybrid search, structured cross-paper comparison, and automated generation of evidence-backed literature summaries.
+impact: Demonstrates applied ML systems engineering capability through hybrid retrieval design, structured information extraction, and evaluation-driven RAG development—directly aligned with Machine Learning Engineer and Applied AI roles.
 duration: 8 months
 team_size: 1
 challenges:

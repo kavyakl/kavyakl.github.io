@@ -71,6 +71,15 @@ categories:
       - name: "Embedded C"
         level: "advanced"
         evidence: ["firmware-level integration"]
+      - name: "Edge Device Benchmarking"
+        level: "expert"
+        evidence: ["SLM evaluation", "memory footprint modeling", "performance telemetry"]
+      - name: "Raspberry Pi (Edge Computing)"
+        level: "advanced"
+        evidence: ["constrained inference", "sensor classification", "edge deployment"]
+      - name: "NVIDIA Jetson (Edge AI)"
+        level: "advanced"
+        evidence: ["real-time CV", "defect detection", "accelerated inference"]
 
   - name: "GenAI, RAG & Systems Tooling"
     priority: 5
@@ -84,6 +93,15 @@ categories:
       - name: "OpenAI / LLM APIs"
         level: "working"
         evidence: ["research tooling", "automation"]
+      - name: "Small Language Models (SLMs)"
+        level: "expert"
+        evidence: ["Phi-3 benchmarking", "instruction adherence testing", "edge deployment"]
+      - name: "Ollama API"
+        level: "expert"
+        evidence: ["model orchestration", "edge inference", "benchmarking framework"]
+      - name: "LLM Orchestration"
+        level: "expert"
+        evidence: ["automated evaluation", "gatekeeping systems", "prompt engineering"]
       - name: "PyMuPDF"
         level: "working"
         evidence: ["PDF parsing", "document pipelines"]

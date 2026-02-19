@@ -1,0 +1,45 @@
+title: Automated SLM Benchmarking Framework for Heterogeneous Edge Deployment
+slug: slm-benchmarking-framework
+description: 'A comprehensive Python orchestration framework for measuring Instruction Adherence Headroom for Small Language Models (SLMs) across heterogeneous industrial edge tiers. Features automated evaluation, memory modeling, and safety guardrails for model deployment decisions.
+
+  '
+role: Sole Developer & ML Systems Engineer
+technologies:
+- Python 3.9+
+- Ollama API
+- llama.cpp
+- GGUF Quantization
+- JSON Rubric System
+- Edge Device Emulation
+- Telemetry & Performance Monitoring
+methods:
+- Automated SLM benchmarking across Phi-3-mini (3.8B), Phi-3.5 (3.8B MoE), and Llama-3.2 (3B)
+- Gatekeeping System Instruction enforcement for two-step interaction patterns
+- 7-tier JSON rubric scoring for instruction adherence and hardware awareness
+- Memory footprint modeling with KV cache and OS overhead calculations
+- Multi-tier edge deployment testing (Raspberry Pi 4B, Jetson Nano, Industrial PC)
+- Quantization tradeoff analysis (Q4_K_M, Q8_0) for memory-constrained deployment
+results: 'Successfully benchmarked 3 SLMs across 3 hardware tiers, identifying instruction adherence patterns and memory modeling failures. Phi-3.5 achieved 90% instruction compliance while smaller models showed helpfulness bias leading to premature hardware recommendations.
+
+  '
+impact: 'Provides a reproducible engineering framework for safe SLM deployment in industrial edge systems, reducing risk of model-hardware mismatch through systematic evaluation of instruction following, memory awareness, and deployment safety.
+
+  '
+github_url: https://github.com/kavyakl/slm-benchmarking-framework
+duration: 2024
+team_size: 1
+challenges: 'Designing deterministic memory footprint models, enforcing gatekeeping system instructions across multiple model APIs, and quantifying instruction adherence as an engineering constraint alongside latency and throughput.
+
+  '
+sections:
+- project
+relevance_tags:
+- genai
+- edge-computing
+- llm
+- benchmarking
+- hardware-optimization
+- systems-engineering
+featured: true
+created_at: '2024-01-15T00:00:00.000000'
+section: project
