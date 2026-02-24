@@ -763,7 +763,7 @@
                             sortedCourses.forEach(course => {
                                 const li = document.createElement('li');
                                 li.innerHTML = `
-                                    <strong>${course.course_name}</strong><br>
+                                    <strong>${course.course || course.course_name}</strong><br>
                                     <span style="font-size:0.85rem;color:#6b7280;">
                                         ${course.term} • ${course.role}
                                     </span>
