@@ -59,10 +59,4 @@ teaching:
   level: Graduate
   organization: University of South Florida
   duration: Spring 2025
-  description: Currently assisting with computer architecture course for graduate
-    - course_code: "EEL6764"
-    course_name: "Princ of Computer Architecture"
-    term: "Spring 2025"
-    role: "TA 20, 21"
-    level: "undergraduate"
-    type: "ta"
+  description: Assisted with computer architecture course for graduate students
