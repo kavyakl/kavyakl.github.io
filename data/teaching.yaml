@@ -60,9 +60,9 @@ teaching:
   organization: University of South Florida
   duration: Spring 2025
   description: Currently assisting with computer architecture course for graduate
-    students
-- role: Research Mentor
-  organization: University of South Florida
-  duration: 2020-2025
-  description: Mentored undergraduate and graduate students in ML optimization and
-    embedded systems research
+    - course_code: "EEL6764"
+    course_name: "Princ of Computer Architecture"
+    term: "Spring 2025"
+    role: "TA 20, 21"
+    level: "undergraduate"
+    type: "ta"
