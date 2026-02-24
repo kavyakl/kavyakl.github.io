@@ -50,36 +50,6 @@ teaching:
   description: Assisted with IoT system design course for undergraduate students
 - role: Teaching Assistant
   course: Practical Hardware Security (CIS4930)
-  level: Undergraduate
-  organization: University of South Florida
-  duration: Fall 2022
-  description: Supported practical hardware security course for undergraduate students
-- role: Teaching Assistant
-  course: Wireless and Mobile Computing (CIS4930)
-  level: Undergraduate
-  organization: University of South Florida
-  duration: Spring 2024
-  description: Assisted with undergraduate wireless and mobile computing course
-- role: Teaching Assistant
-  course: Hands-on Hardware Security (CIS4930)
-  level: Undergraduate
-  organization: University of South Florida
-  duration: Summer 2023
-  description: Supported hands-on hardware security course for undergraduate students
-- role: Teaching Assistant
-  course: CMOS-VLSI Design (CIS6930)
-  level: Undergraduate
-  organization: University of South Florida
-  duration: Fall 2024
-  description: Assisted with undergraduate CMOS-VLSI design courses
-- role: Teaching Assistant
-  course: Wireless And Mobile Computing (CIS6930)
-  level: Undergraduate
-  organization: University of South Florida
-  duration: Spring 2024
-  description: Assisted with undergraduate course
-- role: Teaching Assistant
-  course: Computer Networks Lab For It (CNT4104L)
   level: Graduate
   organization: University of South Florida
   duration: Spring 2024

@@ -557,15 +557,9 @@
             <summary>Courses Taught</summary>
 
             <div class="teaching-content">
-                <div class="teaching-column">
-                    <h3>Graduate Courses</h3>
-                    <ul id="grad-teaching"></ul>
-                </div>
-
-                <div class="teaching-column">
-                    <h3>Undergraduate Courses</h3>
-                    <ul id="ug-teaching"></ul>
-                </div>
+                <ul id="teaching-list">
+                    <!-- Teaching courses will be loaded here -->
+                </ul>
             </div>
         </details>
     </section>
@@ -739,45 +733,42 @@
                         const teachingData = jsyaml.load(teachingText);
                         console.log('Teaching loaded:', teachingData);
                         
-                        const gradList = document.getElementById('grad-teaching');
-                        const ugList = document.getElementById('ug-teaching');
-
-                        if (gradList && ugList && teachingData.teaching) {
-
-                            gradList.innerHTML = '';
-                            ugList.innerHTML = '';
-
-                            const uniqueCourses = {};
-
-                            teachingData.teaching.forEach(item => {
-                                const courseName = item.course;
-                                const level = item.level || '';
-
-                                if (!uniqueCourses[courseName]) {
-                                    uniqueCourses[courseName] = {
-                                        durations: [],
-                                        level: level
-                                    };
+                        const teachingContainer = document.getElementById('teaching-container');
+                        const teachingList = document.getElementById('teaching-list');
+                        
+                        if (teachingList && teachingData.teaching) {
+                            teachingList.innerHTML = '';
+                            
+                            // Sort all courses by term chronologically
+                            const sortedCourses = teachingData.teaching.sort((a, b) => {
+                                const termA = a.term || '';
+                                const termB = b.term || '';
+                                
+                                // Extract year and semester for sorting
+                                const yearA = parseInt(termA.slice(-4)) || 0;
+                                const yearB = parseInt(termB.slice(-4)) || 0;
+                                
+                                const semesterOrder = {'Spring': 0, 'Summer': 1, 'Fall': 2};
+                                const semesterA = termA.includes('Spring') ? 0 : termA.includes('Summer') ? 1 : termA.includes('Fall') ? 2 : 3;
+                                const semesterB = termB.includes('Spring') ? 0 : termB.includes('Summer') ? 1 : termB.includes('Fall') ? 2 : 3;
+                                
+                                if (yearA !== yearB) {
+                                    return yearA - yearB;
+                                } else {
+                                    return semesterA - semesterB;
                                 }
-
-                                uniqueCourses[courseName].durations.push(item.duration);
                             });
-
-                            Object.entries(uniqueCourses).forEach(([course, data]) => {
-
+                            
+                            // Display all courses chronologically
+                            sortedCourses.forEach(course => {
                                 const li = document.createElement('li');
                                 li.innerHTML = `
-                                    <strong>${course}</strong><br>
-                                    <span style="font-size:0.85rem;color:#666;">
-                                        ${data.durations.join(', ')}
+                                    <strong>${course.course_name}</strong><br>
+                                    <span style="font-size:0.85rem;color:#6b7280;">
+                                        ${course.term} • ${course.role}
                                     </span>
                                 `;
-
-                                if (data.level === 'Graduate') {
-                                    gradList.appendChild(li);
-                                } else {
-                                    ugList.appendChild(li);
-                                }
+                                teachingList.appendChild(li);
                             });
                         }
                     } else {
