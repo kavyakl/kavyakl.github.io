@@ -739,24 +739,19 @@
                         if (teachingList && teachingData.teaching) {
                             teachingList.innerHTML = '';
                             
-                            // Sort all courses by term chronologically
+                            // Sort all courses by duration chronologically
                             const sortedCourses = teachingData.teaching.sort((a, b) => {
-                                const termA = a.term || '';
-                                const termB = b.term || '';
+                                const durationA = a.duration || '';
+                                const durationB = b.duration || '';
                                 
-                                // Extract year and semester for sorting
-                                const yearA = parseInt(termA.slice(-4)) || 0;
-                                const yearB = parseInt(termB.slice(-4)) || 0;
+                                // Extract years from duration for sorting
+                                const yearsA = durationA.match(/\d{4}/g) || [];
+                                const yearsB = durationB.match(/\d{4}/g) || [];
                                 
-                                const semesterOrder = {'Spring': 0, 'Summer': 1, 'Fall': 2};
-                                const semesterA = termA.includes('Spring') ? 0 : termA.includes('Summer') ? 1 : termA.includes('Fall') ? 2 : 3;
-                                const semesterB = termB.includes('Spring') ? 0 : termB.includes('Summer') ? 1 : termB.includes('Fall') ? 2 : 3;
+                                const yearA = Math.max(...yearsA.map(Number)) || 0;
+                                const yearB = Math.max(...yearsB.map(Number)) || 0;
                                 
-                                if (yearA !== yearB) {
-                                    return yearA - yearB;
-                                } else {
-                                    return semesterA - semesterB;
-                                }
+                                return yearA - yearB;
                             });
                             
                             // Display all courses chronologically
@@ -765,7 +760,7 @@
                                 li.innerHTML = `
                                     <strong>${course.course || course.course_name}</strong><br>
                                     <span style="font-size:0.85rem;color:#6b7280;">
-                                        ${course.term} • ${course.role}
+                                        ${course.duration} • ${course.role}
                                     </span>
                                 `;
                                 teachingList.appendChild(li);
