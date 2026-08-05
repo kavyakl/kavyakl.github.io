@@ -16,8 +16,8 @@
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             line-height: 1.6;
-            color: #2e3440;
-            background: #f6f7fb;
+            color: #1F2937;
+            background: #F7F7F5;
             max-width: 1200px;
             margin: 0 auto;
             padding: 0 20px;
@@ -25,12 +25,14 @@
         
         /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
+            background: #FFFFFF;
+            color: #1F2937;
             padding: 80px 40px;
-            border-radius: 0 0 20px 20px;
-            margin-bottom: 60px;
+            border-radius: 16px;
+            border: 1px solid #E5E7EB;
+            margin-bottom: 48px;
             text-align: center;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         
         .hero h1 {
@@ -38,12 +40,13 @@
             font-weight: 700;
             margin-bottom: 16px;
             letter-spacing: -0.02em;
+            color: #1F2937;
         }
         
         .hero .tagline {
             font-size: 1.5rem;
             font-weight: 400;
-            opacity: 0.95;
+            color: #6B7280;
             margin-bottom: 32px;
         }
         
@@ -51,7 +54,7 @@
             font-size: 1.1rem;
             max-width: 800px;
             margin: 0 auto 40px;
-            opacity: 0.9;
+            color: #4B5563;
             line-height: 1.8;
         }
         
@@ -59,10 +62,10 @@
             max-width: 700px;
             margin: 0 auto 40px;
             text-align: left;
-            background: rgba(255, 255, 255, 0.1);
+            background: #F9FAFB;
             padding: 24px;
             border-radius: 12px;
-            backdrop-filter: blur(10px);
+            border: 1px solid #E5E7EB;
         }
         
         .hero .proof-points li {
@@ -70,13 +73,14 @@
             padding-left: 24px;
             position: relative;
             font-size: 0.95rem;
+            color: #374151;
         }
         
         .hero .proof-points li::before {
             content: '✓';
             position: absolute;
             left: 0;
-            color: rgba(255, 255, 255, 0.8);
+            color: #1F3A93;
             font-weight: bold;
         }
         
@@ -88,37 +92,41 @@
         }
         
         .hero-contact a {
-            color: white;
+            color: #1F3A93;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 30px;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            transition: all 0.2s ease;
         }
         
         .hero-contact a:hover {
-            background: rgba(255, 255, 255, 0.25);
-            transform: translateY(-2px);
+            background: #F3F4F6;
+            border-color: #1F3A93;
+        }
+        
+        .hero-contact a i {
+            color: #1F3A93;
         }
         
         /* Section Styling */
         .section {
-            background: #ffffff;
+            background: #FFFFFF;
             padding: 48px 40px;
             border-radius: 16px;
-            border: 1px solid #e6e8ef;
+            border: 1px solid #E5E7EB;
             margin-bottom: 48px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
         }
         
         .section-title {
             font-size: 2rem;
             font-weight: 700;
-            color: #2e3440;
+            color: #1F2937;
             margin-bottom: 32px;
             letter-spacing: -0.02em;
             position: relative;
@@ -131,12 +139,12 @@
             left: 0;
             width: 60px;
             height: 4px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1F3A93;
             border-radius: 2px;
         }
         
         .section-intro {
-            color: #6b7280;
+            color: #6B7280;
             font-size: 1.05rem;
             margin-bottom: 32px;
             line-height: 1.7;
@@ -150,11 +158,11 @@
         }
         
         .project-card {
-            background: #ffffff;
-            border-radius: 16px;
+            background: #FFFFFF;
+            border-radius: 12px;
             padding: 32px;
-            border: 1px solid #e6e8ef;
-            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s ease;
             cursor: pointer;
             position: relative;
             overflow: hidden;
@@ -167,15 +175,15 @@
             left: 0;
             width: 4px;
             height: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1F3A93;
             opacity: 0;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.2s ease;
         }
         
         .project-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
-            border-color: #d8d4f2;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+            border-color: #1F3A93;
         }
         
         .project-card:hover::before {
@@ -185,24 +193,24 @@
         .project-card h3 {
             font-size: 1.3rem;
             font-weight: 600;
-            color: #2e3440;
+            color: #1F2937;
             margin-bottom: 12px;
         }
         
         .project-card .description {
-            color: #4c4f69;
+            color: #4B5563;
             font-size: 0.95rem;
             line-height: 1.7;
             margin-bottom: 20px;
         }
         
         .project-card .outcome {
-            background: #fafbff;
+            background: #F9FAFB;
             padding: 12px;
             border-radius: 8px;
             font-size: 0.85rem;
-            color: #6b7280;
-            border-left: 3px solid #667eea;
+            color: #6B7280;
+            border-left: 3px solid #1F3A93;
         }
         
         /* Research Themes */
@@ -213,27 +221,27 @@
         }
         
         .theme-card {
-            background: #fafbff;
+            background: #F9FAFB;
             padding: 24px;
             border-radius: 12px;
-            border: 1px solid #e6e8ef;
-            transition: all 0.3s ease;
+            border: 1px solid #E5E7EB;
+            transition: all 0.2s ease;
         }
         
         .theme-card:hover {
-            background: #f5f7ff;
-            border-color: #d8d4f2;
+            background: #F3F4F6;
+            border-color: #1F3A93;
         }
         
         .theme-card h4 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2e3440;
+            color: #1F2937;
             margin-bottom: 8px;
         }
         
         .theme-card p {
-            color: #6b7280;
+            color: #6B7280;
             font-size: 0.9rem;
             line-height: 1.6;
         }
@@ -244,18 +252,18 @@
             gap: 20px;
             padding: 20px;
             border-radius: 12px;
-            background: #fafbff;
+            background: #F9FAFB;
             margin-bottom: 16px;
             transition: all 0.2s ease;
         }
         
         .compact-item:hover {
-            background: #f5f7ff;
+            background: #F3F4F6;
         }
         
         .compact-item .year {
             font-weight: 700;
-            color: #667eea;
+            color: #1F3A93;
             font-size: 1.1rem;
             min-width: 80px;
             text-align: right;
@@ -267,25 +275,25 @@
         
         .compact-item .title {
             font-weight: 600;
-            color: #2e3440;
+            color: #1F2937;
             font-size: 1.05rem;
             margin-bottom: 4px;
         }
         
         .compact-item .venue {
-            color: #6b7280;
+            color: #6B7280;
             font-size: 0.9rem;
             margin-bottom: 4px;
         }
         
         .compact-item .authors {
-            color: #6b7280;
+            color: #6B7280;
             font-size: 0.85rem;
         }
         
         .award-badge {
             display: inline-block;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1F3A93;
             color: white;
             padding: 4px 10px;
             border-radius: 12px;
@@ -302,21 +310,21 @@
         }
         
         .teaching-category {
-            background: #fafbff;
+            background: #F9FAFB;
             padding: 24px;
             border-radius: 12px;
-            border: 1px solid #e6e8ef;
+            border: 1px solid #E5E7EB;
         }
         
         .teaching-category h4 {
             font-size: 1.1rem;
             font-weight: 600;
-            color: #2e3440;
+            color: #1F2937;
             margin-bottom: 12px;
         }
         
         .teaching-category p {
-            color: #6b7280;
+            color: #6B7280;
             font-size: 0.9rem;
             line-height: 1.6;
         }
@@ -345,13 +353,13 @@
         }
         
         .contact-link:hover {
-            color: #667eea;
+            color: #1F3A93;
             transform: translateY(-4px);
         }
         
         .contact-link i {
             font-size: 2rem;
-            color: #667eea;
+            color: #1F3A93;
         }
         
         .contact-link span {
@@ -365,22 +373,22 @@
             position: fixed;
             bottom: 40px;
             right: 40px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: #1F3A93;
             color: white;
             padding: 16px 28px;
-            border-radius: 30px;
+            border-radius: 8px;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
             font-weight: 600;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(31, 58, 147, 0.3);
+            transition: all 0.2s ease;
         }
         
         .download-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
+            box-shadow: 0 4px 12px rgba(31, 58, 147, 0.4);
         }
         
         /* Responsive */
@@ -433,13 +441,15 @@
         @media print {
             .hero {
                 background: white;
-                color: #2e3440;
+                color: #1F2937;
                 padding: 40px;
+                border: 1px solid #E5E7EB;
             }
             
             .hero-contact a {
-                color: #2e3440;
-                background: #f6f7fb;
+                color: #1F3A93;
+                background: #F9FAFB;
+                border: 1px solid #E5E7EB;
             }
             
             .download-btn {
@@ -651,7 +661,7 @@
                                     <div class="title">${pub.title} ${awardBadge}</div>
                                     <div class="venue">${pub.venue}</div>
                                     <div class="authors">${pub.authors}</div>
-                                    ${pub.doi ? `<div style="margin-top:4px;font-size:0.8rem;color:#6b7280;"><a href="https://doi.org/${pub.doi}" target="_blank" style="color:#667eea;">DOI: ${pub.doi}</a></div>` : ''}
+                                    ${pub.doi ? `<div style="margin-top:4px;font-size:0.8rem;color:#6B7280;"><a href="https://doi.org/${pub.doi}" target="_blank" style="color:#1F3A93;">DOI: ${pub.doi}</a></div>` : ''}
                                 </div>
                             `;
                             
