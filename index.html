@@ -334,6 +334,66 @@
             line-height: 1.5;
         }
         
+        .teaching-expandable {
+            cursor: pointer;
+        }
+        
+        .teaching-expandable summary {
+            cursor: pointer;
+            list-style: none;
+            position: relative;
+            padding-right: 30px;
+        }
+        
+        .teaching-expandable summary::-webkit-details-marker {
+            display: none;
+        }
+        
+        .teaching-summary-content {
+            padding-right: 20px;
+        }
+        
+        .toggle-icon {
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-size: 1.2rem;
+            color: #1F3A93;
+            font-weight: bold;
+            line-height: 1;
+        }
+        
+        .teaching-expandable[open] .toggle-icon {
+            content: '−';
+        }
+        
+        .teaching-courses-list {
+            margin-top: 16px;
+            padding-top: 16px;
+            border-top: 1px solid #E5E7EB;
+        }
+        
+        .teaching-courses-list .course-item {
+            padding: 8px 0;
+            border-bottom: 1px solid #F3F4F6;
+            font-size: 0.85rem;
+        }
+        
+        .teaching-courses-list .course-item:last-child {
+            border-bottom: none;
+        }
+        
+        .teaching-courses-list .course-name {
+            font-weight: 600;
+            color: #1F2937;
+        }
+        
+        .teaching-courses-list .course-details {
+            color: #6B7280;
+            font-size: 0.8rem;
+            margin-top: 2px;
+        }
+        
         /* Contact Section */
         .contact-section {
             text-align: center;
@@ -529,10 +589,18 @@
         <h2 class="section-title">Teaching</h2>
         <p class="section-intro">I have taught and mentored students in computer organization, architecture, FPGA design, and embedded systems at the University of South Florida.</p>
         <div class="teaching-sections">
-            <div class="teaching-category">
-                <h4>Teaching Assistant</h4>
-                <p>TA experience across computer organization, architecture, FPGA design, logic/design, and related computing courses.</p>
-            </div>
+            <details class="teaching-category teaching-expandable">
+                <summary>
+                    <div class="teaching-summary-content">
+                        <h4>Teaching Assistant</h4>
+                        <p>TA experience across computer organization, architecture, FPGA design, logic/design, and related computing courses.</p>
+                    </div>
+                    <span class="toggle-icon">+</span>
+                </summary>
+                <div class="teaching-courses-list" id="teaching-courses-list">
+                    <!-- Teaching courses will be loaded here -->
+                </div>
+            </details>
             <div class="teaching-category">
                 <h4>Research Mentoring</h4>
                 <p>Mentored undergraduate and graduate students in ML optimization and embedded systems research.</p>
@@ -686,10 +754,59 @@
                     console.error('Error loading publications:', error);
                 }
                 
+                // Load teaching data
+                try {
+                    const teachingResponse = await fetch('data/teaching.yaml');
+                    const teachingText = await teachingResponse.text();
+                    const teachingData = jsyaml.load(teachingText);
+                    console.log('Teaching loaded:', teachingData);
+                    
+                    const teachingCoursesList = document.getElementById('teaching-courses-list');
+                    if (teachingCoursesList && teachingData.teaching) {
+                        teachingCoursesList.innerHTML = '';
+                        
+                        // Sort courses by duration (most recent first)
+                        const sortedCourses = teachingData.teaching.sort((a, b) => {
+                            const durationA = a.duration || '';
+                            const durationB = b.duration || '';
+                            
+                            const yearsA = durationA.match(/\d{4}/g) || [];
+                            const yearsB = durationB.match(/\d{4}/g) || [];
+                            
+                            const yearA = Math.max(...yearsA.map(Number)) || 0;
+                            const yearB = Math.max(...yearsB.map(Number)) || 0;
+                            
+                            return yearB - yearA;
+                        });
+                        
+                        sortedCourses.forEach(course => {
+                            const courseItem = document.createElement('div');
+                            courseItem.className = 'course-item';
+                            courseItem.innerHTML = `
+                                <div class="course-name">${course.course}</div>
+                                <div class="course-details">${course.duration} • ${course.organization} • ${course.level}</div>
+                            `;
+                            teachingCoursesList.appendChild(courseItem);
+                        });
+                    }
+                } catch (error) {
+                    console.error('Error loading teaching:', error);
+                }
+                
             } catch (error) {
                 console.error('Error loading YAML data:', error);
             }
         }
+        
+        // Toggle teaching expandable
+        document.querySelectorAll('.teaching-expandable').forEach(details => {
+            details.addEventListener('toggle', function() {
+                const toggleIcon = this.querySelector('.toggle-icon');
+                if (toggleIcon) {
+                    toggleIcon.textContent = this.open ? '−' : '+';
+                }
+            });
+        });
         
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', loadYAMLData);
