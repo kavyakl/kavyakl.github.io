@@ -31,7 +31,7 @@ publications:
     citations: 9
     keywords: ["quantization", "ReLU", "hardware optimization", "FPGA"]
     
-  - title: "Sigmod-based Neuron Pruning Technique for MLPs on IoT Edge Devices"
+  - title: "Sigmoid-Based Neuron Pruning Technique for MLPs on IoT Edge Devices"
     authors: "L. K. Kalyanam, S. Katkoori"
     venue: "International Conference on Cyber Physical Systems, Power Electronics and Electric Vehicles (ICPEEV)"
     year: 2023
@@ -48,47 +48,76 @@ publications:
     publisher: "Springer, Cham"
     volume: 683
     type: "conference"
-    keywords: ["CNN pruning", "IoT edge", "structured pruning", "thresholding"]
+    citations: 2
+    keywords: ["Convolutional Neural Networks", "IoT edge devices", "Threshold-based pruning", "Resource optimization"]
     
-  - title: "Simulated annealing based integerization of hidden weights for area-efficient IoT edge intelligence"
+  - title: "Simulated Annealing Based Integerization of Hidden Weights for Area-Efficient IoT Edge Intelligence"
     authors: "Joshi, Rajeev, Lakshmi Kavya Kalyanam, and Srinivas Katkoori"
     venue: "IEEE International Symposium on Smart Electronic Systems (iSES)"
     year: 2022
     publisher: "IEEE"
+    doi: "10.1109/iSES54909.2022 (session 427-432)"
     type: "conference"
-    keywords: ["simulated annealing", "integerization", "IoT", "area optimization"]
+    citations: 5
+    keywords: ["Simulated Annealing", "Multilayer perceptron", "FPGA", "IEEE 754", "Metaheuristic", "Hardware Optimization", "IoT"]
     
   - title: "Simulated Annealing Based Area Optimization of Multilayer Perceptron Hardware for IoT Edge Devices"
     authors: "Joshi, Rajeev, Lakshmi Kavya Kalyanam, and Srinivas Katkoori"
     venue: "IFIP International Internet of Things Conference"
     year: 2023
     publisher: "Springer Nature Switzerland, Cham"
+    doi: "10.1007/978-3-031-45878-1_3"
     type: "conference"
-    keywords: ["simulated annealing", "area optimization", "MLP hardware", "IoT edge"]
+    citations: 2
+    keywords: ["Multilayer perceptron", "Edge-AI", "IEEE-754", "FP32", "Hardware", "IoT", "Optimization"]
     
-  - title: "Area efficient VLSI ASIC implementation of multilayer perceptrons"
+  - title: "Area Efficient VLSI ASIC Implementation of Multilayer Perceptrons"
     authors: "Joshi, Rajeev, Lakshmi Kavya Kalyanam, and Srinivas Katkoori"
     venue: "International VLSI Symposium on Technology, Systems and Applications (VLSI-TSA/VLSI-DAT)"
     year: 2023
     publisher: "IEEE"
+    doi: "N/A (VLSI-TSA/VLSI-DAT 2023 proceedings)"
     type: "conference"
-    keywords: ["VLSI", "ASIC", "MLP", "hardware implementation"]
+    citations: 5
+    keywords: ["ASIC", "VLSI", "MLP", "area optimization"]
     
   - title: "Automated Hidden Neuron Optimization for Multilayer Perceptrons for Classification Tasks"
     authors: "S. Boyidapu, L. K. Kalyanam and S. Katkoori"
     venue: "International Conference on Cyber Physical Systems, Power Electronics and Electric Vehicles (ICPEEV)"
     year: 2024
     location: "Hyderabad, India"
+    doi: "N/A (ICPEEV 2024 proceedings)"
     type: "conference"
+    citations: 1
     keywords: ["neuron optimization", "MLP", "classification", "automation"]
+    
+  - title: "Comprehensive Benchmarking of Activation-Aware Structured Pruning for MCU Deployment: An Empirical Evaluation Study"
+    authors: "Lakshmi Kavya Kalyanam, Susmitha Boyidapu, Srinivas Katkoori"
+    venue: "IFIP Internet of Things Conference"
+    year: 2025
+    doi: "N/A (IFIP IoT 2025, in press)"
+    type: "conference"
+    status: "Accepted as Regular Paper"
+    citations: 0
+    keywords: ["Neural network pruning", "Benchmarking", "Activation-aware optimization", "TinyML", "Microcontroller deployment", "Model compression", "Edge computing", "Structured pruning", "Hardware evaluation", "Resource-constrained devices"]
+    
+  - title: "Dynamic Sparse Training and Compression Pipeline for Deployment-Ready CNNs"
+    authors: "Lakshmi Kavya Kalyanam, Srinivas Katkoori"
+    venue: "IFIP Internet of Things Conference"
+    year: 2025
+    doi: "N/A (IFIP IoT 2025, in press)"
+    type: "conference"
+    status: "Accepted as Regular Paper"
+    citations: 0
+    keywords: ["Dynamic sparse training", "CNN compression", "Deployment optimization", "Grad-CAM pruning", "RigL-inspired updates", "ONNX export", "Model quantization", "Edge computing", "Resource-constrained devices", "Neural network optimization"]
 
 metadata:
-  total_publications: 9
-  conference_papers: 9
+  total_publications: 11
+  conference_papers: 11
   journal_papers: 0
   best_paper_awards: 2
-  years_span: "2020-2024"
-  total_citations: 26
+  years_span: "2020-2025"
+  total_citations: 41
   primary_venues:
     - "IEEE iSES"
     - "ICPEEV"
