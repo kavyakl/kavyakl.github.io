@@ -20,294 +20,407 @@
             background: #f6f7fb;
             max-width: 1200px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 0 20px;
         }
         
-        .header {
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 12px;
-            border: 1px solid #e6e8ef;
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 80px 40px;
+            border-radius: 0 0 20px 20px;
             margin-bottom: 60px;
+            text-align: center;
         }
         
-        .name {
-            font-size: 2.6rem;
-            font-weight: 600;
-            color: #2e3440;
-            margin-bottom: 8px;
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 16px;
             letter-spacing: -0.02em;
         }
         
-        .title {
-            font-size: 1.25rem;
-            color: #6b7280;
-            margin-bottom: 24px;
+        .hero .tagline {
+            font-size: 1.5rem;
             font-weight: 400;
+            opacity: 0.95;
+            margin-bottom: 32px;
         }
         
-        .contact-info {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 24px;
+        .hero .summary {
+            font-size: 1.1rem;
+            max-width: 800px;
+            margin: 0 auto 40px;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .hero .proof-points {
+            max-width: 700px;
+            margin: 0 auto 40px;
+            text-align: left;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 24px;
+            border-radius: 12px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .hero .proof-points li {
+            margin-bottom: 12px;
+            padding-left: 24px;
+            position: relative;
             font-size: 0.95rem;
         }
         
-        .contact-item {
-            color: #1a1a1a;
+        .hero .proof-points li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+        }
+        
+        .hero-contact {
+            display: flex;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        
+        .hero-contact a {
+            color: white;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 8px;
-            transition: opacity 0.2s;
+            padding: 12px 24px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
         }
         
-        .contact-item:hover {
-            opacity: 0.7;
+        .hero-contact a:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-2px);
         }
         
-        .contact-item i {
-            width: 16px;
-            color: #6b7280;
-        }
-        
+        /* Section Styling */
         .section {
             background: #ffffff;
-            padding: 32px 36px;
-            border-radius: 12px;
+            padding: 48px 40px;
+            border-radius: 16px;
             border: 1px solid #e6e8ef;
-            margin-bottom: 40px;
+            margin-bottom: 48px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
         
         .section-title {
-            font-size: 1.4rem;
-            font-weight: 600;
-            color: #3b4252;
-            margin-bottom: 24px;
-            letter-spacing: -0.01em;
-        }
-        
-        .experience-item, .education-item {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #2e3440;
             margin-bottom: 32px;
+            letter-spacing: -0.02em;
+            position: relative;
         }
         
-        .item-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-start;
-            margin-bottom: 12px;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 6px;
-            transition: background-color 0.2s ease;
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -12px;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 2px;
         }
         
-        .item-header:hover {
-            background-color: #f8f9fa;
-        }
-        
-        .toggle-icon {
+        .section-intro {
             color: #6b7280;
-            font-size: 0.8rem;
-            transition: transform 0.2s ease;
-        }
-        
-        .item-title {
-            font-size: 1.15rem;
-            font-weight: 600;
-            color: #2e3440;
-            margin-bottom: 4px;
-        }
-        
-        .item-subtitle {
-            font-size: 1rem;
-            color: #6b7280;
-            margin-bottom: 4px;
-        }
-        
-        .item-date {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-        
-        .item-content {
-            margin-top: 0;
-            transition: all 0.3s ease;
-            color: #2e3440;
+            font-size: 1.05rem;
+            margin-bottom: 32px;
             line-height: 1.7;
         }
         
-        .item-content p {
+        /* Featured Projects */
+        .featured-projects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 32px;
+        }
+        
+        .project-card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 32px;
+            border: 1px solid #e6e8ef;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+            border-color: #d8d4f2;
+        }
+        
+        .project-card:hover::before {
+            opacity: 1;
+        }
+        
+        .project-card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #2e3440;
+            margin-bottom: 12px;
+        }
+        
+        .project-card .description {
+            color: #4c4f69;
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 20px;
+        }
+        
+        .project-card .outcome {
+            background: #fafbff;
+            padding: 12px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            color: #6b7280;
+            border-left: 3px solid #667eea;
+        }
+        
+        /* Research Themes */
+        .research-themes {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+        }
+        
+        .theme-card {
+            background: #fafbff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e6e8ef;
+            transition: all 0.3s ease;
+        }
+        
+        .theme-card:hover {
+            background: #f5f7ff;
+            border-color: #d8d4f2;
+        }
+        
+        .theme-card h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #2e3440;
             margin-bottom: 8px;
         }
         
-        .skills-container {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-        }
-        
-        .skill-tag {
-            background: #f0f2ff;
-            border: 1px solid #e2e6ff;
-            color: #4c4f69;
-            border-radius: 20px;
-            padding: 6px 14px;
+        .theme-card p {
+            color: #6b7280;
             font-size: 0.9rem;
-            font-weight: 500;
+            line-height: 1.6;
         }
         
-        .patent-item, .award-item, .publication-item {
-            margin-bottom: 24px;
-            padding-bottom: 24px;
-            border-bottom: 1px solid #f0f0f0;
+        /* Compact Research/Publication/Teaching Blocks */
+        .compact-item {
+            display: flex;
+            gap: 20px;
+            padding: 20px;
+            border-radius: 12px;
+            background: #fafbff;
+            margin-bottom: 16px;
+            transition: all 0.2s ease;
         }
         
-        .patent-item:last-child, .award-item:last-child, .publication-item:last-child {
-            border-bottom: none;
+        .compact-item:hover {
+            background: #f5f7ff;
         }
         
-        .publication-item {
-            margin-bottom: 20px;
-            padding: 16px;
-            border-radius: 8px;
-            border: 1px solid #e6e8ef;
-            background: #ffffff;
+        .compact-item .year {
+            font-weight: 700;
+            color: #667eea;
+            font-size: 1.1rem;
+            min-width: 80px;
+            text-align: right;
         }
         
-        .publication-item.award-winner {
-            border-left: 4px solid #d8d4f2;
-            background: linear-gradient(to right, #fafbff, #ffffff);
+        .compact-item .content {
+            flex: 1;
         }
         
-        .publication-title {
+        .compact-item .title {
             font-weight: 600;
             color: #2e3440;
-            margin-bottom: 6px;
             font-size: 1.05rem;
-            line-height: 1.4;
+            margin-bottom: 4px;
         }
         
-        .publication-subtitle {
+        .compact-item .venue {
             color: #6b7280;
             font-size: 0.9rem;
             margin-bottom: 4px;
         }
         
-        .publication-doi {
+        .compact-item .authors {
             color: #6b7280;
             font-size: 0.85rem;
-            margin-top: 6px;
-        }
-        
-        .publication-doi a {
-            color: #4c4f69;
-            text-decoration: none;
-        }
-        
-        .publication-doi a:hover {
-            text-decoration: underline;
         }
         
         .award-badge {
             display: inline-block;
-            background: #d8d4f2;
-            color: #2e3440;
-            padding: 4px 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 4px 10px;
             border-radius: 12px;
             font-size: 0.75rem;
             font-weight: 600;
-            margin-left: 12px;
-            vertical-align: middle;
+            margin-left: 8px;
         }
         
-        .patent-title, .award-title {
+        /* Teaching Block */
+        .teaching-sections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 24px;
+        }
+        
+        .teaching-category {
+            background: #fafbff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid #e6e8ef;
+        }
+        
+        .teaching-category h4 {
+            font-size: 1.1rem;
             font-weight: 600;
             color: #2e3440;
-            margin-bottom: 4px;
+            margin-bottom: 12px;
         }
         
-        .patent-subtitle, .award-subtitle {
+        .teaching-category p {
             color: #6b7280;
             font-size: 0.9rem;
-            margin-bottom: 4px;
-        }
-        
-        .patent-date, .award-date {
-            color: #6b7280;
-            font-size: 0.85rem;
-        }
-        
-        .award-description {
-            color: #6b7280;
-            font-size: 0.85rem;
-            margin-top: 4px;
-            font-style: italic;
-        }
-        
-        .academic-overview {
-            color: #2e3440;
             line-height: 1.6;
-            margin-bottom: 0;
         }
         
-        .conference-list {
-            margin: 8px 0;
-            padding-left: 20px;
-            list-style-type: none;
+        /* Contact Section */
+        .contact-section {
+            text-align: center;
         }
         
-        .conference-list li {
-            margin-bottom: 4px;
-            color: #6b7280;
+        .contact-links {
+            display: flex;
+            justify-content: center;
+            gap: 32px;
+            flex-wrap: wrap;
+            margin-top: 32px;
+        }
+        
+        .contact-link {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #2e3440;
+            transition: all 0.3s ease;
+        }
+        
+        .contact-link:hover {
+            color: #667eea;
+            transform: translateY(-4px);
+        }
+        
+        .contact-link i {
+            font-size: 2rem;
+            color: #667eea;
+        }
+        
+        .contact-link span {
+            font-weight: 500;
             font-size: 0.9rem;
+            margin-top: 4px;
         }
         
+        /* Download Button */
         .download-btn {
             position: fixed;
             bottom: 40px;
             right: 40px;
-            background: #d8d4f2;
-            color: #2e3440;
-            padding: 16px 24px;
-            border-radius: 8px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 16px 28px;
+            border-radius: 30px;
             text-decoration: none;
             display: flex;
             align-items: center;
             gap: 12px;
-            font-weight: 500;
-            border: 1px solid #c8c4ea;
-            box-shadow: none;
-            transition: background-color 0.2s ease;
+            font-weight: 600;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+            transition: all 0.3s ease;
         }
         
         .download-btn:hover {
-            background: #cfcaf0;
-            transform: none;
-            box-shadow: none;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(102, 126, 234, 0.5);
         }
-
-
+        
+        /* Responsive */
         @media (max-width: 768px) {
-            body {
-                padding: 20px 16px;
+            .hero {
+                padding: 60px 24px;
             }
             
-            .name {
-                font-size: 2rem;
+            .hero h1 {
+                font-size: 2.5rem;
             }
             
-            .title {
-                font-size: 1.1rem;
+            .hero .tagline {
+                font-size: 1.2rem;
             }
             
-            .contact-info {
-                flex-direction: column;
-                gap: 12px;
+            .hero .summary {
+                font-size: 1rem;
+            }
+            
+            .section {
+                padding: 32px 24px;
             }
             
             .section-title {
                 font-size: 1.5rem;
+            }
+            
+            .featured-projects {
+                grid-template-columns: 1fr;
+            }
+            
+            .compact-item {
+                flex-direction: column;
+                gap: 8px;
+            }
+            
+            .compact-item .year {
+                text-align: left;
+                font-size: 0.9rem;
             }
             
             .download-btn {
@@ -318,254 +431,124 @@
         }
         
         @media print {
-            body {
-                max-width: none;
-                padding: 0;
+            .hero {
+                background: white;
+                color: #2e3440;
+                padding: 40px;
+            }
+            
+            .hero-contact a {
+                color: #2e3440;
+                background: #f6f7fb;
             }
             
             .download-btn {
                 display: none;
             }
-            
-            .header {
-                margin-bottom: 40px;
-            }
-            
-            .section {
-                margin-bottom: 32px;
-            }
-        }
-        
-        /* Teaching Styles */
-        .teaching-container {
-            background: #ffffff;
-            border-radius: 12px;
-            border: 1px solid #e6e8ef;
-            padding: 24px;
-        }
-        
-        .teaching-container summary {
-            font-weight: 600;
-            color: #3b4252;
-            cursor: pointer;
-            list-style: none;
-            padding: 0;
-            margin-bottom: 16px;
-        }
-        
-        .teaching-container summary::-webkit-details-marker {
-            display: none;
-        }
-        
-        .teaching-container summary::after {
-            content: "▼";
-            float: right;
-            font-size: 0.8rem;
-            color: #6b7280;
-            transition: transform 0.2s ease;
-        }
-        
-        .teaching-container[open] summary::after {
-            transform: rotate(180deg);
-        }
-        
-        .teaching-content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            padding: 0;
-        }
-        
-        .teaching-column h3 {
-            margin-bottom: 12px;
-            font-size: 1.1rem;
-            color: #3b4252;
-            border-bottom: 2px solid #e6e8ef;
-            padding-bottom: 6px;
-        }
-        
-        .teaching-column ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        
-        .teaching-column li {
-            margin-bottom: 12px;
-            padding: 8px 0;
-            border-bottom: 1px solid #f0f0f0;
-        }
-        
-        .teaching-column li:last-child {
-            border-bottom: none;
-        }
-        
-        @media (max-width: 768px) {
-            .teaching-content {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
         }
     </style>
 </head>
 <body>
-    <header class="header">
-        <h1 class="name">Lakshmi Kavya Kalyanam</h1>
-        <div class="title">ML Engineer | Model Optimization | Neural Networks | Inference Optimization</div>
-        <div class="contact-info">
-            <a href="mailto:kavyakalyanamk@gmail.com" class="contact-item">
-                <i class="fas fa-envelope"></i> kavyakalyanamk@gmail.com
-            </a>
-            <a href="https://linkedin.com/in/lakshmikavya-kalyanam-a88633131" class="contact-item" target="_blank">
-                <i class="fab fa-linkedin"></i> LinkedIn
-            </a>
-            <a href="https://github.com/kavyakl" class="contact-item" target="_blank">
-                <i class="fab fa-github"></i> GitHub
-            </a>
-            <a href="#" class="contact-item">
-                <i class="fas fa-map-marker-alt"></i> Tampa, FL
-            </a>
+    <!-- Hero Section -->
+    <header class="hero">
+        <h1 id="hero-name">Lakshmi Kavya Kalyanam</h1>
+        <div class="tagline" id="hero-tagline">Machine Learning Engineer</div>
+        <div class="summary">
+            I am a Machine Learning Engineer focused on model optimization, efficient inference, and AI systems that are both practical and measurable. My work spans neural network compression, ONNX graph transformations, RAG systems, and deployment across microcontrollers, GPUs, and FPGAs. I care about making ML systems smaller, faster, and more reliable without losing research rigor.
+        </div>
+        <ul class="proof-points">
+            <li>11 peer-reviewed publications, 4 patents, 2 Best Paper Awards.</li>
+            <li>Experience across edge inference, compiler-aware optimization, and retrieval systems.</li>
+            <li>Work spanning PyTorch, ONNX Runtime, TensorRT, FAISS, and local LLM pipelines.</li>
+        </ul>
+        <div class="hero-contact">
+            <a href="#" id="hero-email"><i class="fas fa-envelope"></i> Email</a>
+            <a href="#" id="hero-linkedin" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+            <a href="#" id="hero-github" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+            <a href="#" id="hero-location"><i class="fas fa-map-marker-alt"></i> Location</a>
         </div>
     </header>
 
+    <!-- Featured Projects -->
     <section class="section">
-        <h2 class="section-title">Professional Summary</h2>
-        <div class="item-content">
-            <p>Machine Learning Engineer with 5+ years of experience in model compression, pruning, quantization, and embedded AI deployment. Author of 9 peer-reviewed publications and 3 patents in hardware-aware and compiler-integrated ML optimization. Skilled in neural network sparsification, ONNX graph transformations, and deployment across microcontrollers, GPUs, and FPGAs. Experienced in analyzing compute–memory trade-offs and building optimization pipelines for efficient real-time, on-device inference. Passionate about making ML systems smaller, faster, and reliable for production edge and cloud platforms.</p>
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-intro">A few projects that show the range of my work, from retrieval systems to optimization and deployment.</p>
+        <div class="featured-projects" id="featured-projects">
+            <!-- Featured projects will be loaded here -->
         </div>
     </section>
 
+    <!-- Research -->
     <section class="section">
-        <h2 class="section-title">Education</h2>
-        <div class="education-item">
-            <div class="item-header">
-                <div class="item-title">Ph.D. in Computer Science and Engineering</div>
-                <div class="item-subtitle">University of South Florida</div>
-                <div class="item-date">2019 - December 2025</div>
+        <h2 class="section-title">Research</h2>
+        <p class="section-intro">My research sits at the intersection of model efficiency, inference optimization, and edge deployment. I work on methods that reduce memory footprint, improve latency, and preserve accuracy under real-world constraints.</p>
+        <div class="research-themes">
+            <div class="theme-card">
+                <h4>Sparse and Structured Pruning</h4>
+                <p>Neural network compression techniques that maintain accuracy while reducing computational complexity and memory footprint.</p>
             </div>
-            <div class="item-content">
-                <p>• Focus: Sparse model optimization, embedded ML, compiler-aware inference</p>
-                <p>• 9 peer-reviewed publications, 3 patents filed, 2 Best Paper Awards</p>
+            <div class="theme-card">
+                <h4>Compiler-Aware Inference</h4>
+                <p>ONNX graph transformations and MLIR-style optimizations that treat execution graphs as optimized dataflow systems.</p>
             </div>
-        </div>
-        <div class="education-item">
-            <div class="item-header">
-                <div class="item-title">M.S., Computer Science and Engineering</div>
-                <div class="item-subtitle">University of South Florida</div>
-                <div class="item-date">2020</div>
-            </div>
-            <div class="item-content">
-                <p>• Thesis: Real-time object detection using BNNs on PYNQ-Z1 (19.23 FPS) - IEEE iSES 2020 Best Paper</p>
-                <p>• Focus: Embedded Deep Learning, Edge Inference Systems, Distributed Computing</p>
+            <div class="theme-card">
+                <h4>Edge Deployment</h4>
+                <p>Embedded and distributed AI systems targeting microcontrollers, FPGAs, and resource-constrained edge devices.</p>
             </div>
         </div>
-        <div class="education-item">
-            <div class="item-header">
-                <div class="item-title">B.Tech., Electronics & Communication Engineering</div>
-                <div class="item-subtitle">GITAM University</div>
-                <div class="item-date">2017</div>
-            </div>
-        </div>
+        <p class="section-intro" style="margin-top: 24px; font-style: italic;">Recent work includes activation-aware pruning for MLPs, compute–memory tradeoff analysis, and real-time inference on constrained hardware.</p>
     </section>
 
-    <section class="section">
-        <h2 class="section-title">Experience</h2>
-        <div class="experience-item">
-            <div class="item-header">
-                <div class="item-title">Lead Research Engineer & PhD Fellow</div>
-                <div class="item-subtitle">University of South Florida</div>
-                <div class="item-date">Jan 2019 – Dec 2025</div>
-            </div>
-            <div class="item-content">
-                <p>• Developed multi-stage compression and pruning pipelines for CNNs using PyTorch and ONNX Runtime, achieving up to 98% sparsity and 60% model compression with minimal accuracy loss.</p>
-                <p>• Designed activation-aware pruning for MLPs, achieving 82% sparsity and 37% hardware savings (<1.5% accuracy drop) and deployed on ARM Cortex-M4 microcontrollers with a 95% success rate.</p>
-                <p>• Built a distributed real-time object detection system using PYNQ-Z1 AP-SoCs and BNNs, achieving 19.23 FPS across a 3-node edge network with minimal communication latency.</p>
-                <p>• Developed ONNX graph rewrites simulating compiler IR transformations, enabling 4.33× inference speedup through structure-preserving sparsity optimizations.</p>
-                <p>• Engineered a RAG-based literature analysis system using local LLM inference and FAISS-based vector search, reducing manual review time by 80% across 200+ scientific papers.</p>
-                <p>• Modeled compute–memory trade-offs and implemented optimization techniques for real-time embedded inference and performance scalability.</p>
-                <p>• Ran optimized models on cloud-based GPU platforms using ONNX Runtime and TensorRT.</p>
-            </div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">Skills</h2>
-        <div class="skills-container">
-            <span class="skill-tag">C++17</span>
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Embedded C</span>
-            <span class="skill-tag">CUDA 12.3</span>
-            <span class="skill-tag">OpenCL</span>
-            <span class="skill-tag">PyTorch 2.6.0</span>
-            <span class="skill-tag">TensorFlow</span>
-            <span class="skill-tag">ONNX Runtime</span>
-            <span class="skill-tag">TensorRT</span>
-            <span class="skill-tag">TFLite</span>
-            <span class="skill-tag">Model Pruning</span>
-            <span class="skill-tag">Quantization</span>
-            <span class="skill-tag">FPGA</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Git</span>
-            <span class="skill-tag">Linux CLI</span>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">Projects</h2>
-        <div id="projects-container">
-            <!-- Projects will be loaded here -->
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">Patents</h2>
-        <div class="patent-item">
-            <div class="patent-title">Layer-Wise Filter Thresholding Based CNN Pruning for Efficient IoT Edge Implementations</div>
-            <div class="patent-subtitle">Provisional Patent USF Ref: 24T085US</div>
-            <div class="patent-date">2024</div>
-        </div>
-        <div class="patent-item">
-            <div class="patent-title">Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation</div>
-            <div class="patent-subtitle">Patent USF23/00331, Tech ID: 24T063</div>
-            <div class="patent-date">2023</div>
-        </div>
-        <div class="patent-item">
-            <div class="patent-title">Range-Based Hardware Optimization of Multi-Layer Perceptrons with ReLUs</div>
-            <div class="patent-subtitle">Patent USF Ref: 23T078US</div>
-            <div class="patent-date">2023</div>
-        </div>
-    </section>
-
-    <section class="section">
-        <h2 class="section-title">Peer Review & Academic Engagement</h2>
-        <div id="academic-service-container">
-            <!-- Academic service will be loaded here -->
-        </div>
-    </section>
-
+    <!-- Publications -->
     <section class="section">
         <h2 class="section-title">Publications</h2>
+        <p class="section-intro">Selected publications and awards from my work on model compression, embedded inference, and optimization methods.</p>
         <div id="publications-container">
             <!-- Publications will be loaded here -->
         </div>
     </section>
 
+    <!-- Teaching -->
     <section class="section">
-        <h2 class="section-title">Teaching & Mentoring</h2>
-
-        <details class="teaching-container">
-            <summary>Courses Taught</summary>
-
-            <div class="teaching-content">
-                <ul id="teaching-list">
-                    <!-- Teaching courses will be loaded here -->
-                </ul>
+        <h2 class="section-title">Teaching</h2>
+        <p class="section-intro">I have taught and mentored students in computer organization, architecture, FPGA design, and embedded systems at the University of South Florida.</p>
+        <div class="teaching-sections">
+            <div class="teaching-category">
+                <h4>Teaching Assistant</h4>
+                <p>TA experience across computer organization, architecture, FPGA design, logic/design, and related computing courses.</p>
             </div>
-        </details>
+            <div class="teaching-category">
+                <h4>Research Mentoring</h4>
+                <p>Mentored undergraduate and graduate students in ML optimization and embedded systems research.</p>
+            </div>
+        </div>
+        <p class="section-intro" style="margin-top: 24px; font-style: italic;">Teaching and mentoring have been a consistent part of my work, especially in courses and projects related to computer systems, architecture, and hardware-aware ML.</p>
+    </section>
+
+    <!-- Contact -->
+    <section class="section contact-section">
+        <h2 class="section-title">Contact</h2>
+        <p style="color: #6b7280; max-width: 600px; margin: 0 auto;">
+            I'm open to research, ML engineering, and applied AI systems work. Feel free to reach out via email or GitHub.
+        </p>
+        <div class="contact-links">
+            <a href="#" id="contact-email" class="contact-link">
+                <i class="fas fa-envelope"></i>
+                <span>Email</span>
+            </a>
+            <a href="#" id="contact-linkedin" class="contact-link" target="_blank">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+            </a>
+            <a href="#" id="contact-github" class="contact-link" target="_blank">
+                <i class="fab fa-github"></i>
+                <span>GitHub</span>
+            </a>
+        </div>
     </section>
 
     <a href="Lk_resume.pdf" class="download-btn" target="_blank">
-        <i class="fas fa-download"></i> Download PDF
+        <i class="fas fa-download"></i> Download Resume
     </a>
 
     <script>
@@ -581,106 +564,69 @@
                     const profile = jsyaml.load(profileText);
                     console.log('Profile loaded:', profile);
                     
-                    // Update header with profile data
-                    document.querySelector('.name').textContent = profile.name;
-                    document.querySelector('.title').textContent = profile.headline;
+                    // Update hero section
+                    document.getElementById('hero-name').textContent = profile.name;
+                    document.getElementById('hero-tagline').textContent = profile.headline;
                     
-                    // Update contact info
-                    const contactInfo = document.querySelector('.contact-info');
-                    contactInfo.innerHTML = `
-                        <a href="mailto:${profile.email}" class="contact-item">
-                            <i class="fas fa-envelope"></i> ${profile.email}
-                        </a>
-                        <a href="${profile.links.linkedin}" class="contact-item" target="_blank">
-                            <i class="fab fa-linkedin"></i> LinkedIn
-                        </a>
-                        <a href="${profile.links.github}" class="contact-item" target="_blank">
-                            <i class="fab fa-github"></i> GitHub
-                        </a>
-                        <a href="#" class="contact-item">
-                            <i class="fas fa-map-marker-alt"></i> ${profile.location}
-                        </a>
-                    `;
+                    // Update contact links
+                    document.getElementById('hero-email').href = `mailto:${profile.email}`;
+                    document.getElementById('hero-email').innerHTML = `<i class="fas fa-envelope"></i> ${profile.email}`;
+                    document.getElementById('hero-linkedin').href = profile.links.linkedin;
+                    document.getElementById('hero-github').href = profile.links.github;
+                    document.getElementById('hero-location').innerHTML = `<i class="fas fa-map-marker-alt"></i> ${profile.location}`;
+                    
+                    // Update contact section
+                    document.getElementById('contact-email').href = `mailto:${profile.email}`;
+                    document.getElementById('contact-email').innerHTML = `<i class="fas fa-envelope"></i><span>${profile.email}</span>`;
+                    document.getElementById('contact-linkedin').href = profile.links.linkedin;
+                    document.getElementById('contact-github').href = profile.links.github;
+                    
                 } catch (error) {
                     console.error('Error loading profile:', error);
                 }
                 
-                // Load skills data
+                // Load projects data with specific copy
                 try {
-                    const skillsResponse = await fetch('data/skills.yaml');
-                    const skillsText = await skillsResponse.text();
-                    const skillsData = jsyaml.load(skillsText);
-                    console.log('Skills loaded:', skillsData);
+                    const featuredProjectsContainer = document.getElementById('featured-projects');
                     
-                    // Update skills section
-                    const skillsContainer = document.querySelector('.skills-container');
-                    if (skillsContainer && skillsData.categories) {
-                        skillsContainer.innerHTML = '';
-                        skillsData.categories.forEach(category => {
-                            if (category.items) {
-                                category.items.forEach(skill => {
-                                    const skillTag = document.createElement('span');
-                                    skillTag.className = 'skill-tag';
-                                    skillTag.textContent = skill.name;
-                                    skillsContainer.appendChild(skillTag);
-                                });
-                            }
+                    const featuredProjects = [
+                        {
+                            title: 'LitBot: AI Literature Survey Assistant',
+                            description: 'RAG system for analyzing 200+ scientific papers using local LLM inference and FAISS-based retrieval. Built to reduce manual review time and support structured exploration of research corpora.',
+                            outcome: 'Reduced manual review time by 80%.'
+                        },
+                        {
+                            title: 'Dynamic Sparsity Optimization',
+                            description: 'Neural network pruning and sparsification pipeline focused on efficiency without major accuracy loss. Designed around structured compression strategies that translate to real deployment gains.',
+                            outcome: 'Achieved high sparsity and measurable inference speedup.'
+                        },
+                        {
+                            title: 'Distributed Real-Time Object Detection Framework',
+                            description: 'Edge AI system using PYNQ-Z1 AP-SoCs and BNNs for real-time object detection across a distributed network. Built for low-latency inference on constrained hardware.',
+                            outcome: 'Achieved 19.23 FPS across a 3-node edge setup.'
+                        },
+                        {
+                            title: 'Neural Network Optimization Analysis Framework',
+                            description: 'Compiler-aware analysis and ONNX graph transformation work that treats execution graphs like optimized dataflow systems.',
+                            outcome: 'Delivered 4.33× inference speedup through structure-preserving rewrites.'
+                        }
+                    ];
+                    
+                    if (featuredProjectsContainer) {
+                        featuredProjectsContainer.innerHTML = '';
+                        featuredProjects.forEach(project => {
+                            const card = document.createElement('div');
+                            card.className = 'project-card';
+                            card.innerHTML = `
+                                <h3>${project.title}</h3>
+                                <div class="description">${project.description}</div>
+                                <div class="outcome">${project.outcome}</div>
+                            `;
+                            featuredProjectsContainer.appendChild(card);
                         });
                     }
                 } catch (error) {
-                    console.error('Error loading skills:', error);
-                }
-                
-                // Load academic service data
-                try {
-                    const academicServiceResponse = await fetch('data/academic_service.yaml');
-                    const academicServiceText = await academicServiceResponse.text();
-                    const academicServiceData = jsyaml.load(academicServiceText);
-                    console.log('Academic service loaded:', academicServiceData);
-                    
-                    // Update academic service section
-                    const academicServiceContainer = document.getElementById('academic-service-container');
-                    if (academicServiceContainer && academicServiceData.academic_service) {
-                        academicServiceContainer.innerHTML = '';
-                        academicServiceData.academic_service.forEach(service => {
-                            const serviceDiv = document.createElement('div');
-                            serviceDiv.className = 'award-item';
-                            
-                            if (service.type === 'overview') {
-                                serviceDiv.innerHTML = `
-                                    <div class="academic-overview">
-                                        <p>${service.description}</p>
-                                    </div>
-                                `;
-                            } else if (service.type === 'peer_review' && service.conferences_reviewed) {
-                                serviceDiv.innerHTML = `
-                                    <div class="award-title">${service.title}</div>
-                                    <div class="award-subtitle">Conferences Reviewed:</div>
-                                    <ul class="conference-list">
-                                        ${service.conferences_reviewed.map(conf => `<li>${conf}</li>`).join('')}
-                                    </ul>
-                                    ${service.journals_reviewed ? `
-                                        <div class="award-subtitle">Journals Reviewed:</div>
-                                        <ul class="conference-list">
-                                            ${service.journals_reviewed.map(journal => `<li>${journal}</li>`).join('')}
-                                        </ul>
-                                    ` : ''}
-                                    <div class="award-description">${service.description}</div>
-                                `;
-                            } else {
-                                serviceDiv.innerHTML = `
-                                    <div class="award-title">${service.title}</div>
-                                    <div class="award-subtitle">${service.organization}</div>
-                                    <div class="award-date">${service.years || service.year}</div>
-                                    <div class="award-description">${service.description}</div>
-                                `;
-                            }
-                            
-                            academicServiceContainer.appendChild(serviceDiv);
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error loading academic service:', error);
+                    console.error('Error loading projects:', error);
                 }
                 
                 // Load publications data
@@ -690,157 +636,34 @@
                     const publicationsData = jsyaml.load(publicationsText);
                     console.log('Publications loaded:', publicationsData);
                     
-                    // Update publications section
                     const publicationsContainer = document.getElementById('publications-container');
                     if (publicationsContainer && publicationsData.publications) {
                         publicationsContainer.innerHTML = '';
                         publicationsData.publications.forEach(pub => {
-                            const pubDiv = document.createElement('div');
+                            const item = document.createElement('div');
+                            item.className = 'compact-item';
                             
-                            // Use special styling for award-winning papers
-                            if (pub.award === 'Best Paper Award') {
-                                pubDiv.className = 'publication-item award-winner';
-                                pubDiv.innerHTML = `
-                                    <div class="publication-title">
-                                        ${pub.title}
-                                        <span class="award-badge">🏆 Best Paper Award</span>
-                                    </div>
-                                    <div class="publication-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
-                                    ${pub.doi ? `<div class="publication-doi">DOI: <a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a></div>` : ''}
-                                `;
-                            } else {
-                                pubDiv.className = 'publication-item';
-                                pubDiv.innerHTML = `
-                                    <div class="publication-title">${pub.title}</div>
-                                    <div class="publication-subtitle">${pub.authors} • ${pub.venue} (${pub.year})</div>
-                                    ${pub.doi ? `<div class="publication-doi">DOI: <a href="https://doi.org/${pub.doi}" target="_blank">${pub.doi}</a></div>` : ''}
-                                `;
-                            }
+                            const awardBadge = pub.award === 'Best Paper Award' ? '<span class="award-badge">🏆 Best Paper</span>' : '';
                             
-                            publicationsContainer.appendChild(pubDiv);
+                            item.innerHTML = `
+                                <div class="year">${pub.year}</div>
+                                <div class="content">
+                                    <div class="title">${pub.title} ${awardBadge}</div>
+                                    <div class="venue">${pub.venue}</div>
+                                    <div class="authors">${pub.authors}</div>
+                                    ${pub.doi ? `<div style="margin-top:4px;font-size:0.8rem;color:#6b7280;"><a href="https://doi.org/${pub.doi}" target="_blank" style="color:#667eea;">DOI: ${pub.doi}</a></div>` : ''}
+                                </div>
+                            `;
+                            
+                            publicationsContainer.appendChild(item);
                         });
                     }
                 } catch (error) {
                     console.error('Error loading publications:', error);
                 }
                 
-                // Load teaching data
-                try {
-                    const teachingResponse = await fetch('data/teaching.yaml');
-                    const teachingText = await teachingResponse.text();
-                    
-                    if (typeof jsyaml !== 'undefined') {
-                        const teachingData = jsyaml.load(teachingText);
-                        console.log('Teaching loaded:', teachingData);
-                        
-                        const teachingContainer = document.getElementById('teaching-container');
-                        const teachingList = document.getElementById('teaching-list');
-                        
-                        if (teachingList && teachingData.teaching) {
-                            teachingList.innerHTML = '';
-                            
-                            // Sort all courses by duration chronologically
-                            const sortedCourses = teachingData.teaching.sort((a, b) => {
-                                const durationA = a.duration || '';
-                                const durationB = b.duration || '';
-                                
-                                // Extract years from duration for sorting
-                                const yearsA = durationA.match(/\d{4}/g) || [];
-                                const yearsB = durationB.match(/\d{4}/g) || [];
-                                
-                                const yearA = Math.max(...yearsA.map(Number)) || 0;
-                                const yearB = Math.max(...yearsB.map(Number)) || 0;
-                                
-                                return yearA - yearB;
-                            });
-                            
-                            // Display all courses chronologically
-                            sortedCourses.forEach(course => {
-                                const li = document.createElement('li');
-                                li.innerHTML = `
-                                    <strong>${course.course || course.course_name}</strong><br>
-                                    <span style="font-size:0.85rem;color:#6b7280;">
-                                        ${course.duration} • ${course.role}
-                                    </span>
-                                `;
-                                teachingList.appendChild(li);
-                            });
-                        }
-                    } else {
-                        console.error('js-yaml library not loaded');
-                    }
-                } catch (error) {
-                    console.error('Error loading teaching:', error);
-                }
-                
-                // Load all projects data
-                try {
-                    const projectsContainer = document.getElementById('projects-container');
-                    const projectFiles = [
-                        'data/projects/dynamic_sparsity_optimization.yaml',
-                        'data/projects/distributed_real_time_object_detection_framework.yaml',
-                        'data/projects/litbot_ai_literature_survey_assistant.yaml',
-                        'data/projects/neural_network_optimization_analysis_framework.yaml',
-                        'data/projects/resume_editor_bot.yaml',
-                        'data/projects/llm_orchestration.yaml'
-                    ];
-                    
-                    if (projectsContainer) {
-                        projectsContainer.innerHTML = '';
-                        
-                        for (const projectFile of projectFiles) {
-                            try {
-                                const projectResponse = await fetch(projectFile);
-                                const projectText = await projectResponse.text();
-                                const projectData = jsyaml.load(projectText);
-                                console.log(`Project loaded from ${projectFile}:`, projectData);
-                                
-                                if (projectData && projectData.title) {
-                                    const projectDiv = document.createElement('div');
-                                    projectDiv.className = 'experience-item';
-                                    projectDiv.innerHTML = `
-                                        <div class="item-header" onclick="toggleProjectDetails('${projectData.slug}')">
-                                            <div class="item-title">${projectData.title}</div>
-                                            <div class="item-subtitle">${projectData.role || 'Lead Developer'}</div>
-                                            <div class="item-date">${projectData.duration || 'Ongoing'}</div>
-                                            <div class="toggle-icon">▼</div>
-                                        </div>
-                                        <div class="item-content" id="project-${projectData.slug}" style="display: none;">
-                                            <p>${projectData.description}</p>
-                                            <p><strong>Technologies:</strong> ${projectData.technologies ? projectData.technologies.slice(0, 6).join(', ') : 'Various ML frameworks'}</p>
-                                            ${projectData.methods ? `<p><strong>Methods:</strong> ${projectData.methods.slice(0, 3).join('; ')}</p>` : ''}
-                                            ${projectData.results ? `<p><strong>Key Results:</strong> ${projectData.results}</p>` : ''}
-                                            ${projectData.impact ? `<p><strong>Impact:</strong> ${projectData.impact}</p>` : ''}
-                                            ${projectData.github_url ? `<p><strong>GitHub:</strong> <a href="${projectData.github_url}" target="_blank">${projectData.github_url}</a></p>` : ''}
-                                        </div>
-                                    `;
-                                    projectsContainer.appendChild(projectDiv);
-                                }
-                            } catch (error) {
-                                console.log(`Could not load project: ${projectFile}`, error);
-                            }
-                        }
-                    }
-                } catch (error) {
-                    console.error('Error loading projects:', error);
-                }
-                
             } catch (error) {
                 console.error('Error loading YAML data:', error);
-            }
-        }
-        
-        // Toggle project details
-        function toggleProjectDetails(projectSlug) {
-            const detailsElement = document.getElementById(`project-${projectSlug}`);
-            const toggleIcon = event.currentTarget.querySelector('.toggle-icon');
-            
-            if (detailsElement.style.display === 'none') {
-                detailsElement.style.display = 'block';
-                toggleIcon.textContent = '▲';
-            } else {
-                detailsElement.style.display = 'none';
-                toggleIcon.textContent = '▼';
             }
         }
         
