@@ -15,7 +15,7 @@ publications:
     venue: "IEEE International Symposium on Smart Electronic Systems (iSES)"
     year: 2020
     location: "Chennai, India"
-    doi: "10.1109/iSES580453.2020.00070"
+    doi: "10.1109/iSES50453.2020.00070"
     award: "Best Paper Award"
     type: "conference"
     citations: 10
@@ -56,7 +56,7 @@ publications:
     venue: "IEEE International Symposium on Smart Electronic Systems (iSES)"
     year: 2022
     publisher: "IEEE"
-    doi: "10.1109/iSES54909.2022 (session 427-432)"
+    doi: "10.1109/iSES54909.2022"
     type: "conference"
     citations: 5
     keywords: ["Simulated Annealing", "Multilayer perceptron", "FPGA", "IEEE 754", "Metaheuristic", "Hardware Optimization", "IoT"]
