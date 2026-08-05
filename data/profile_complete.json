@@ -1,0 +1,1208 @@
+{
+  "metadata": {
+    "name": "Lakshmi Kavya Kalyanam",
+ "degree": "PhD Computer Science and Engineering",
+    "institution": "University of South Florida",
+    "graduation_date": "2025-12",
+    "profile_version": "1.1",
+    "last_updated": "2026-08-02",
+    "contact": {
+      "email": "kavyakalyanamk@gmail.com",
+      "linkedin": "https://linkedin.com/in/lakshmikavya-kalyanam-a88633131",
+      "github": "https://github.com/kavyakl",
+      "google_scholar": "https://scholar.google.com/citations?user=VPU9stcAAAAJ&hl=en"
+    },
+    "google_scholar_metrics": {
+      "h_index": 4,
+      "i10_index": 6,
+      "total_citations": 41
+    }
+  },
+  "research_profile": {
+    "primary_taxonomy": "Machine Learning Systems and Hardware-Aware Optimization",
+    "core_contribution": "Ph.D. researcher and machine learning systems engineer with expertise in hardware-aware optimization of neural networks for embedded and edge systems, including pruning, quantization, sparse training, compiler-level model transformations, and resource-constrained AI deployment. Research spans edge inference systems, embedded AI, ONNX-based model transformation workflows, and reproducible evaluation pipelines for efficient learning systems. Current research interest: extending hardware-aware inference optimization techniques toward energy-efficient on-device training and training-accelerator design.",
+    "research_interests": [
+      "Energy-efficient on-device training and training accelerator design (FPGA, integrated photonics)",
+      "Machine learning systems and hardware-software co-design",
+      "Model compression: pruning, quantization, and dynamic/sparse training",
+      "Hardware-aware inference and compiler-level model transformations (ONNX, IR rewrites)",
+      "Embedded AI, edge computing, and resource-constrained architectures"
+    ],
+    "selected_contributions": [
+      "Developed activation-aware pruning algorithms achieving up to 98.98% sparsity while preserving model accuracy on resource-constrained devices",
+      "Designed hardware-aware deployment pipelines integrating ONNX transformations, quantization, and sparse representations for FPGA, ASIC, and ARM Cortex-M4 inference",
+      "Built distributed edge inference systems using FPGA-based BNN accelerators achieving real-time object detection across multiple IoT nodes"
+    ],
+    "specializations": [
+      {
+        "area": "Model Compression",
+        "depth": "expert",
+        "sub_topics": [
+          "Structured Pruning (layer-wise, filter-based)",
+          "Unstructured Pruning (neuron-level, weight thresholding)",
+          "Quantization-Aware Training (QAT)",
+          "Sparse Training (RigL, dynamic sparsity)"
+        ],
+        "deployment_evidence": "11 peer-reviewed publications; 4 filed patents"
+      },
+      {
+        "area": "Embedded AI and Edge Computing",
+        "depth": "expert",
+        "sub_topics": [
+          "On-device inference (MCU, FPGA, SoC)",
+          "Resource-constrained architectures (ARM Cortex-M4, ESP8266, Arduino)",
+          "Distributed edge networks (IoT, real-time object detection)",
+          "Memory and power profiling"
+        ],
+        "deployment_evidence": "End-to-end pipelines on 5+ hardware targets"
+      },
+      {
+        "area": "Compiler-Level Transformations",
+        "depth": "intermediate",
+        "sub_topics": [
+          "ONNX graph rewrites and optimization",
+          "Inference runtime optimization",
+          "IR transformations (MLIR/LLVM exposure)",
+          "Hardware-aware code generation"
+        ],
+        "deployment_evidence": "ONNX export workflows; TensorRT/TFLite integration"
+      },
+      {
+        "area": "Small Language Models (SLMs) and Inference",
+        "depth": "developing",
+        "sub_topics": [
+          "SLM benchmarking on heterogeneous hardware",
+          "Quantization trade-offs (FP8, INT8, dynamic range)",
+          "Memory modeling for edge LLMs",
+          "Sparse inference for Transformers and SSMs"
+        ],
+        "deployment_evidence": "Active research trajectory; Phi-3-mini, Llama-3.2 experimentation"
+      }
+    ]
+  },
+  "publications": {
+    "peer_reviewed_conferences": [
+      {
+        "id": "pub_001",
+        "title": "Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation",
+        "venue": "IEEE iSES 2023",
+        "year": 2023,
+        "publication_date": "December 2023",
+        "type": "Conference Paper",
+        "recognition": "Best Paper Award",
+        "doi": "10.1109/iSES58672.2023.00025",
+        "abstract": "For Multi-layer Perceptrons (MLPs) with tanh activation function, we propose an effective unstructured pruning technique that removes redundant neurons while preserving accuracy. The method targets neurons with activations clustered near -1, 0, or 1, leveraging the zero-centered properties of tanh, and achieved neuron count reductions of 36.8% for MNIST models and up to 72% for a breast cancer dataset with minimal accuracy loss.",
+        "contribution": "Neuron-level pruning methodology tailored to tanh activation functions; demonstrates activation-aware weight thresholding",
+        "keywords": ["unstructured pruning", "MLPs", "activation functions", "embedded inference"],
+        "hardware_targets": ["MCU", "IoT devices"],
+        "research_thread": "Model Compression",
+        "citations": 4
+      },
+      {
+        "id": "pub_002",
+        "title": "A Distributed Framework for Real-Time Object Detection at Low Frame Rates with IoT Edge Nodes",
+        "venue": "IEEE iSES 2020",
+        "year": 2020,
+        "publication_date": "December 2020",
+        "type": "Conference Paper",
+        "recognition": "Best Paper Award",
+        "doi": "10.1109/iSES50453.2020.00070",
+        "abstract": "This work develops a framework for efficient object detection on a distributed, constrained platform system, using the PYNQ Z1 AP-SoC as the IoT edge node platform integrated with state-of-the-art object detection algorithms. The team achieved 19.23 frames per second with three IoT nodes using a Binarized Neural Network (BNN) image classification algorithm, with the frame rate scaling directly with the number of nodes in the network.",
+        "contribution": "End-to-end system for distributed inference across heterogeneous edge devices; addresses latency and bandwidth constraints",
+        "keywords": ["edge computing", "object detection", "distributed inference", "IoT", "real-time"],
+        "hardware_targets": ["IoT edge nodes", "distributed networks"],
+        "research_thread": "Embedded AI and Edge Computing",
+        "citations": 10
+      },
+      {
+        "id": "pub_003",
+        "title": "Range Based Hardware Optimization of Multi-Layer Perceptrons with ReLUs",
+        "venue": "IEEE iSES 2022",
+        "year": 2022,
+        "publication_date": "December 2022",
+        "type": "Conference Paper",
+        "doi": "10.1109/iSES54909.2022.00092",
+        "abstract": "To address severely constrained hardware platforms, this paper proposes a range-based optimization approach for MLPs using ReLU activations.",
+        "contribution": "Hardware-aware quantization bounds for ReLU networks; static range analysis for FPGA/ASIC implementation",
+        "keywords": ["quantization", "ReLU", "hardware optimization", "FPGA"],
+        "hardware_targets": ["FPGA", "ASIC"],
+        "research_thread": "Model Compression",
+        "citations": 9
+      },
+      {
+        "id": "pub_004",
+        "title": "Sigmoid-Based Neuron Pruning Technique for MLPs on IoT Edge Devices",
+        "venue": "ICPEEV 2023",
+        "year": 2023,
+        "publication_date": "2023",
+        "type": "Conference Paper",
+        "doi": "10.1109/ICPEEV58650.2023.10391875",
+        "abstract": "In this paper, we propose a novel sigmoid-based neuron pruning technique specifically designed for deploying MLPs on IoT edge devices.",
+        "contribution": "Activation-specific pruning heuristics for sigmoid functions; memory-efficient inference on edge MCUs",
+        "keywords": ["pruning", "sigmoid", "IoT", "edge inference"],
+        "hardware_targets": ["MCU", "IoT"],
+        "research_thread": "Model Compression",
+        "citations": 3
+      },
+      {
+        "id": "pub_005",
+        "title": "Layer-Wise Filter Thresholding Based CNN Pruning for Efficient IoT Edge Implementations",
+        "venue": "IFIP IoT Conference 2023",
+        "year": 2023,
+        "publication_date": "November 2023",
+        "type": "Book Chapter / Conference Paper",
+        "doi": "10.1007/978-3-031-45878-1_6",
+        "abstract": "This paper presents a novel approach for efficiently running convolutional neural networks (CNNs) on Internet of Things (IoT) edge devices. The proposed method utilizes threshold-based pruning to optimize pre-trained CNN models, enabling inference on resource-constrained IoT and edge devices. The pruning thresholds for each layer are iteratively adjusted using a range-based threshold pruning technique. The pre-trained network evaluates the accuracy of the pruned model and dynamically adjusts the pruning thresholds to maximize accuracy. The effectiveness of the proposed approach is validated on the widely-used LeNet benchmark network, with MNIST, Fashion-MNIST, and SVHN datasets. Our experimental results show that for the MNIST dataset, we can prune 62-64% of weights for an accuracy loss of 1-4%. Similarly, for Fashion-MNIST, we can prune around 64% for an accuracy loss of around 2.92%, and for the SVHN dataset, we can prune around 55% of weights for an accuracy loss of 1.7% on average, saving resources.",
+        "contribution": "Structured pruning via layer-wise filter selection; demonstrates scalable CNN compression for IoT deployments",
+        "keywords": ["Convolutional Neural Networks", "IoT edge devices", "Threshold-based pruning", "Resource optimization"],
+        "hardware_targets": ["IoT", "edge devices"],
+        "research_thread": "Model Compression",
+        "citations": 2
+      },
+      {
+        "id": "pub_006",
+        "title": "Simulated Annealing Based Integerization of Hidden Weights for Area-Efficient IoT Edge Intelligence",
+        "venue": "IEEE iSES 2022",
+        "year": 2022,
+        "publication_date": "December 2022",
+        "type": "Conference Paper",
+        "doi": "10.1109/iSES54909.2022 (session 427-432)",
+        "abstract": "Neural network (NN) model accuracy has dramatically increased as a result of the usage of extreme parameterization. However, this comes with significant overheads, including increased area, energy consumption, higher memory, and latency. The deployment of these highly parameterized NN models is becoming a challenge in resource-constrained environments. We present a proof-of-concept methodology to address this problem. We proposed a novel approach based on Simulated Annealing (SA) for NN model optimization for designing efficient hardware for Internet-of-Things (IoT) edge intelligent devices. The SA algorithm is used to optimize a given NN model generated with a standard learning framework. It improves the pre-trained NN model by perturbing a specific amount of hidden layer neuron weights by rounding off some of the weights that are close to integers without compromising the model's accuracy. As a result of rounding, some weights may end up with zero value leading to model pruning. We validated the approach with three MLP classification benchmarks synthesized with Xilinx Vivado (v.2019.2). We assume all floating point weights are stored in IEEE 754 FP32 format. We performed three different SA runs with a constant temperature reduction rate (alpha) of 0.95 and a number of iterations (n) of 100, 1,000, and 10,000, respectively. In experiments I, II, and III, we achieve average flip-flop savings of 20.38%, 22.93%, and 24.45% and LUT savings of 21.43%, 23.84%, and 25.51% respectively.",
+        "contribution": "Integer weight conversion via simulated annealing; reduces hardware area for ASIC/FPGA implementations without retraining",
+        "keywords": ["Simulated Annealing", "Multilayer perceptron", "FPGA", "IEEE 754", "Metaheuristic", "Hardware Optimization", "IoT"],
+        "hardware_targets": ["FPGA", "ASIC"],
+        "research_thread": "Model Compression",
+        "citations": 5
+      },
+      {
+        "id": "pub_007",
+        "title": "Simulated Annealing Based Area Optimization of Multilayer Perceptron Hardware for IoT Edge Devices",
+        "venue": "IFIP Internet of Things Conference 2023",
+        "year": 2023,
+        "publication_date": "November 2023",
+        "type": "Book Chapter / Conference Paper",
+        "doi": "10.1007/978-3-031-45878-1_3",
+        "abstract": "Highly parameterized Neural Network (NN) models are difficult to deploy on resource-constrained hardware platforms due to their large size, expensive computational costs, and high memory requirements. There is a need for area efficient NN models without compromising model accuracy. We propose Simulated Annealing (SA) algorithm based NN optimization to generate area-optimized hardware for multilayer perceptrons. In the SA loop, we aim to change hidden layer weights to integer values, in two steps: (1) A random subset of the hidden weights are perturbed by an amount proportional to the SA temperature; (2) the new weights that are proximate to integers are rounded which will help reduce the hardware due to operation strength reduction (for example, multiply by a power of 2 reduces to shift operation). Throughout the optimization, we prefer SA moves that do not sacrifice the model's efficiency. We validate the proposed methodology on five MLP benchmarks (the number of model parameters varies from 35 to 528) implemented on FPGA. We observe the best case savings are obtained for all five NN's when the amount of perturbation (p) is 10% and the number of perturbations at each temperature (N) is 10,000 keeping constant temperature reduction function (alpha) at 0.95. For the best case solution, the average savings in LUTs and FFs are 24.83% and 25.76%, respectively with an average model accuracy degradation of 1.64%.",
+        "contribution": "Area optimization via simulated annealing for MLP hardware implementations; demonstrates resource-efficient IoT deployment",
+        "keywords": ["Multilayer perceptron", "Edge-AI", "IEEE-754", "FP32", "Hardware", "IoT", "Optimization"],
+        "hardware_targets": ["IoT", "edge devices"],
+        "research_thread": "Model Compression",
+        "citations": 2
+      },
+      {
+        "id": "pub_008",
+        "title": "Area Efficient VLSI ASIC Implementation of Multilayer Perceptrons",
+        "venue": "VLSI-TSA/VLSI-DAT 2023",
+        "year": 2023,
+        "publication_date": "2023",
+        "type": "Conference Paper",
+        "doi": "N/A (VLSI-TSA/VLSI-DAT 2023 proceedings)",
+        "abstract": "This paper proposes a simulated annealing (SA)-based neural network optimization approach for designing an area- and power-efficient hardware model for MLPs, targeting hidden layer neuron weights for optimization to integer values. Perturbations proportional to the annealing temperature push weights toward the nearest integer, and register resizing plus operator strength reduction further minimize hardware footprint, achieving average savings of 27.53% area, 27.28% power, and 27.71% flip-flops with only a 2.74% average accuracy degradation.",
+        "contribution": "ASIC implementation of optimized MLPs; demonstrates area-efficient neural network hardware deployment",
+        "keywords": ["ASIC", "VLSI", "MLP", "area optimization"],
+        "hardware_targets": ["ASIC", "VLSI"],
+        "research_thread": "Model Compression",
+        "citations": 5
+      },
+      {
+        "id": "pub_009",
+        "title": "Automated Hidden Neuron Optimization for Multilayer Perceptrons for Classification Tasks",
+        "venue": "ICPEEV 2024",
+        "year": 2024,
+        "publication_date": "2024",
+        "type": "Conference Paper",
+        "doi": "N/A (ICPEEV 2024 proceedings)",
+        "abstract": "This study presents a novel approach combining preprocessing, feature selection, and strategic MLP architecture design to address the challenge of determining the optimal number of hidden neurons in an MLP network for classification tasks.",
+        "contribution": "Automated neuron selection methodology for MLP classification tasks; demonstrates performance optimization techniques",
+        "keywords": ["neuron optimization", "MLP", "classification", "automation"],
+        "hardware_targets": ["general computing"],
+        "research_thread": "Model Compression",
+        "citations": 1
+      },
+      {
+        "id": "pub_010",
+        "title": "Comprehensive Benchmarking of Activation-Aware Structured Pruning for MCU Deployment: An Empirical Evaluation Study",
+        "venue": "IFIP IoT Conference 2025",
+        "year": 2025,
+        "publication_date": "2025",
+        "type": "Conference Paper",
+        "paper_number": "18",
+        "status": "Accepted as Regular Paper",
+        "doi": "N/A (IFIP IoT 2025, in press)",
+        "authors": ["Lakshmi Kavya Kalyanam", "Susmitha Boyidapu", "Srinivas Katkoori"],
+        "abstract": "Neural network deployment on microcontrollers faces severe memory constraints, with even modest MLPs exceeding the 2KB SRAM limit of popular platforms like Arduino Nano RP2040. While pruning techniques can reduce model size, existing approaches apply uniform strategies regardless of activation function characteristics, missing optimization opportunities specific to each activation type. We present a systematic benchmarking study of activation-aware structured pruning that evaluates deployment effectiveness across 9 tabular datasets, 3 activation functions (ReLU, Sigmoid, Tanh), and 2 MCU platforms (Arduino Nano RP2040, NodeMCU ESP8266) using correlation-based pruning with activation-specific thresholds. Our evaluation demonstrates 100% deployment success across all 54 configurations, with Arduino RP2040 achieving 33.1% average speed improvement and NodeMCU ESP8266 showing 16.5% memory reduction while maintaining accuracy within +/-0.7%. Activation-specific analysis reveals ReLU models achieve best speed performance (up to 65% speedup), Sigmoid models show highest memory compression (up to 73% reduction), and Tanh provides balanced characteristics. This work provides the first comprehensive empirical validation of activation-aware pruning on actual microcontroller platforms, enabling practitioners to make informed optimization decisions for resource-constrained deployments.",
+        "contribution": "Real MCU deployment validation with significant speedup and memory savings; provides practical guidelines for activation-aware pruning",
+        "keywords": ["Neural network pruning", "Benchmarking", "Activation-aware optimization", "TinyML", "Microcontroller deployment", "Model compression", "Edge computing", "Structured pruning", "Hardware evaluation", "Resource-constrained devices"],
+        "hardware_targets": ["MCU"],
+        "research_thread": "Model Compression",
+        "citations": 0,
+        "reviewer_highlights": ["Real MCU deployment validation", "Significant speedup and memory savings", "Practical guidelines for activation-aware pruning"]
+      },
+      {
+        "id": "pub_011",
+        "title": "Dynamic Sparse Training and Compression Pipeline for Deployment-Ready CNNs",
+        "venue": "IFIP IoT Conference 2025",
+        "year": 2025,
+        "publication_date": "2025",
+        "type": "Conference Paper",
+        "paper_number": "19",
+        "status": "Accepted as Regular Paper",
+        "doi": "N/A (IFIP IoT 2025, in press)",
+        "authors": ["Lakshmi Kavya Kalyanam", "Srinivas Katkoori"],
+        "abstract": "Convolutional neural networks achieve state-of-the-art computer vision performance but face deployment challenges on resource-constrained edge devices due to high computational and memory requirements. Existing pruning methods often trade accuracy for efficiency or lack integration with deployment pipelines, limiting real-world applicability. We propose a dynamic sparse training framework that integrates Grad-CAM-guided feature pruning with RigL-inspired adaptive sparsity updates, creating a pipeline from training to deployment-ready models. Our approach prunes low-importance features while dynamically adjusting sparsity levels based on validation performance, enabling high compression rates without accuracy degradation. On LeNet-5 (MNIST), we achieve 98.98% sparsity with 98.94% accuracy, reducing model size from 1.65MB to 0.42MB (74.5% reduction) and achieving 3.8x inference speedup. On VGG-11 (CIFAR-10), we achieve 89.85% sparsity with 88.28% accuracy (+0.62% improvement), reducing model size from 107.37MB to 26.89MB (75% reduction) with 8.16x GPU speedup. Our framework provides a complete training-to-deployment pipeline with operator fusion, quantization, and ONNX export.",
+        "contribution": "Novel combination of Grad-CAM-guided pruning and dynamic sparsity; complete training-to-deployment pipeline with strong compression and speedup results",
+        "keywords": ["Dynamic sparse training", "CNN compression", "Deployment optimization", "Grad-CAM pruning", "RigL-inspired updates", "ONNX export", "Model quantization", "Edge computing", "Resource-constrained devices", "Neural network optimization"],
+        "hardware_targets": ["edge devices", "CNN deployment"],
+        "research_thread": "Model Compression",
+        "citations": 0,
+        "reviewer_highlights": ["Novel combination of Grad-CAM-guided pruning and dynamic sparsity", "Strong compression and speedup results", "Complete training-to-deployment pipeline"]
+      }
+    ],
+    "awards": [
+      {
+        "id": "award_001",
+        "title": "Best Paper Award",
+        "venue": "IEEE iSES 2020",
+        "paper": "A Distributed Framework for Real-Time Object Detection at Low Frame Rates with IoT Edge Nodes",
+        "significance": "Recognition for innovative edge computing approach"
+      },
+      {
+        "id": "award_002", 
+        "title": "Best Paper Award",
+        "venue": "IEEE iSES 2023",
+        "paper": "Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation",
+        "significance": "Recognition for novel activation-aware pruning technique"
+      },
+      {
+        "id": "award_003",
+        "title": "Judge",
+        "venue": "USF Virtual Graduate Research Symposium",
+        "years": [2022, 2023],
+        "significance": "Service to academic community through graduate research evaluation"
+      }
+    ],
+    "patents_filed": [
+      {
+        "id": "pat_001",
+        "title": "Layer-Wise Filter Thresholding Based CNN Pruning for Efficient IoT Edge Implementations",
+        "application_number": "63/552,084",
+        "status": "filed",
+        "filing_date": "2024-02-09",
+        "technology": "structured pruning",
+        "claim_areas": ["CNN compression", "filter selection", "IoT inference"]
+      },
+      {
+        "id": "pat_002",
+        "title": "Unstructured Pruning for MLPs with Tanh Activation",
+        "usf_tech_id": "24T063",
+        "status": "filed",
+        "technology": "neuron-level pruning",
+        "claim_areas": ["activation-aware pruning", "tanh networks", "embedded inference"]
+      },
+      {
+        "id": "pat_003",
+        "title": "Range-Based Hardware Optimization for MLPs with ReLU Activation",
+        "usf_ref": "23T078US",
+        "status": "filed",
+        "technology": "quantization-aware optimization",
+        "claim_areas": ["integer quantization", "ReLU networks", "hardware-aware design"]
+      },
+      {
+        "id": "pat_004",
+        "title": "Systems and Methods for Automated Hidden Neuron Optimization",
+        "application_number": "19/373,567",
+        "status": "filed",
+        "filing_date": "2026",
+        "inventors": ["S. Katkoori", "S. Boyidapu", "L. Kalyanam"],
+        "technology": "automated neuron optimization",
+        "claim_areas": ["neuron selection", "MLP optimization", "classification tasks"]
+      }
+    ],
+    "publication_stats": {
+      "peer_reviewed_conference_papers": 11,
+      "best_paper_awards": 2,
+      "patents_filed": 4,
+      "cumulative_citations": 41
+    },
+    "masters_thesis": {
+      "title": "Edge Computing for Deep Learning-Based Distributed Real-Time Object Detection on IoT Constrained Platforms at Low Frame Rate",
+      "institution": "University of South Florida",
+      "year": 2020,
+      "advisor": "Dr. Srinivas Katkoori",
+      "recognition": "Best Paper Award, IEEE iSES 2020"
+    }
+  },
+  "research_experience": {
+    "primary_position": {
+      "institution": "University of South Florida",
+      "role": "Graduate Research and Teaching Assistant",
+      "dates": "2019--2025",
+      "description": "Conducted doctoral research on hardware-aware neural network optimization under Dr. Srinivas Katkoori and Dr. Hao Zheng, spanning pruning, quantization, sparse training, and compiler-level model transformations for embedded and edge inference"
+    }
+  },
+  "teaching_experience": {
+    "instructor_of_record": [
+      {
+        "id": "teach_001",
+        "course_code": "CDA4253 / EEL4935",
+        "course_title": "Field Programmable Gate Array (FPGA) Design",
+        "term": "Summer 2021",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "enrollment": "unknown",
+        "pedagogical_focus": "Design-to-deployment pipeline; hands-on Vivado labs"
+      }
+    ],
+    "teaching_assistantship": [
+      {
+        "id": "ta_001",
+        "course_code": "CDA3201",
+        "course_title": "Computer Logic and Design",
+        "term": "Fall 2018",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, grading, student support",
+        "pedagogical_focus": "Digital logic fundamentals to hardware implementation scaffolding"
+      },
+      {
+        "id": "ta_002",
+        "course_code": "CDA3201L",
+        "course_title": "Computer Logic Design Lab (Sections 001, 002, 003, 004, 005)",
+        "term": "Fall 2018",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction across multiple sections, hands-on digital logic implementation",
+        "pedagogical_focus": "Multi-section lab coordination, practical digital design skills"
+      },
+      {
+        "id": "ta_003",
+        "course_code": "CDA3201",
+        "course_title": "Computer Logic and Design",
+        "term": "Spring 2019",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, grading, student support",
+        "pedagogical_focus": "Digital logic fundamentals to hardware implementation scaffolding"
+      },
+      {
+        "id": "ta_004",
+        "course_code": "CDA3201L",
+        "course_title": "Computer Logic Design Lab (Sections 001, 002, 003, 004, 005)",
+        "term": "Spring 2019",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction across multiple sections, hands-on digital logic implementation",
+        "pedagogical_focus": "Multi-section lab coordination, practical digital design skills"
+      },
+      {
+        "id": "ta_005",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Fall 2019",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, concept demonstration, student support",
+        "pedagogical_focus": "IT fundamentals, practical technology concepts"
+      },
+      {
+        "id": "ta_006",
+        "course_code": "CDA3201L",
+        "course_title": "Computer Logic Design Lab",
+        "term": "Fall 2019",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, digital design implementation",
+        "pedagogical_focus": "Hands-on digital logic skills development"
+      },
+      {
+        "id": "ta_007",
+        "course_code": "CDA3103",
+        "course_title": "Computer Organization",
+        "term": "Spring 2020",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, computer architecture concepts",
+        "pedagogical_focus": "Computer organization fundamentals, hardware-software interface"
+      },
+      {
+        "id": "ta_008",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Spring 2020",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, concept demonstration",
+        "pedagogical_focus": "IT fundamentals, practical technology applications"
+      },
+      {
+        "id": "ta_009",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Summer 2020",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, intensive summer session support",
+        "pedagogical_focus": "Accelerated IT concepts, hands-on learning"
+      },
+      {
+        "id": "ta_010",
+        "course_code": "CIS4930",
+        "course_title": "IoT System Design",
+        "term": "Fall 2020",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab development, student project guidance",
+        "pedagogical_focus": "End-to-end IoT system design, embedded security concepts"
+      },
+      {
+        "id": "ta_011",
+        "course_code": "CDA3201L",
+        "course_title": "Computer Logic Design Lab",
+        "term": "Spring 2021",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, digital design implementation",
+        "pedagogical_focus": "Advanced digital logic skills, project-based learning"
+      },
+      {
+        "id": "ta_012",
+        "course_code": "CDA4253",
+        "course_title": "Field Programmable Gate Array Design",
+        "term": "Spring 2021",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, FPGA design support",
+        "pedagogical_focus": "FPGA architecture, hardware description languages"
+      },
+      {
+        "id": "ta_013",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Spring 2021",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, concept demonstration",
+        "pedagogical_focus": "IT fundamentals, practical applications"
+      },
+      {
+        "id": "ta_014",
+        "course_code": "CDA4213",
+        "course_title": "CMOS-VLSI Design",
+        "term": "Fall 2021",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, Cadence Virtuoso mentorship",
+        "pedagogical_focus": "ASIC design methodology, circuit simulation"
+      },
+      {
+        "id": "ta_015",
+        "course_code": "CDA4213L",
+        "course_title": "CMOS-VLSI Design Lab",
+        "term": "Fall 2021",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, VLSI implementation support",
+        "pedagogical_focus": "Hands-on VLSI design, circuit layout techniques"
+      },
+      {
+        "id": "ta_016",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Spring 2022",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, concept demonstration",
+        "pedagogical_focus": "IT fundamentals, technology applications"
+      },
+      {
+        "id": "ta_017",
+        "course_code": "CDA4213",
+        "course_title": "CMOS-VLSI Design",
+        "term": "Fall 2022",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, advanced VLSI concepts",
+        "pedagogical_focus": "Complex VLSI design, industry-standard tools"
+      },
+      {
+        "id": "ta_018",
+        "course_code": "CDA4213L",
+        "course_title": "CMOS-VLSI Design Lab",
+        "term": "Fall 2022",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, VLSI implementation",
+        "pedagogical_focus": "Advanced circuit design, layout optimization"
+      },
+      {
+        "id": "ta_019",
+        "course_code": "CIS4930",
+        "course_title": "Practical Hardware Security",
+        "term": "Fall 2022",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab development, security project guidance",
+        "pedagogical_focus": "Hardware security principles, practical implementation"
+      },
+      {
+        "id": "ta_020",
+        "course_code": "CGS3303",
+        "course_title": "IT Concepts",
+        "term": "Summer 2022",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Intensive summer session instruction",
+        "pedagogical_focus": "Accelerated learning, hands-on IT concepts"
+      },
+      {
+        "id": "ta_021",
+        "course_code": "CIS4930",
+        "course_title": "Hands-on Hardware Security",
+        "term": "Summer 2023",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, security implementation",
+        "pedagogical_focus": "Practical hardware security, hands-on techniques"
+      },
+      {
+        "id": "ta_022",
+        "course_code": "CDA4213",
+        "course_title": "CMOS-VLSI Design",
+        "term": "Fall 2023",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, advanced VLSI topics",
+        "pedagogical_focus": "Cutting-edge VLSI design, research applications"
+      },
+      {
+        "id": "ta_023",
+        "course_code": "CDA4213L",
+        "course_title": "CMOS-VLSI Design Lab",
+        "term": "Fall 2023",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, complex VLSI projects",
+        "pedagogical_focus": "Advanced circuit design, optimization techniques"
+      },
+      {
+        "id": "ta_024",
+        "course_code": "CIS4930",
+        "course_title": "Wireless and Mobile Computing",
+        "term": "Spring 2024",
+        "institution": "University of South Florida",
+        "level": "undergraduate/graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab development, wireless project guidance",
+        "pedagogical_focus": "Wireless communication protocols, mobile computing"
+      },
+      {
+        "id": "ta_025",
+        "course_code": "CIS6930",
+        "course_title": "Wireless and Mobile Computing",
+        "term": "Spring 2024",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Advanced wireless concepts, graduate-level support",
+        "pedagogical_focus": "Advanced wireless systems, research applications"
+      },
+      {
+        "id": "ta_026",
+        "course_code": "CNT4104L",
+        "course_title": "Computer Networks Lab for IT",
+        "term": "Spring 2024",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Network lab instruction, protocol implementation",
+        "pedagogical_focus": "Computer networking, hands-on protocol experience"
+      },
+      {
+        "id": "ta_027",
+        "course_code": "CDA3103",
+        "course_title": "Computer Organization",
+        "term": "Summer 2024",
+        "institution": "University of South Florida",
+        "level": "undergraduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Intensive summer session, computer architecture",
+        "pedagogical_focus": "Computer organization, accelerated learning"
+      },
+      {
+        "id": "ta_028",
+        "course_code": "CDA4213L",
+        "course_title": "CMOS-VLSI Design Lab",
+        "term": "Fall 2024",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Advanced VLSI lab instruction",
+        "pedagogical_focus": "Complex VLSI design, research-level projects"
+      },
+      {
+        "id": "ta_029",
+        "course_code": "CIS6930",
+        "course_title": "CMOS-VLSI Design",
+        "term": "Fall 2024",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Graduate-level VLSI instruction",
+        "pedagogical_focus": "Advanced VLSI topics, research preparation"
+      },
+      {
+        "id": "ta_030",
+        "course_code": "EEL6764",
+        "course_title": "Principles of Computer Architecture",
+        "term": "Spring 2025",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Recitation, problem sets, office hours",
+        "pedagogical_focus": "ISA design, memory hierarchies, performance modeling"
+      },
+      {
+        "id": "ta_031",
+        "course_code": "CIS4930",
+        "course_title": "VLSI Testing",
+        "term": "Fall 2025",
+        "institution": "University of South Florida",
+        "level": "graduate",
+        "role": "Teaching Assistant",
+        "responsibilities": "Lab instruction, test methodology mentorship",
+        "pedagogical_focus": "Design-for-testability, fault modeling, test generation"
+      }
+    ],
+    "training_and_professional_development": [
+      {
+        "id": "train_001",
+        "course_code": "CIS6930",
+        "course_title": "CSE TA Training",
+        "terms": ["Fall 2022", "Fall 2023"],
+        "institution": "University of South Florida",
+        "focus": "Advanced teaching methodologies, student evaluation, inclusive pedagogies"
+      }
+    ],
+    "graduate_defense_roles": [
+      {
+        "id": "def_001",
+        "role": "Defense Committee Member / Observer",
+        "institution": "University of South Florida",
+        "department": "Computer Science and Engineering",
+        "count": "multiple"
+      }
+    ],
+    "pedagogical_statement": "Emphasis on scaffolded, project-based learning that moves students from abstract concepts (logic gates, ISA abstractions) to complete hardware implementations (FPGA designs, ASIC layouts). Strong in hands-on lab instruction and mentoring students through open-ended design challenges. Experience supporting diverse learner needs across multiple levels and course formats."
+  },
+  "future_research_directions": [
+    {
+      "id": "future_001",
+      "thread": "Compiler-Aware Dynamic Sparsity",
+      "objective": "Integrating structured pruning with adaptive sparsity scheduling and quantized representations for CNN acceleration on heterogeneous edge hardware",
+      "keywords": ["structured pruning", "dynamic sparsity", "compiler integration", "CNN", "quantization"],
+      "relevant_expertise": ["pruning", "ONNX optimization", "quantization"],
+      "target_audience_job_types": ["R1 research-focused", "postdoc", "senior engineer"]
+    },
+    {
+      "id": "future_002",
+      "thread": "SLM Benchmarking on Heterogeneous Edge Hardware",
+      "objective": "Analyzing memory modeling and quantization trade-offs for Small Language Models (Phi-3-mini, Llama-3.2) across ARM, FPGA, and GPU targets",
+      "keywords": ["SLM", "quantization", "memory modeling", "benchmarking", "heterogeneous hardware"],
+      "relevant_expertise": ["embedded inference", "quantization", "profiling"],
+      "target_audience_job_types": ["postdoc", "research engineer", "faculty (applied ML focus)"]
+    },
+    {
+      "id": "future_003",
+      "thread": "Hybrid RAG Architectures",
+      "objective": "Developing structured IR and deterministic chunking strategies for scalable semantic search in evidence-backed survey generation and document retrieval systems",
+      "keywords": ["RAG", "retrieval", "information retrieval", "deterministic chunking", "semantic search"],
+      "relevant_expertise": ["software systems", "data structures", "scalable inference"],
+      "target_audience_job_types": ["postdoc", "research engineer (systems-focused)"]
+    }
+  ],
+  "technical_capabilities": {
+    "programming_languages": {
+      "C++": {
+        "proficiency": "expert",
+        "versions": ["C++17"],
+        "context": "Hardware kernels, inference engines, embedded systems"
+      },
+      "Python": {
+        "proficiency": "expert",
+        "context": "Research implementation, data analysis, ML pipelines"
+      },
+      "CUDA": {
+        "proficiency": "intermediate",
+        "context": "GPU kernel optimization, NVIDIA inference"
+      },
+      "Embedded C": {
+        "proficiency": "expert",
+        "context": "MCU deployment (ARM Cortex-M4, ESP8266, Arduino)"
+      },
+      "VHDL": {
+        "proficiency": "expert",
+        "context": "FPGA design, hardware synthesis"
+      },
+      "Shell": {
+        "proficiency": "intermediate",
+        "context": "Build automation, system scripting"
+      }
+    },
+    "ml_frameworks_and_tools": [
+      {
+        "name": "PyTorch",
+        "version": "2.6.0",
+        "use_cases": ["model training", "pruning integration", "quantization-aware training"]
+      },
+      {
+        "name": "TensorFlow",
+        "version": "varies",
+        "use_cases": ["model export", "TFLite conversion"]
+      },
+      {
+        "name": "ONNX Runtime",
+        "use_cases": ["inference deployment", "graph optimization", "cross-platform inference"]
+      },
+      {
+        "name": "TensorRT",
+        "use_cases": ["NVIDIA GPU optimization", "INT8 quantization"]
+      },
+      {
+        "name": "TensorFlow Lite (TFLite)",
+        "use_cases": ["MCU and mobile inference", "quantization"]
+      },
+      {
+        "name": "HuggingFace",
+        "use_cases": ["model zoo access", "SLM deployment, Phi/Llama"]
+      },
+      {
+        "name": "LangChain",
+        "use_cases": ["RAG pipeline development", "LLM integration"]
+      },
+      {
+        "name": "llama.cpp",
+        "use_cases": ["local LLM inference", "quantized model loading"]
+      },
+      {
+        "name": "Ollama",
+        "use_cases": ["local model serving", "SLM benchmarking"]
+      }
+    ],
+    "hardware_design_tools": [
+      {
+        "name": "Vivado",
+        "context": "FPGA design, synthesis, implementation"
+      },
+      {
+        "name": "Cadence Virtuoso",
+        "context": "ASIC design, analog/digital layout"
+      },
+      {
+        "name": "HSPICE",
+        "context": "Circuit simulation, timing analysis"
+      }
+    ],
+    "deployment_targets": [
+      {
+        "target": "ARM Cortex-M4 Microcontrollers",
+        "example_boards": ["PYNQ-Z1 (Zynq ARM core)"],
+        "use_case": "Embedded inference, power-constrained"
+      },
+      {
+        "target": "PYNQ-Z1 AP-SoC / Virtex-7 FPGA",
+        "use_case": "Heterogeneous inference, custom hardware acceleration"
+      },
+      {
+        "target": "NVIDIA GPUs",
+        "version": "CUDA 12.3",
+        "use_case": "Training, inference server"
+      },
+      {
+        "target": "Arduino (MKR1000, NodeMCU ESP8266)",
+        "use_case": "Ultra-low-power inference, IoT edge"
+      }
+    ],
+    "specialized_competencies": {
+      "mathematical_and_algorithmic": [
+        "Linear Algebra (matrix operations, factorization)",
+        "Sparse matrix formats (CSR, COO, hybrid)",
+        "Fast math libraries (BLAS, sparse BLAS)",
+        "Activation function analysis and approximation"
+      ],
+      "quantization_and_inference": [
+        "Quantization-aware training (QAT)",
+        "Post-training quantization (PTQ)",
+        "Integer arithmetic modeling",
+        "Fixed-point representation",
+        "Dynamic range analysis"
+      ],
+      "benchmarking_and_profiling": [
+        "Latency profiling (cycle-accurate modeling)",
+        "Power profiling (energy estimation)",
+        "Memory footprint analysis",
+        "Throughput characterization",
+        "SLM benchmarking (Phi-3-mini, Llama-3.2)"
+      ],
+      "compiler_and_ir_concepts": [
+        "ONNX graph representation",
+        "MLIR basics (exposure)",
+        "LLVM concepts (exposure)",
+        "Graph optimization (fusion, elimination)"
+      ],
+      "devops_and_deployment": [
+        "Docker containerization",
+        "ML workflow automation",
+        "Cloud GPU inference (AWS, GCP)",
+        "CI/CD for ML pipelines"
+      ],
+      "retrieval_and_search": [
+        "Dense retrieval (semantic search)",
+        "Sparse retrieval (keyword matching)",
+        "Hybrid retrieval systems",
+        "FAISS integration for RAG",
+        "Chunking and indexing strategies"
+      ]
+    },
+    "supporting_tools": [
+      "Git (version control)",
+      "Linux CLI (system administration)",
+      "pytest (Python testing)",
+      "Jupyter (interactive development)"
+    ]
+  },
+  "leadership_and_service": {
+    "professional_organizations": [
+      {
+        "organization": "AAUW (American Association of University Women)",
+        "role": "Secretary",
+        "duration": "2022-Present",
+        "activities": [
+          "Organized outreach events to increase women participation in engineering",
+          "Coordinated STEM mentorship programs for undergraduate women",
+          "Led initiatives promoting diversity in computer engineering"
+        ],
+        "impact": "Increased women engineering student participation by 25% through targeted outreach"
+      }
+    ],
+    "peer_review_service": {
+      "completed_reviews": [
+        {
+          "venue": "IEEE iSES 2023",
+          "type": "Conference",
+          "papers_reviewed": 5,
+          "paper_ids": ["1570955900", "1570959983", "1570957420", "1570958885", "1570952295"],
+          "completion_date": "October 2023",
+          "status": "Completed"
+        },
+        {
+          "venue": "IEEE Embedded Systems Letters",
+          "type": "Journal",
+          "papers_reviewed": 2,
+          "manuscript_ids": ["IEEE-ESL-Oct-23-0266", "IEEE-ESL-Nov-23-0328"],
+          "completion_date": "November-December 2023",
+          "status": "Completed"
+        }
+      ],
+      "invited_not_confirmed": [
+        {
+          "venue": "ACM TOIT",
+          "paper_id": "TOIT-2025-0513",
+          "title": "ProfEdge...",
+          "invitation_date": "January 6, 2026",
+          "status": "Invited - completion not confirmed"
+        },
+        {
+          "venue": "ACM TOIT",
+          "paper_id": "TOIT-2025-0513.R1",
+          "title": "ProfEdge... (revised)",
+          "invitation_date": "June 17, 2026",
+          "status": "Invited - overdue reminder as of Aug 2, 2026"
+        },
+        {
+          "venue": "IEEE Embedded Systems Letters",
+          "title": "An Area and Energy Efficient Serial-Multiplier",
+          "invitation_date": "November 29, 2023",
+          "status": "Invited - completion not confirmed"
+        },
+        {
+          "venue": "IEEE Embedded Systems Letters",
+          "title": "FPGA Implementation of the Proposed DCNN Model for Detection of Tuberculosis and Pneumonia using CXR Images",
+          "invitation_date": "December 16, 2023",
+          "status": "Invited - completion not confirmed"
+        },
+        {
+          "venue": "IEEE Transactions on Consumer Electronics",
+          "invitation_date": "March 9, 2024",
+          "status": "Invited - completion not confirmed"
+        },
+        {
+          "venue": "SN Computer Science",
+          "paper_id": "SNCS-D-22-01938",
+          "title": "A Unified Data Architecture for Intelligent Manufacturing",
+          "invitation_date": "January 5, 2023",
+          "status": "Invited - completion not confirmed"
+        }
+      ],
+      "total_completed_reviews": 7,
+      "notes": "Only completed reviews with confirmation trails should be claimed on CV; invited reviews require verification before inclusion"
+    },
+    "teaching_strategies_and_training": [
+      {
+        "context": "CIS6930 - CSE TA Training",
+        "institution": "University of South Florida", 
+        "year": "2021",
+        "focus": "Inclusive pedagogies and student support strategies",
+        "applied_strategies": [
+          "Provided additional guidance to first-generation students in FPGA Design labs through one-on-one mentoring and extended office hours",
+          "Adapted teaching methods to accommodate different learning styles in CMOS-VLSI courses by using visual demonstrations and hands-on examples",
+          "Created inclusive lab environments by ensuring all students received individual attention regardless of prior experience",
+          "Developed active learning exercises that engaged students with varying technical backgrounds through practical projects"
+        ],
+        "impact": "Improved student engagement and success rates in lab-heavy courses"
+      }
+    ]
+  },
+  "document_availability": {
+    "sample_publications": {
+      "available": false,
+      "total_publications": 11,
+      "best_paper_awards": 2,
+      "recommended_samples": [
+        {
+          "publication_id": "pub_001",
+          "title": "Unstructured Pruning for Multi-Layer Perceptrons with Tanh Activation",
+          "venue": "IEEE iSES 2023",
+          "reason": "Best Paper Award, demonstrates core research contribution",
+          "selected": false
+        },
+        {
+          "publication_id": "pub_002", 
+          "title": "A Distributed Framework for Real-Time Object Detection at Low Frame Rates with IoT Edge Nodes",
+          "venue": "IEEE iSES 2020",
+          "reason": "Best Paper Award, shows systems integration capabilities",
+          "selected": false
+        }
+      ],
+      "notes": "Need to select and prepare 1-2 representative papers as writing samples"
+    },
+    "course_syllabi": {
+      "available": false,
+      "courses_with_syllabus_potential": [
+        {
+          "course_code": "CDA4253",
+          "title": "Field Programmable Gate Array (FPGA) Design",
+          "term": "Summer 2021",
+          "role": "Instructor of Record",
+          "has_syllabus": false,
+          "notes": "As instructor, should have developed syllabus"
+        },
+        {
+          "course_code": "CDA4213",
+          "title": "CMOS-VLSI Design",
+          "terms": ["2021", "2022", "2023", "2024"],
+          "role": "Teaching Assistant",
+          "has_syllabus": false,
+          "notes": "Multiple terms of TA experience, may have access to syllabus"
+        }
+      ],
+      "total_courses": 8,
+      "notes": "Need to locate or recreate syllabi from teaching experience"
+    },
+    "teaching_evaluations": {
+      "available": false,
+      "evaluation_sources": [
+        {
+          "course_code": "CDA4253",
+          "title": "FPGA Design",
+          "term": "Summer 2021",
+          "role": "Instructor of Record",
+          "evaluations_available": false,
+          "notes": "As instructor, should have received formal evaluations"
+        },
+        {
+          "course_code": "CDA3201",
+          "title": "Computer Logic and Design",
+          "terms": ["2018", "2019", "2020", "2021"],
+          "role": "Teaching Assistant",
+          "evaluations_available": false,
+          "notes": "Multiple terms as TA, may have informal feedback"
+        }
+      ],
+      "total_teaching_assignments": 8,
+      "notes": "Need to request formal evaluations from USF or compile informal feedback"
+    },
+    "teaching_portfolio": {
+      "available": false,
+      "components": {
+        "teaching_philosophy": false,
+        "course_materials": false,
+        "student_work_samples": false,
+        "teaching_awards": false,
+        "professional_development": false
+      },
+      "notes": "Teaching portfolio needs to be compiled from existing teaching materials"
+    },
+    "research_portfolio": {
+      "available": false,
+      "components": {
+        "research_statement": false,
+        "publication_list": true,
+        "research_grants": false,
+        "conference_presentations": false,
+        "collaboration_evidence": false
+      },
+      "notes": "Have publication list, need to compile other research artifacts"
+    },
+    "transcripts": {
+      "available": false,
+      "academic_records": {
+        "undergraduate": false,
+        "graduate": false,
+        "official_needed": true
+      },
+      "notes": "Need to request official transcripts from USF"
+    },
+    "references": {
+      "available": true,
+      "reference_contacts": [
+        {
+          "name": "Dr. Srinivas Katkoori",
+          "title": "Professor",
+          "department": "Bellini College of Artificial Intelligence, Cybersecurity and Computing",
+          "institution": "University of South Florida",
+          "email": "katkoori@usf.edu",
+          "relationship": "Ph.D. Advisor",
+          "contacted": true,
+          "agreed": true,
+          "notes": "Primary reference for research capabilities and doctoral supervision"
+        },
+        {
+          "name": "Dr. Hao Zheng",
+          "title": "Associate Professor",
+          "department": "Bellini College of Artificial Intelligence, Cybersecurity and Computing",
+          "institution": "University of South Florida",
+          "email": "haozheng@usf.edu",
+          "relationship": "Ph.D. Co Advisor",
+          "contacted": true,
+          "agreed": true,
+          "notes": "Can speak to research collaboration and technical expertise"
+        },
+        {
+          "name": "Dr. Sathyanarayanan N. Aakur",
+          "title": "Assistant Professor",
+          "department": "Computer Science and Software Engineering",
+          "institution": "Auburn University",
+          "email": "san0028@auburn.edu",
+          "relationship": "Professional Research Colleague",
+          "contacted": true,
+          "agreed": true,
+          "notes": "Can speak to collaborative research and industry applications"
+        }
+      ],
+      "required_count": 3,
+      "confirmed_count": 3,
+      "notes": "All three references confirmed and ready for submission"
+    }
+  },
+  "professional_context": {
+    "current_status": "Post-PhD (December 2025), exploring faculty, postdoc, and industry research roles",
+    "geographic_location": "Austin, TX area",
+    "visa_authorization": "H-1B / STEM OPT eligible",
+    "active_opportunities": [
+      {
+        "opportunity_id": "opp_001",
+        "organization": "University of Evansville",
+        "position": "Visiting Assistant Professor",
+        "status": "preliminary call completed",
+        "last_contact": "April 2026"
+      },
+      {
+        "opportunity_id": "opp_002",
+        "organization": "Dr. Vijayalakshmi Saravanan (Postdoc supervisor)",
+        "position": "Postdoctoral Researcher",
+        "status": "offer pending / reconsideration email sent",
+        "last_contact": "mid-April 2026"
+      }
+    ],
+    "previous_industry_engagement": [
+      {
+        "company": "Cisco/Itco",
+        "position": "ML/Inference Engineer",
+        "status": "offer accepted, onboarding begun, then hiring freeze placed role on indefinite hold",
+        "dates": "2026 early"
+      },
+      {
+        "company": "iMachines (RISC-V inference IP startup)",
+        "position": "Senior ML Engineer or equivalent",
+        "interview_status": "5-interviewer full loop completed",
+        "estimated_probability": "~50%",
+        "interview_date": "weeks prior to mid-April 2026",
+        "key_technical_gaps_identified": [
+          "RISC-V vector ISA/SIMD semantics",
+          "Assembly-level kernel writing",
+          "ONNX-to-binary compilation toolchain (MLIR/LLVM)",
+          "Roofline modeling",
+          "LLM inference phase distinctions"
+        ],
+        "strengths_noted": [
+          "Sparsity and pruning depth",
+          "Real hardware deployment experience"
+        ]
+      }
+    ]
+  },
+  "job_application_pipeline": {
+    "resume_variants": [
+      {
+        "id": "resume_tavus",
+        "target_company": "Tavus",
+        "filename": "Kavya_Kalyanam_Tavus_Resume.docx",
+        "framing": "Multimodal optimization and inference pipeline",
+        "status": "completed"
+      }
+    ],
+    "infrastructure": [
+      {
+        "component": "Skills database",
+        "format": "YAML/JSON",
+        "purpose": "Structured skill taxonomy for resume tailoring"
+      },
+      {
+        "component": "Resume agent",
+        "purpose": "Automated resume section generation and ranking"
+      },
+      {
+        "component": "JD analysis agent",
+        "purpose": "Job description parsing and requirement extraction"
+      },
+      {
+        "component": "LitBot/RAG system",
+        "backend": "FAISS",
+        "purpose": "Literature review automation and survey generation"
+      }
+    ]
+  }
+}

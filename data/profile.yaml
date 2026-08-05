@@ -1,9 +1,14 @@
 name: "Lakshmi Kavya Kalyanam"
 headline: "Machine Learning Engineer - Deep Learning & Performance Optimization"
 location: "Austin, Texas"
-email: "kavyakalyanam@gmail.com"
+email: "kavyakalyanamk@gmail.com"
 phone: "+1-813-609-9796"
-summary: "ML engineer focused on deep learning performance optimization, neural network sparsity, and GPU acceleration. Experience with PyTorch, CUDA, and production ML systems."
+summary: "Ph.D. researcher and machine learning systems engineer with expertise in hardware-aware optimization of neural networks for embedded and edge systems, including pruning, quantization, sparse training, compiler-level model transformations, and resource-constrained AI deployment. Research spans edge inference systems, embedded AI, ONNX-based model transformation workflows, and reproducible evaluation pipelines for efficient learning systems."
 links:
   github: "https://github.com/kavyakl"
-  linkedin: "https://www.linkedin.com/in/lakshmikavya-kalyanam-a88633131/"
+  linkedin: "https://linkedin.com/in/lakshmikavya-kalyanam-a88633131"
+  google_scholar: "https://scholar.google.com/citations?user=VPU9stcAAAAJ&hl=en"
+google_scholar_metrics:
+  h_index: 4
+  i10_index: 6
+  total_citations: 41

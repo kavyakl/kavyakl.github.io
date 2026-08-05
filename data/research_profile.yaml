@@ -1,0 +1,52 @@
+research_profile:
+  primary_taxonomy: "Machine Learning Systems and Hardware-Aware Optimization"
+  core_contribution: "Ph.D. researcher and machine learning systems engineer with expertise in hardware-aware optimization of neural networks for embedded and edge systems, including pruning, quantization, sparse training, compiler-level model transformations, and resource-constrained AI deployment. Research spans edge inference systems, embedded AI, ONNX-based model transformation workflows, and reproducible evaluation pipelines for efficient learning systems. Current research interest: extending hardware-aware inference optimization techniques toward energy-efficient on-device training and training-accelerator design."
+  
+  research_interests:
+    - "Energy-efficient on-device training and training accelerator design (FPGA, integrated photonics)"
+    - "Machine learning systems and hardware-software co-design"
+    - "Model compression: pruning, quantization, and dynamic/sparse training"
+    - "Hardware-aware inference and compiler-level model transformations (ONNX, IR rewrites)"
+    - "Embedded AI, edge computing, and resource-constrained architectures"
+  
+  selected_contributions:
+    - "Developed activation-aware pruning algorithms achieving up to 98.98% sparsity while preserving model accuracy on resource-constrained devices"
+    - "Designed hardware-aware deployment pipelines integrating ONNX transformations, quantization, and sparse representations for FPGA, ASIC, and ARM Cortex-M4 inference"
+    - "Built distributed edge inference systems using FPGA-based BNN accelerators achieving real-time object detection across multiple IoT nodes"
+  
+  specializations:
+    - area: "Model Compression"
+      depth: "expert"
+      sub_topics:
+        - "Structured Pruning (layer-wise, filter-based)"
+        - "Unstructured Pruning (neuron-level, weight thresholding)"
+        - "Quantization-Aware Training (QAT)"
+        - "Sparse Training (RigL, dynamic sparsity)"
+      deployment_evidence: "11 peer-reviewed publications; 4 filed patents"
+    
+    - area: "Embedded AI and Edge Computing"
+      depth: "expert"
+      sub_topics:
+        - "On-device inference (MCU, FPGA, SoC)"
+        - "Resource-constrained architectures (ARM Cortex-M4, ESP8266, Arduino)"
+        - "Distributed edge networks (IoT, real-time object detection)"
+        - "Memory and power profiling"
+      deployment_evidence: "End-to-end pipelines on 5+ hardware targets"
+    
+    - area: "Compiler-Level Transformations"
+      depth: "intermediate"
+      sub_topics:
+        - "ONNX graph rewrites and optimization"
+        - "Inference runtime optimization"
+        - "IR transformations (MLIR/LLVM exposure)"
+        - "Hardware-aware code generation"
+      deployment_evidence: "ONNX export workflows; TensorRT/TFLite integration"
+    
+    - area: "Small Language Models (SLMs) and Inference"
+      depth: "developing"
+      sub_topics:
+        - "SLM benchmarking on heterogeneous hardware"
+        - "Quantization trade-offs (FP8, INT8, dynamic range)"
+        - "Memory modeling for edge LLMs"
+        - "Sparse inference for Transformers and SSMs"
+      deployment_evidence: "Active research trajectory; Phi-3-mini, Llama-3.2 experimentation"
