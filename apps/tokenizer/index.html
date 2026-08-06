@@ -5,20 +5,24 @@
   <title>Tokenizer Playground</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
-  <script type="module" src="https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@1.0.1/lib/index.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@lenml/tokenizers@0.2.1/lib/index.js"></script>
 </head>
 <body>
   <header>
     <h1>Tokenizer Playground</h1>
-    <p>Explore how different models tokenize text using real production vocabularies.</p>
+    <p>Explore how different models tokenize text using real tokenizer libraries.</p>
   </header>
 
   <main>
     <label for="model-select">Model</label>
     <select id="model-select">
-      <option value="Xenova/gpt2">GPT-2</option>
-      <option value="Xenova/bert-base-uncased">BERT</option>
-      <option value="Xenova/roberta-base">RoBERTa</option>
+      <option value="gpt2">GPT-2</option>
+      <option value="gpt4">GPT-4 (cl100k_base)</option>
+      <option value="llama2">Llama 2</option>
+      <option value="llama3">Llama 3</option>
+      <option value="cohere">Cohere</option>
+      <option value="claude">Claude</option>
     </select>
 
     <label for="text-input">Input text</label>
@@ -33,6 +37,6 @@
     </section>
   </main>
 
-  <script type="module" src="tokenizer.js"></script>
+  <script src="tokenizer.js"></script>
 </body>
 </html>

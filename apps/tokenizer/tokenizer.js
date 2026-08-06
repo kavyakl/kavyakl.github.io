@@ -1,111 +1,105 @@
-import { AutoTokenizer, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
-
-// Disable local models to use browser-only
-env.allowLocalModels = false;
-env.useBrowserCache = true;
-
+// Tokenizer using gpt-tokenizer and @lenml/tokenizers libraries
 const modelSelect = document.getElementById('model-select');
 const textInput = document.getElementById('text-input');
 const tokenizeBtn = document.getElementById('tokenize-btn');
 const tokensList = document.getElementById('tokens-list');
 const tokenCount = document.getElementById('token-count');
 
-let tokenizer = null;
-let currentModel = null;
-
-async function loadTokenizer(modelId) {
-  try {
-    console.log('Loading tokenizer for:', modelId);
-    // Load the tokenizer using AutoTokenizer
-    tokenizer = await AutoTokenizer.from_pretrained(modelId);
-    currentModel = modelId;
-    console.log('Tokenizer loaded successfully');
-  } catch (error) {
-    console.error('Error loading tokenizer:', error);
-    throw new Error(`Failed to load tokenizer: ${error.message}`);
-  }
-}
-
-async function tokenizeText(text) {
-  if (!tokenizer || currentModel !== modelSelect.value) {
-    await loadTokenizer(modelSelect.value);
-  }
-  
-  const result = tokenizer.encode(text);
-  return result;
+async function tokenizeText(text, model) {
+    try {
+        let tokens = [];
+        
+        if (model === 'gpt2') {
+            // Use gpt-tokenizer for GPT-2
+            if (window.GPTTokenizer) {
+                const tokenizer = new window.GPTTokenizer();
+                tokens = tokenizer.encode(text);
+            } else {
+                throw new Error('GPT tokenizer library not loaded');
+            }
+        } else if (model === 'gpt4') {
+            // Use gpt-tokenizer for GPT-4 (cl100k_base)
+            if (window.GPTTokenizer) {
+                const tokenizer = new window.GPTTokenizer({ type: 'cl100k_base' });
+                tokens = tokenizer.encode(text);
+            } else {
+                throw new Error('GPT tokenizer library not loaded');
+            }
+        } else if (['llama2', 'llama3', 'cohere', 'claude'].includes(model)) {
+            // Use @lenml/tokenizers for other models
+            if (window.lenml_tokenizers) {
+                const tokenizer = new window.lenml_tokenizers[model]();
+                tokens = tokenizer.encode(text);
+            } else {
+                throw new Error('LenML tokenizers library not loaded');
+            }
+        } else {
+            throw new Error('Model not supported');
+        }
+        
+        return tokens;
+    } catch (error) {
+        console.error('Tokenization error:', error);
+        throw error;
+    }
 }
 
 async function initialize() {
-  try {
-    // Load initial tokenizer
-    await loadTokenizer(modelSelect.value);
+    // Wait for libraries to load
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
     tokenizeBtn.addEventListener('click', async () => {
-      const text = textInput.value;
-      tokensList.innerHTML = '';
-      tokenCount.textContent = '';
-      
-      if (!text.trim()) {
-        tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">Please enter some text to tokenize.</div>';
-        return;
-      }
-      
-      tokenizeBtn.disabled = true;
-      tokenizeBtn.textContent = 'Tokenizing...';
-      
-      try {
-        const result = await tokenizeText(text);
+        const text = textInput.value;
+        tokensList.innerHTML = '';
+        tokenCount.textContent = '';
         
-        if (!result || !result.token_ids || result.token_ids.length === 0) {
-          tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">No tokens generated.</div>';
-          return;
+        if (!text.trim()) {
+            tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">Please enter some text to tokenize.</div>';
+            return;
         }
         
-        // Display token count
-        tokenCount.textContent = `Total tokens: ${result.token_ids.length}`;
+        tokenizeBtn.disabled = true;
+        tokenizeBtn.textContent = 'Tokenizing...';
         
-        // Display tokens
-        if (result.tokens) {
-          result.tokens.forEach((token) => {
-            const chip = document.createElement('div');
-            chip.className = 'token-chip';
-            chip.textContent = token;
-            tokensList.appendChild(chip);
-          });
-        } else {
-          // Fallback to showing IDs if tokens not available
-          result.token_ids.forEach((id) => {
-            const chip = document.createElement('div');
-            chip.className = 'token-chip';
-            chip.textContent = `ID: ${id}`;
-            tokensList.appendChild(chip);
-          });
+        try {
+            const tokens = await tokenizeText(text, modelSelect.value);
+            
+            if (!tokens || tokens.length === 0) {
+                tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">No tokens generated.</div>';
+                return;
+            }
+            
+            // Display token count
+            tokenCount.textContent = `Total tokens: ${tokens.length}`;
+            
+            // Display tokens
+            tokens.forEach((token, index) => {
+                const chip = document.createElement('div');
+                chip.className = 'token-chip';
+                chip.textContent = `${token} (${index})`;
+                tokensList.appendChild(chip);
+            });
+            
+        } catch (err) {
+            console.error('Tokenization error:', err);
+            tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${err.message}</div>`;
+        } finally {
+            tokenizeBtn.disabled = false;
+            tokenizeBtn.textContent = 'Tokenize';
         }
-        
-      } catch (err) {
-        console.error('Tokenization error:', err);
-        tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${err.message}</div>`;
-      } finally {
-        tokenizeBtn.disabled = false;
-        tokenizeBtn.textContent = 'Tokenize';
-      }
     });
     
     // Also tokenize on model change
     modelSelect.addEventListener('change', async () => {
-      tokenizer = null;
-      currentModel = null;
-      // Auto-tokenize if there's text
-      if (textInput.value.trim()) {
-        tokenizeBtn.click();
-      }
+        if (textInput.value.trim()) {
+            tokenizeBtn.click();
+        }
     });
-    
-  } catch (error) {
-    console.error('Initialization error:', error);
-    tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Failed to initialize tokenizer: ${error.message}</div>`;
-  }
 }
 
 // Initialize when DOM is ready
-initialize();
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initialize);
+} else {
+    initialize();
+}
