@@ -148,9 +148,31 @@
         
         const startTime = performance.now();
         
-        // Use correct API: just pass text and options
-        const encoded = tokenizer.encode(text, { add_special_tokens: false });
-        const tokenIds = encoded.input_ids;
+        // Try different encode API signatures
+        let tokenIds;
+        try {
+          // Try: encode(text, options)
+          const encoded = tokenizer.encode(text, { add_special_tokens: false });
+          if (encoded && encoded.input_ids) {
+            tokenIds = encoded.input_ids;
+          } else if (Array.isArray(encoded)) {
+            tokenIds = encoded;
+          } else {
+            console.error('Unexpected encode result:', encoded);
+            throw new Error('Tokenizer encode returned unexpected format');
+          }
+        } catch (e) {
+          // Fallback: try encode(text)
+          const encoded = tokenizer.encode(text);
+          if (encoded && encoded.input_ids) {
+            tokenIds = encoded.input_ids;
+          } else if (Array.isArray(encoded)) {
+            tokenIds = encoded;
+          } else {
+            throw e;
+          }
+        }
+        
         const endTime = performance.now();
         
         const decodedTokens = tokenIds.map(id => tokenizer.decode([id]));
