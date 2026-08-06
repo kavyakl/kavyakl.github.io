@@ -79,19 +79,19 @@
     try {
       console.log('Loading GPT-2 tokenizer...');
       const gpt2 = fromGPT2();
-      console.log('GPT-2 loaded:', !!gpt2);
+      console.log('GPT-2 loaded:', !!gpt2, 'Has encode:', typeof gpt2.encode);
       
       console.log('Loading GPT-4 tokenizer...');
       const gpt4 = fromGPT4();
-      console.log('GPT-4 loaded:', !!gpt4);
+      console.log('GPT-4 loaded:', !!gpt4, 'Has encode:', typeof gpt4.encode);
       
       console.log('Loading Llama 3 tokenizer...');
       const llama3 = fromLlama3();
-      console.log('Llama 3 loaded:', !!llama3);
+      console.log('Llama 3 loaded:', !!llama3, 'Has encode:', typeof llama3.encode);
       
       console.log('Loading Claude tokenizer...');
       const claude = fromClaude();
-      console.log('Claude loaded:', !!claude);
+      console.log('Claude loaded:', !!claude, 'Has encode:', typeof claude.encode);
       
       tokenizers = {
         gpt2: { name: 'GPT-2', encoding: 'r50k_base', tokenizer: gpt2 },
@@ -148,8 +148,8 @@
         
         const startTime = performance.now();
         
-        // Use correct API: tokenizer.encode(text, text_pair, options)
-        const encoded = tokenizer.encode(text, null, { add_special_tokens: false });
+        // Use correct API: just pass text and options
+        const encoded = tokenizer.encode(text, { add_special_tokens: false });
         const tokenIds = encoded.input_ids;
         const endTime = performance.now();
         
@@ -198,6 +198,7 @@
       });
     } catch (error) {
       console.error('Tokenization error:', error);
+      console.error('Error stack:', error.stack);
       tokenizerCards.innerHTML = `<div class="error-message"><strong>Error:</strong> ${error.message}</div>`;
     } finally {
       tokenizeBtn.disabled = false;
