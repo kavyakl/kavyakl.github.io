@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Tokenizer Playground</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <header>
+    <h1>Tokenizer Playground</h1>
+    <p>Explore how different models tokenize text.</p>
+  </header>
+
+  <main>
+    <label for="model-select">Model</label>
+    <select id="model-select">
+      <option value="gpt2">gpt2</option>
+      <!-- more models later -->
+    </select>
+
+    <label for="text-input">Input text</label>
+    <textarea id="text-input" rows="8" placeholder="Type or paste text here..."></textarea>
+
+    <button id="tokenize-btn">Tokenize</button>
+
+    <section id="output">
+      <h2>Tokens</h2>
+      <div id="tokens-list"></div>
+    </section>
+  </main>
+
+  <script type="module" src="tokenizer.js"></script>
+</body>
+</html>

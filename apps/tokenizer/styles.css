@@ -1,0 +1,60 @@
+body {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  margin: 0;
+  padding: 24px;
+  background: #f7f7f5;
+  color: #1f2937;
+}
+header {
+  max-width: 800px;
+  margin: 0 auto 24px;
+}
+main {
+  max-width: 800px;
+  margin: 0 auto;
+  display: grid;
+  gap: 12px;
+}
+label {
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+select, textarea, button {
+  width: 100%;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 1px solid #e5e7eb;
+  font-size: 0.95rem;
+  background: #fff;
+}
+button {
+  background: #1f3a93;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+}
+button:hover {
+  background: #172a7a;
+}
+#output {
+  margin-top: 16px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 16px;
+}
+#tokens-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.token-chip {
+  background: #eaf1ff;
+  border: 1px solid #1f3a93;
+  border-radius: 999px;
+  padding: 4px 8px;
+  font-size: 0.8rem;
+  font-family: ui-monospace, SFMonoRegular, 'Fira Code', monospace;
+  white-space: pre;
+}
