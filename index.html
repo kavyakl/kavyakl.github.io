@@ -681,23 +681,31 @@
                     const featuredProjects = [
                         {
                             title: 'LitBot: AI Literature Survey Assistant',
-                            description: 'RAG system for analyzing 200+ scientific papers using local LLM inference and FAISS-based retrieval. Built to reduce manual review time and support structured exploration of research corpora.',
-                            outcome: '80% reduction in review time.'
+                            description:
+                                'RAG-based assistant for exploring and summarizing scientific papers using local LLM inference and FAISS-based retrieval. Supports structured queries over a personal corpus and generates draft survey sections.',
+                            outcome:
+                                'Reduces manual scanning time for literature reviews and speeds up drafting of survey sections.'
                         },
                         {
-                            title: 'Dynamic Sparsity Optimization',
-                            description: 'Neural network pruning and sparsification pipeline focused on efficiency without major accuracy loss. Designed around structured compression strategies that translate to real deployment gains.',
-                            outcome: '4.33× inference speedup.'
+                            title: 'Dynamic Sparsity and Pruning for CNNs',
+                            description:
+                                'End-to-end pipeline combining Grad-CAM–guided feature pruning with dynamic sparse training (RigL-style updates) for CNNs. Produces deployment-ready models with structured sparsity and quantization.',
+                            outcome:
+                                'Up to ~99% sparsity on LeNet-5 and >8× GPU speedup on VGG-11 with minimal accuracy loss.'
                         },
                         {
-                            title: 'Distributed Real-Time Object Detection Framework',
-                            description: 'Edge AI system using PYNQ-Z1 AP-SoCs and BNNs for real-time object detection across a distributed network. Built for low-latency inference on constrained hardware.',
-                            outcome: '19.23 FPS across 3-node setup.'
+                            title: 'Distributed Real-Time Object Detection on IoT Edge Nodes',
+                            description:
+                                'Distributed framework for real-time object detection using PYNQ-Z1 AP-SoCs and BNN-based image classification across a wireless network of edge nodes. Designed for low-latency inference on constrained hardware.',
+                            outcome:
+                                'Achieves 19.23 FPS with 3 IoT edge nodes; FPS scales with the number of nodes.'
                         },
                         {
-                            title: 'Neural Network Optimization Analysis Framework',
-                            description: 'Compiler-aware analysis and ONNX graph transformation work that treats execution graphs like optimized dataflow systems.',
-                            outcome: '4.33× inference speedup.'
+                            title: 'Hardware-Aware MLP Optimization for Edge Devices',
+                            description:
+                                'Activation- and range-based pruning for MLPs with ReLU, Sigmoid, and Tanh, plus simulated-annealing–driven weight integerization for FPGA/ASIC. Includes ONNX-based export and deployment to FPGA and microcontrollers.',
+                            outcome:
+                                'Up to ~37% multiplier/adder savings for Sigmoid MLPs, ~32% for ReLU MLPs on FPGA, and high neuron sparsity on MCUs with minimal accuracy loss.'
                         }
                     ];
                     
