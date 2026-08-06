@@ -453,6 +453,100 @@
             box-shadow: 0 4px 12px rgba(31, 58, 147, 0.4);
         }
         
+        /* Project Modal */
+        .project-modal {
+          position: fixed;
+          inset: 0;
+          z-index: 1000;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+        
+        .project-modal-backdrop {
+          position: absolute;
+          inset: 0;
+          background: rgba(15, 23, 42, 0.55);
+          backdrop-filter: blur(2px);
+        }
+        
+        .project-modal-content {
+          position: relative;
+          background: #FFFFFF;
+          border-radius: 14px;
+          border: 1px solid #E5E7EB;
+          max-width: 720px;
+          width: 92%;
+          max-height: 85vh;
+          overflow: auto;
+          padding: 28px 28px 24px 28px;
+          box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+        }
+        
+        .project-modal-close {
+          position: absolute;
+          top: 14px;
+          right: 14px;
+          background: transparent;
+          border: none;
+          color: #6B7280;
+          font-size: 1.2rem;
+          cursor: pointer;
+          padding: 6px;
+          border-radius: 6px;
+          transition: color 0.2s ease, background 0.2s ease;
+        }
+        
+        .project-modal-close:hover {
+          color: #1F2937;
+          background: #F3F4F6;
+        }
+        
+        .modal-title {
+          font-size: 1.35rem;
+          font-weight: 700;
+          color: #1F2937;
+          margin: 0 0 14px 0;
+          letter-spacing: -0.01em;
+        }
+        
+        .modal-body {
+          color: #374151;
+          font-size: 0.95rem;
+          line-height: 1.7;
+        }
+        
+        .modal-body h4 {
+          font-size: 1rem;
+          font-weight: 600;
+          color: #1F2937;
+          margin: 18px 0 8px 0;
+        }
+        
+        .modal-body ul {
+          margin: 8px 0 12px 18px;
+          padding: 0;
+        }
+        
+        .modal-body li {
+          margin: 4px 0;
+          color: #4B5563;
+        }
+        
+        .modal-body a {
+          color: #1F3A93;
+          text-decoration: none;
+        }
+        
+        .modal-body a:hover {
+          text-decoration: underline;
+        }
+        
+        /* Ensure modal content is scrollable but page behind is not */
+        body.modal-open {
+          overflow: hidden;
+        }
+        
         /* Responsive */
         @media (max-width: 768px) {
             .hero {
@@ -632,7 +726,155 @@
         <i class="fas fa-download"></i> Download Resume
     </a>
 
+    <!-- Project Details Modal -->
+    <div id="project-modal" class="project-modal" style="display:none;">
+      <div class="project-modal-backdrop"></div>
+      <div class="project-modal-content">
+        <button class="project-modal-close" aria-label="Close">
+          <i class="fas fa-times"></i>
+        </button>
+        <h3 id="modal-title" class="modal-title"></h3>
+        <div id="modal-body" class="modal-body"></div>
+      </div>
+    </div>
+
     <script>
+        // Featured Projects Data
+        const featuredProjects = [
+          {
+                title: 'LitBot: AI Literature Survey Assistant',
+                description:
+                  'RAG-based assistant for exploring and summarizing scientific papers using local LLM inference and FAISS-based retrieval. Supports structured queries over a personal corpus and generates draft survey sections.',
+                outcome:
+                  'Reduces manual scanning time for literature reviews and speeds up drafting of survey sections.',
+                details: `
+                    <p>LitBot is a retrieval-augmented generation (RAG) system designed to help me quickly explore and summarize large collections of research papers. It uses local LLM inference and FAISS-based dense retrieval to support structured queries over a personal corpus.</p>
+                    <h4>Key ideas</h4>
+                    <ul>
+                      <li>Hybrid retrieval (dense + sparse) over PDFs and notes.</li>
+                      <li>Structured IR: papers are chunked and indexed with metadata (venue, year, topics).</li>
+                      <li>LLM generates evidence-backed summaries and draft survey sections grounded in retrieved passages.</li>
+                    </ul>
+                    <h4>Impact</h4>
+                    <ul>
+                      <li>Reduces time spent manually scanning papers and copying quotes.</li>
+                      <li>Helps produce first drafts of survey sections and related-work summaries faster.</li>
+                    </ul>
+                `
+            },
+            {
+                title: 'Dynamic Sparsity and Pruning for CNNs',
+                description:
+                  'End-to-end pipeline combining Grad-CAM–guided feature pruning with dynamic sparse training (RigL-style updates) for CNNs. Produces deployment-ready models with structured sparsity and quantization.',
+                outcome:
+                  'Up to ~99% sparsity on LeNet-5 and >8× GPU speedup on VGG-11 with minimal accuracy loss.',
+                details: `
+                    <p>This project focuses on making CNNs significantly smaller and faster without sacrificing accuracy. The pipeline combines Grad-CAM–guided feature pruning with dynamic sparse training (inspired by RigL) to maintain high sparsity throughout training.</p>
+                    <h4>Methods</h4>
+                    <ul>
+                      <li>Grad-CAM–guided pruning to remove less important features early.</li>
+                      <li>Dynamic sparsity updates during training to reallocate capacity where it helps most.</li>
+                      <li>Integration with quantization and ONNX export for deployment.</li>
+                    </ul>
+                    <h4>Results</h4>
+                    <ul>
+                      <li>LeNet-5 (MNIST): ~99% sparsity with minimal accuracy loss.</li>
+                      <li>VGG-11 (CIFAR-10): >8× GPU speedup with improved or comparable accuracy.</li>
+                    </ul>
+                `
+            },
+            {
+                title: 'Distributed Real-Time Object Detection on IoT Edge Nodes',
+                description:
+                  'Distributed framework for real-time object detection using PYNQ-Z1 AP-SoCs and BNN-based image classification across a wireless network of edge nodes. Designed for low-latency inference on constrained hardware.',
+                outcome:
+                  'Achieves 19.23 FPS with 3 IoT edge nodes; FPS scales with the number of nodes.',
+                details: `
+                    <p>This work addresses the need for real-time vision on constrained IoT hardware by distributing computation across multiple edge nodes. Each node runs a BNN-based image classifier on a PYNQ-Z1 AP-SoC, and frames are processed collaboratively over a wireless network.</p>
+                    <h4>System design</h4>
+                    <ul>
+                      <li>PYNQ-Z1 AP-SoCs as IoT edge nodes with heterogeneous CPU+FPGA resources.</li>
+                      <li>Binarized Neural Networks (BNNs) for low-latency image classification.</li>
+                      <li>Distributed scheduling to balance load and minimize communication overhead.</li>
+                    </ul>
+                    <h4>Results</h4>
+                    <ul>
+                      <li>19.23 FPS with 3 edge nodes for low-frame-rate object detection.</li>
+                      <li>Frame rate scales approximately linearly with the number of nodes.</li>
+                    </ul>
+                `
+            },
+            {
+                title: 'Hardware-Aware MLP Optimization for Edge Devices',
+                description:
+                  'Activation- and range-based pruning for MLPs with ReLU, Sigmoid, and Tanh, plus simulated-annealing–driven weight integerization for FPGA/ASIC. Includes ONNX-based export and deployment to FPGA and microcontrollers.',
+                outcome:
+                  'Up to ~37% multiplier/adder savings for Sigmoid MLPs, ~32% for ReLU MLPs on FPGA, and high neuron sparsity on MCUs with minimal accuracy loss.',
+                details: `
+                    <p>This line of work focuses on making MLPs efficient on severely constrained hardware (FPGA, ASIC, MCUs) by combining algorithmic pruning with hardware-aware optimizations.</p>
+                    <h4>Techniques</h4>
+                    <ul>
+                      <li>Range-based pruning for ReLU MLPs: profile activation ranges and prune neurons that are always negative or near-zero.</li>
+                      <li>Sigmoid-based neuron pruning: identify neurons with outputs near 0.5 and approximate or remove them.</li>
+                      <li>Tanh-based unstructured pruning leveraging zero-centered activations.</li>
+                      <li>Simulated annealing to push weights toward integer values, reducing multiplier/adder usage in hardware.</li>
+                    </ul>
+                    <h4>Hardware results</h4>
+                    <ul>
+                      <li>~32% savings in multipliers/adders for ReLU MLPs on Virtex-7 FPGA.</li>
+                      <li>~37% savings for Sigmoid MLPs with small accuracy loss.</li>
+                      <li>High neuron sparsity on MCUs with minimal accuracy degradation.</li>
+                    </ul>
+                `
+            }
+        ];
+        
+        // Project Modal Functions
+        const modalEl = document.getElementById('project-modal');
+        const modalTitleEl = document.getElementById('modal-title');
+        const modalBodyEl = document.getElementById('modal-body');
+        const modalCloseBtn = document.querySelector('.project-modal-close');
+        const modalBackdrop = document.querySelector('.project-modal-backdrop');
+
+        function openProjectModal(index) {
+            const project = featuredProjects[index];
+            if (!project) return;
+
+            modalTitleEl.textContent = project.title;
+            modalBodyEl.innerHTML = `
+                <p><strong>Overview</strong></p>
+                <p>${project.description}</p>
+                <p><strong>Outcome</strong></p>
+                <p>${project.outcome}</p>
+                ${project.details ? project.details : ''}
+            `;
+
+            modalEl.style.display = 'flex';
+            document.body.classList.add('modal-open');
+        }
+
+        function closeProjectModal() {
+            modalEl.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close on button click
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeProjectModal);
+        }
+
+        // Close on backdrop click
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeProjectModal);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalEl.style.display === 'flex') {
+                closeProjectModal();
+            }
+        });
+        
         // Load and parse YAML data
         async function loadYAMLData() {
             try {
@@ -678,40 +920,9 @@
                 try {
                     const featuredProjectsContainer = document.getElementById('featured-projects');
                     
-                    const featuredProjects = [
-                        {
-                            title: 'LitBot: AI Literature Survey Assistant',
-                            description:
-                                'RAG-based assistant for exploring and summarizing scientific papers using local LLM inference and FAISS-based retrieval. Supports structured queries over a personal corpus and generates draft survey sections.',
-                            outcome:
-                                'Reduces manual scanning time for literature reviews and speeds up drafting of survey sections.'
-                        },
-                        {
-                            title: 'Dynamic Sparsity and Pruning for CNNs',
-                            description:
-                                'End-to-end pipeline combining Grad-CAM–guided feature pruning with dynamic sparse training (RigL-style updates) for CNNs. Produces deployment-ready models with structured sparsity and quantization.',
-                            outcome:
-                                'Up to ~99% sparsity on LeNet-5 and >8× GPU speedup on VGG-11 with minimal accuracy loss.'
-                        },
-                        {
-                            title: 'Distributed Real-Time Object Detection on IoT Edge Nodes',
-                            description:
-                                'Distributed framework for real-time object detection using PYNQ-Z1 AP-SoCs and BNN-based image classification across a wireless network of edge nodes. Designed for low-latency inference on constrained hardware.',
-                            outcome:
-                                'Achieves 19.23 FPS with 3 IoT edge nodes; FPS scales with the number of nodes.'
-                        },
-                        {
-                            title: 'Hardware-Aware MLP Optimization for Edge Devices',
-                            description:
-                                'Activation- and range-based pruning for MLPs with ReLU, Sigmoid, and Tanh, plus simulated-annealing–driven weight integerization for FPGA/ASIC. Includes ONNX-based export and deployment to FPGA and microcontrollers.',
-                            outcome:
-                                'Up to ~37% multiplier/adder savings for Sigmoid MLPs, ~32% for ReLU MLPs on FPGA, and high neuron sparsity on MCUs with minimal accuracy loss.'
-                        }
-                    ];
-                    
                     if (featuredProjectsContainer) {
                         featuredProjectsContainer.innerHTML = '';
-                        featuredProjects.forEach(project => {
+                        featuredProjects.forEach((project, idx) => {
                             const card = document.createElement('div');
                             card.className = 'project-card';
                             card.innerHTML = `
@@ -719,6 +930,11 @@
                                 <div class="description">${project.description}</div>
                                 <div class="outcome">${project.outcome}</div>
                             `;
+
+                            // Make card clickable
+                            card.style.cursor = 'pointer';
+                            card.addEventListener('click', () => openProjectModal(idx));
+
                             featuredProjectsContainer.appendChild(card);
                         });
                     }
@@ -811,6 +1027,52 @@
                     toggleIcon.textContent = this.open ? '−' : '+';
                 }
             });
+        });
+        
+        // Project Modal Functions
+        const modalEl = document.getElementById('project-modal');
+        const modalTitleEl = document.getElementById('modal-title');
+        const modalBodyEl = document.getElementById('modal-body');
+        const modalCloseBtn = document.querySelector('.project-modal-close');
+        const modalBackdrop = document.querySelector('.project-modal-backdrop');
+
+        function openProjectModal(index) {
+            const project = featuredProjects[index];
+            if (!project) return;
+
+            modalTitleEl.textContent = project.title;
+            modalBodyEl.innerHTML = `
+                <p><strong>Overview</strong></p>
+                <p>${project.description}</p>
+                <p><strong>Outcome</strong></p>
+                <p>${project.outcome}</p>
+                ${project.details ? project.details : ''}
+            `;
+
+            modalEl.style.display = 'flex';
+            document.body.classList.add('modal-open');
+        }
+
+        function closeProjectModal() {
+            modalEl.style.display = 'none';
+            document.body.classList.remove('modal-open');
+        }
+
+        // Close on button click
+        if (modalCloseBtn) {
+            modalCloseBtn.addEventListener('click', closeProjectModal);
+        }
+
+        // Close on backdrop click
+        if (modalBackdrop) {
+            modalBackdrop.addEventListener('click', closeProjectModal);
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape' && modalEl.style.display === 'flex') {
+                closeProjectModal();
+            }
         });
         
         // Load data when page loads
