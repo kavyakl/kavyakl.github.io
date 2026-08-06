@@ -29,10 +29,6 @@
       </div>
       
       <button id="tokenize-btn">Compare Tokenizers</button>
-      <div id="loading" class="loading" style="display: none;">
-        <div class="spinner"></div>
-        <span>Loading tokenizers...</span>
-      </div>
     </div>
 
     <section id="output">
@@ -42,18 +38,6 @@
     </section>
   </main>
 
-  <!-- Load @lenml/tokenizers from CDN -->
-  <script type="importmap">
-  {
-    "imports": {
-      "@lenml/tokenizers": "https://cdn.jsdelivr.net/npm/@lenml/tokenizers@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-gpt2": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt2@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-gpt4": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt4@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-llama3": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-llama3@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-claude": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-claude@3.7.2/dist/main.mjs"
-    }
-  }
-  </script>
-  <script type="module" src="tokenizer.js"></script>
+  <script src="tokenizer.js"></script>
 </body>
 </html>
