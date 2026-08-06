@@ -1,110 +1,101 @@
-// Simple GPT-2 tokenizer implementation
-// Using the GPT-2 tokenizer via a simpler approach
+import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+
+// Disable local models to use browser-only
+env.allowLocalModels = false;
+env.useBrowserCache = true;
 
 const modelSelect = document.getElementById('model-select');
 const textInput = document.getElementById('text-input');
 const tokenizeBtn = document.getElementById('tokenize-btn');
 const tokensList = document.getElementById('tokens-list');
+const tokenCount = document.getElementById('token-count');
 
-// Basic GPT-2 vocabulary (simplified for demo)
-// In production, you'd load the full tokenizer.json
-const gpt2Vocab = {
-  'Hello': 15496,
-  'world': 995,
-  '!': 0,
-  ' ': 220,
-  // This is a minimal example - in production, load full vocab
-};
+let tokenizer = null;
+let currentModel = null;
 
 async function loadTokenizer(modelId) {
-  console.log('Loading tokenizer for:', modelId);
-  // For now, we'll use a simplified approach
-  if (modelId === 'gpt2') {
-    try {
-      const url = 'https://huggingface.co/gpt2/resolve/main/tokenizer.json';
-      const res = await fetch(url);
-      const json = await res.json();
-      console.log('Tokenizer loaded:', json);
-      return json;
-    } catch (err) {
-      console.error('Failed to load tokenizer:', err);
-      throw new Error('Failed to load tokenizer configuration');
-    }
-  }
-  throw new Error('Model not supported yet');
-}
-
-async function tokenizeText(text, tokenizerConfig) {
-  if (!tokenizerConfig) {
-    tokenizerConfig = await loadTokenizer(modelSelect.value);
-  }
-  
-  // Simple whitespace-based tokenization for demo
-  // In production, use the actual tokenizer logic
-  const words = text.split(/\s+/);
-  const tokens = [];
-  const ids = [];
-  
-  words.forEach((word, i) => {
-    tokens.push(word);
-    // Simple hash-based ID for demo (in production, use actual vocab lookup)
-    ids.push(Math.abs(word.split('').reduce((a, b) => ((a << 5) - a) + b.charCodeAt(0), 0)) % 50000);
-  });
-  
-  return { tokens, ids };
-}
-
-async function initializeTokenizer() {
-  let tokenizerConfig = null;
-  
   try {
-    tokenizerConfig = await loadTokenizer(modelSelect.value);
-  } catch (err) {
-    console.log('Using fallback tokenization');
+    console.log('Loading tokenizer for:', modelId);
+    // Load the tokenizer using Transformers.js
+    tokenizer = await pipeline('tokenization', modelId);
+    currentModel = modelId;
+    console.log('Tokenizer loaded successfully');
+  } catch (error) {
+    console.error('Error loading tokenizer:', error);
+    throw new Error(`Failed to load tokenizer: ${error.message}`);
+  }
+}
+
+async function tokenizeText(text) {
+  if (!tokenizer || currentModel !== modelSelect.value) {
+    await loadTokenizer(modelSelect.value);
   }
   
-  tokenizeBtn.addEventListener('click', async () => {
-    const text = textInput.value;
-    tokensList.innerHTML = '';
+  const result = await tokenizer(text);
+  return result;
+}
+
+async function initialize() {
+  try {
+    // Load initial tokenizer
+    await loadTokenizer(modelSelect.value);
     
-    if (!text.trim()) {
-      tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">Please enter some text to tokenize.</div>';
-      return;
-    }
-    
-    try {
-      const { tokens, ids } = await tokenizeText(text, tokenizerConfig);
+    tokenizeBtn.addEventListener('click', async () => {
+      const text = textInput.value;
+      tokensList.innerHTML = '';
+      tokenCount.textContent = '';
       
-      if (tokens.length === 0) {
-        tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">No tokens generated.</div>';
+      if (!text.trim()) {
+        tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">Please enter some text to tokenize.</div>';
         return;
       }
       
-      tokens.forEach((tok, i) => {
-        const chip = document.createElement('div');
-        chip.className = 'token-chip';
-        chip.textContent = `${tok} (${ids[i]})`;
-        tokensList.appendChild(chip);
-      });
+      tokenizeBtn.disabled = true;
+      tokenizeBtn.textContent = 'Tokenizing...';
       
-      // Add token count
-      const countDiv = document.createElement('div');
-      countDiv.style.marginTop = '12px';
-      countDiv.style.fontSize = '0.85rem';
-      countDiv.style.color = '#6B7280';
-      countDiv.textContent = `Total tokens: ${tokens.length}`;
-      tokensList.appendChild(countDiv);
-      
-    } catch (err) {
-      console.error('Tokenization error:', err);
-      tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${err.message}</div>`;
-    }
-  });
+      try {
+        const result = await tokenizeText(text);
+        
+        if (!result || !result.tokens || result.tokens.length === 0) {
+          tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">No tokens generated.</div>';
+          return;
+        }
+        
+        // Display token count
+        tokenCount.textContent = `Total tokens: ${result.tokens.length}`;
+        
+        // Display tokens
+        result.tokens.forEach((token, i) => {
+          const chip = document.createElement('div');
+          chip.className = 'token-chip';
+          chip.textContent = token;
+          tokensList.appendChild(chip);
+        });
+        
+      } catch (err) {
+        console.error('Tokenization error:', err);
+        tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${err.message}</div>`;
+      } finally {
+        tokenizeBtn.disabled = false;
+        tokenizeBtn.textContent = 'Tokenize';
+      }
+    });
+    
+    // Also tokenize on model change
+    modelSelect.addEventListener('change', async () => {
+      tokenizer = null;
+      currentModel = null;
+      // Auto-tokenize if there's text
+      if (textInput.value.trim()) {
+        tokenizeBtn.click();
+      }
+    });
+    
+  } catch (error) {
+    console.error('Initialization error:', error);
+    tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Failed to initialize tokenizer: ${error.message}</div>`;
+  }
 }
 
 // Initialize when DOM is ready
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', initializeTokenizer);
-} else {
-  initializeTokenizer();
-}
+initialize();
