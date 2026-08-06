@@ -24,11 +24,15 @@
           <label><input type="checkbox" value="gpt2" checked> GPT-2</label>
           <label><input type="checkbox" value="gpt4" checked> GPT-4</label>
           <label><input type="checkbox" value="llama3" checked> Llama 3</label>
-          <label><input type="checkbox" value="claude" checked> Claude 3</label>
+          <label><input type="checkbox" value="claude"> Claude 3</label>
         </div>
       </div>
       
       <button id="tokenize-btn">Compare Tokenizers</button>
+      <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <span>Loading tokenizers...</span>
+      </div>
     </div>
 
     <section id="output">
@@ -38,6 +42,17 @@
     </section>
   </main>
 
-  <script src="tokenizer.js"></script>
+  <!-- Load @lenml/tokenizers from CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@lenml/tokenizer-gpt2": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt2@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-gpt4": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt4@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-llama3": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-llama3@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-claude": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-claude@3.7.2/dist/main.mjs"
+    }
+  }
+  </script>
+  <script type="module" src="tokenizer.js"></script>
 </body>
 </html>
