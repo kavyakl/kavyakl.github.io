@@ -12,60 +12,66 @@ const summaryStats = document.getElementById('summary-stats');
 const tokenizerCards = document.getElementById('tokenizer-cards');
 const loadingDiv = document.getElementById('loading');
 
-// Tokenizer definitions with real implementations
-const tokenizerDefs = {
-  gpt2: {
-    name: 'GPT-2',
-    encoding: 'r50k_base',
-    loader: fromGPT2,
-    tokenizer: null,
-    async init() {
-      this.tokenizer = this.loader();
-    },
-    tokenize(text) {
-      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
-      return encoded.input_ids;
-    }
-  },
-  gpt4: {
-    name: 'GPT-4',
-    encoding: 'cl100k_base',
-    loader: fromGPT4,
-    tokenizer: null,
-    async init() {
-      this.tokenizer = this.loader();
-    },
-    tokenize(text) {
-      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
-      return encoded.input_ids;
-    }
-  },
-  llama3: {
-    name: 'Llama 3',
-    encoding: 'llama3',
-    loader: fromLlama3,
-    tokenizer: null,
-    async init() {
-      this.tokenizer = this.loader();
-    },
-    tokenize(text) {
-      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
-      return encoded.input_ids;
-    }
-  },
-  claude: {
-    name: 'Claude 3',
-    encoding: 'claude',
-    loader: fromClaude,
-    tokenizer: null,
-    async init() {
-      this.tokenizer = this.loader();
-    },
-    tokenize(text) {
-      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
-      return encoded.input_ids;
-    }
+// Tokenizer instances
+let gpt2Tokenizer = null;
+let gpt4Tokenizer = null;
+let llama3Tokenizer = null;
+let claudeTokenizer = null;
+
+// Initialize all tokenizers on page load
+async function initializeTokenizers() {
+  loadingDiv.style.display = 'flex';
+  loadingDiv.querySelector('span').textContent = 'Loading tokenizers...';
+  
+  try {
+    // Load tokenizers in parallel
+    const [gpt2, gpt4, llama3, claude] = await Promise.all([
+      (async () => {
+        const tokenizer = fromGPT2();
+        console.log('GPT-2 tokenizer loaded:', !!tokenizer);
+        return tokenizer;
+      })(),
+      (async () => {
+        const tokenizer = fromGPT4();
+        console.log('GPT-4 tokenizer loaded:', !!tokenizer);
+        return tokenizer;
+      })(),
+      (async () => {
+        const tokenizer = fromLlama3();
+        console.log('Llama 3 tokenizer loaded:', !!tokenizer);
+        return tokenizer;
+      })(),
+      (async () => {
+        const tokenizer = fromClaude();
+        console.log('Claude tokenizer loaded:', !!tokenizer);
+        return tokenizer;
+      })()
+    ]);
+    
+    gpt2Tokenizer = gpt2;
+    gpt4Tokenizer = gpt4;
+    llama3Tokenizer = llama3;
+    claudeTokenizer = claude;
+    
+    loadingDiv.style.display = 'none';
+    console.log('All tokenizers initialized successfully');
+  } catch (error) {
+    console.error('Failed to load tokenizers:', error);
+    loadingDiv.innerHTML = `
+      <div class="error-message" style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;color:#b91c1c;">
+        <strong>Error loading tokenizers:</strong> ${error.message}
+        <br><small>Check console for details</small>
+      </div>
+    `;
   }
+}
+
+// Tokenizer mapping
+const tokenizers = {
+  gpt2: { name: 'GPT-2', encoding: 'r50k_base', tokenizer: () => gpt2Tokenizer },
+  gpt4: { name: 'GPT-4', encoding: 'cl100k_base', tokenizer: () => gpt4Tokenizer },
+  llama3: { name: 'Llama 3', encoding: 'llama3', tokenizer: () => llama3Tokenizer },
+  claude: { name: 'Claude 3', encoding: 'claude', tokenizer: () => claudeTokenizer }
 };
 
 // Main tokenization function
@@ -90,7 +96,6 @@ async function compareTokenizers() {
   
   // Show loading
   tokenizeBtn.disabled = true;
-  loadingDiv.style.display = 'flex';
   
   // Clear previous results
   tokenizerCards.innerHTML = '';
@@ -100,37 +105,40 @@ async function compareTokenizers() {
   const results = [];
   
   try {
-    // Initialize selected tokenizers
-    for (const id of selectedTokenizerIds) {
-      const tokenizer = tokenizerDefs[id];
-      if (!tokenizer.tokenizer) {
-        await tokenizer.init();
-      }
-    }
-    
     // Tokenize with each selected tokenizer
     for (const tokenizerId of selectedTokenizerIds) {
-      const tokenizer = tokenizerDefs[tokenizerId];
+      const tokenizerInfo = tokenizers[tokenizerId];
       
-      if (!tokenizer.tokenizer) {
-        console.error(`Tokenizer ${tokenizerId} not initialized`);
+      if (!tokenizerInfo) {
+        console.error(`Unknown tokenizer: ${tokenizerId}`);
+        continue;
+      }
+      
+      const tokenizer = tokenizerInfo.tokenizer();
+      
+      if (!tokenizer) {
+        console.error(`Tokenizer ${tokenizerId} not loaded`);
         continue;
       }
       
       const startTime = performance.now();
-      const tokenIds = tokenizer.tokenize(text);
+      
+      // Encode text
+      const encoded = tokenizer.encode(text, null, { add_special_tokens: false });
+      const tokenIds = encoded.input_ids;
+      
       const endTime = performance.now();
       
       // Decode tokens to show actual text
       const decodedTokens = tokenIds.map(id => {
-        const decoded = tokenizer.tokenizer.decode([id]);
+        const decoded = tokenizer.decode([id]);
         return decoded;
       });
       
       results.push({
         id: tokenizerId,
-        name: tokenizer.name,
-        encoding: tokenizer.encoding,
+        name: tokenizerInfo.name,
+        encoding: tokenizerInfo.encoding,
         tokenIds: tokenIds,
         tokens: decodedTokens,
         tokenCount: tokenIds.length,
@@ -206,7 +214,6 @@ async function compareTokenizers() {
     `;
   } finally {
     tokenizeBtn.disabled = false;
-    loadingDiv.style.display = 'none';
   }
 }
 
@@ -222,8 +229,13 @@ tokenizeBtn.addEventListener('click', compareTokenizers);
 
 // Auto-tokenize on page load with sample text
 window.addEventListener('DOMContentLoaded', () => {
+  // Initialize tokenizers first
+  initializeTokenizers();
+  
+  // Then tokenize if there's text
   if (textInput.value.trim()) {
-    compareTokenizers();
+    // Wait a bit for tokenizers to load
+    setTimeout(compareTokenizers, 500);
   }
 });
 
