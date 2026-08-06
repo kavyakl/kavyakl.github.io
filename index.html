@@ -542,6 +542,12 @@
           text-decoration: underline;
         }
         
+        /* Single project card styling */
+        .featured-projects:has(:only-child) .project-card {
+          max-width: 900px;
+          margin: 0 auto;
+        }
+        
         /* Ensure modal content is scrollable but page behind is not */
         body.modal-open {
           overflow: hidden;
@@ -639,7 +645,7 @@
     <!-- Featured Projects -->
     <section class="section">
         <h2 class="section-title">Featured Projects</h2>
-        <p class="section-intro">A few projects that show the range of my work, from retrieval systems to optimization and deployment.</p>
+        <p class="section-intro">Systems and MLOps projects focused on retrieval, local LLM inference, and reproducible benchmarking.</p>
         <div class="featured-projects" id="featured-projects">
             <!-- Featured projects will be loaded here -->
         </div>
@@ -652,18 +658,18 @@
         <div class="research-themes">
             <div class="theme-card">
                 <h4>Sparse and Structured Pruning</h4>
-                <p>Neural network compression techniques that maintain accuracy while reducing computational complexity and memory footprint.</p>
+                <p>Activation-aware pruning for MLPs (ReLU, Sigmoid, Tanh) and structured pruning for CNNs. Combines correlation-regression analysis with dynamic sparse training to reduce model size while preserving accuracy.</p>
             </div>
             <div class="theme-card">
                 <h4>Compiler-Aware Inference</h4>
-                <p>ONNX graph transformations and MLIR-style optimizations that treat execution graphs as optimized dataflow systems.</p>
+                <p>ONNX-based model transformations and quantization-aware pipelines that translate algorithmic sparsity into deployment-ready models for edge and GPU targets.</p>
             </div>
             <div class="theme-card">
                 <h4>Edge Deployment</h4>
-                <p>Embedded and distributed AI systems targeting microcontrollers, FPGAs, and resource-constrained edge devices.</p>
+                <p>Real-hardware validation on microcontrollers (e.g., RP2040, ESP32) and distributed edge nodes. Measures speed, memory, and energy trade-offs for optimized neural networks.</p>
             </div>
         </div>
-        <p class="section-intro" style="margin-top: 24px; font-style: italic;">Recent work includes activation-aware pruning for MLPs, compute–memory tradeoff analysis, and real-time inference on constrained hardware.</p>
+        <p class="section-intro" style="margin-top: 24px; font-style: italic;">Recent work includes activation-aware pruning for MLPs, dynamic sparse training for CNNs, and hardware validation on microcontroller platforms.</p>
     </section>
 
     <!-- Publications -->
@@ -742,88 +748,35 @@
         // Featured Projects Data
         const featuredProjects = [
             {
-                title: 'LitBot: AI Literature Survey Assistant',
+                title: 'LitBot & SLM Benchmarking',
                 description:
-                  'RAG-based assistant for exploring and summarizing scientific papers using local LLM inference and FAISS-based retrieval. Supports structured queries over a personal corpus and generates draft survey sections.',
+                  'Production RAG system (LitBot) combining dense (FAISS IVF-PQ) and sparse (BM25) indexing with metadata-aware filtering, ranking, and error-handling for large-scale document analysis. Paired with an SLM benchmarking and deployment framework across Phi-3-mini, Llama-3.2-3B, Qwen2.5-3B, and Gemma-2-2B, using llama.cpp/GGUF, ONNX Runtime, and Ollama backends with quantization from FP32 to Q4K_M.',
                 outcome:
-                  'Reduces manual scanning time for literature reviews and speeds up drafting of survey sections.',
+                  'End-to-end pipeline with FastAPI serving, Prometheus monitoring, Docker containerization, and GitHub Actions CI/CD; includes deterministic, brief-based LLM generation with schema validation, provenance tracking, and targeted regeneration to reduce hallucinations.',
                 details: `
-                    <p>LitBot is a retrieval-augmented generation (RAG) system designed to help me quickly explore and summarize large collections of research papers. It uses local LLM inference and FAISS-based dense retrieval to support structured queries over a personal corpus.</p>
-                    <h4>Key ideas</h4>
-                    <ul>
-                      <li>Hybrid retrieval (dense + sparse) over PDFs and notes.</li>
-                      <li>Structured IR: papers are chunked and indexed with metadata (venue, year, topics).</li>
-                      <li>LLM generates evidence-backed summaries and draft survey sections grounded in retrieved passages.</li>
-                    </ul>
-                    <h4>Impact</h4>
-                    <ul>
-                      <li>Reduces time spent manually scanning papers and copying quotes.</li>
-                      <li>Helps produce first drafts of survey sections and related-work summaries faster.</li>
-                    </ul>
-                `
-            },
-            {
-                title: 'Dynamic Sparsity and Pruning for CNNs',
-                description:
-                  'End-to-end pipeline combining Grad-CAM–guided feature pruning with dynamic sparse training (RigL-style updates) for CNNs. Produces deployment-ready models with structured sparsity and quantization.',
-                outcome:
-                  'Up to ~99% sparsity on LeNet-5 and >8× GPU speedup on VGG-11 with minimal accuracy loss.',
-                details: `
-                    <p>This project focuses on making CNNs significantly smaller and faster without sacrificing accuracy. The pipeline combines Grad-CAM–guided feature pruning with dynamic sparse training (inspired by RigL) to maintain high sparsity throughout training.</p>
-                    <h4>Methods</h4>
-                    <ul>
-                      <li>Grad-CAM–guided pruning to remove less important features early.</li>
-                      <li>Dynamic sparsity updates during training to reallocate capacity where it helps most.</li>
-                      <li>Integration with quantization and ONNX export for deployment.</li>
-                    </ul>
-                    <h4>Results</h4>
-                    <ul>
-                      <li>LeNet-5 (MNIST): ~99% sparsity with minimal accuracy loss.</li>
-                      <li>VGG-11 (CIFAR-10): >8× GPU speedup with improved or comparable accuracy.</li>
-                    </ul>
-                `
-            },
-            {
-                title: 'Distributed Real-Time Object Detection on IoT Edge Nodes',
-                description:
-                  'Distributed framework for real-time object detection using PYNQ-Z1 AP-SoCs and BNN-based image classification across a wireless network of edge nodes. Designed for low-latency inference on constrained hardware.',
-                outcome:
-                  'Achieves 19.23 FPS with 3 IoT edge nodes; FPS scales with the number of nodes.',
-                details: `
-                    <p>This work addresses the need for real-time vision on constrained IoT hardware by distributing computation across multiple edge nodes. Each node runs a BNN-based image classifier on a PYNQ-Z1 AP-SoC, and frames are processed collaboratively over a wireless network.</p>
+                    <p>LitBot is a production-grade RAG system designed for large-scale document analysis. It combines dense retrieval (FAISS IVF-PQ) with sparse retrieval (BM25), metadata-aware filtering, and robust error-handling to support reliable, scalable search over research papers and technical documents.</p>
+
                     <h4>System design</h4>
                     <ul>
-                      <li>PYNQ-Z1 AP-SoCs as IoT edge nodes with heterogeneous CPU+FPGA resources.</li>
-                      <li>Binarized Neural Networks (BNNs) for low-latency image classification.</li>
-                      <li>Distributed scheduling to balance load and minimize communication overhead.</li>
+                      <li>Hybrid retrieval: dense (FAISS) + sparse (BM25) with metadata filters (venue, year, topics).</li>
+                      <li>FastAPI serving layer with Prometheus monitoring for latency and throughput tracking.</li>
+                      <li>Docker containerization and GitHub Actions CI/CD for reproducible deployments.</li>
+                      <li>Deterministic, brief-based LLM pipeline (local inference via Ollama) for generating tailored application documents.</li>
+                      <li>Schema validation, provenance tracking, and targeted regeneration workflows to enforce factual grounding and reduce hallucinations.</li>
                     </ul>
-                    <h4>Results</h4>
+
+                    <h4>SLM Benchmarking & Deployment</h4>
+                    <p>In parallel, I built a reproducible benchmarking and deployment framework for small language models (SLMs) across heterogeneous edge hardware.</p>
                     <ul>
-                      <li>19.23 FPS with 3 edge nodes for low-frame-rate object detection.</li>
-                      <li>Frame rate scales approximately linearly with the number of nodes.</li>
+                      <li>Models: Phi-3-mini, Phi-3.5 (MoE), Llama-3.2-3B, Qwen2.5-3B, Gemma-2-2B.</li>
+                      <li>Backends: llama.cpp/GGUF, ONNX Runtime, Ollama; quantization from FP32 down to Q4K_M.</li>
+                      <li>Memory modeling and quantization-tradeoff analysis to guide deployment decisions on constrained devices.</li>
                     </ul>
-                `
-            },
-            {
-                title: 'Hardware-Aware MLP Optimization for Edge Devices',
-                description:
-                  'Activation- and range-based pruning for MLPs with ReLU, Sigmoid, and Tanh, plus simulated-annealing–driven weight integerization for FPGA/ASIC. Includes ONNX-based export and deployment to FPGA and microcontrollers.',
-                outcome:
-                  'Up to ~37% multiplier/adder savings for Sigmoid MLPs, ~32% for ReLU MLPs on FPGA, and high neuron sparsity on MCUs with minimal accuracy loss.',
-                details: `
-                    <p>This line of work focuses on making MLPs efficient on severely constrained hardware (FPGA, ASIC, MCUs) by combining algorithmic pruning with hardware-aware optimizations.</p>
-                    <h4>Techniques</h4>
+
+                    <h4>Impact</h4>
                     <ul>
-                      <li>Range-based pruning for ReLU MLPs: profile activation ranges and prune neurons that are always negative or near-zero.</li>
-                      <li>Sigmoid-based neuron pruning: identify neurons with outputs near 0.5 and approximate or remove them.</li>
-                      <li>Tanh-based unstructured pruning leveraging zero-centered activations.</li>
-                      <li>Simulated annealing to push weights toward integer values, reducing multiplier/adder usage in hardware.</li>
-                    </ul>
-                    <h4>Hardware results</h4>
-                    <ul>
-                      <li>~32% savings in multipliers/adders for ReLU MLPs on Virtex-7 FPGA.</li>
-                      <li>~37% savings for Sigmoid MLPs with small accuracy loss.</li>
-                      <li>High neuron sparsity on MCUs with minimal accuracy degradation.</li>
+                      <li>Closes the gap between research-scale retrieval and production MLOps practices.</li>
+                      <li>Provides a practical blueprint for running and benchmarking SLMs on edge hardware with quantization-aware design.</li>
                     </ul>
                 `
             }
