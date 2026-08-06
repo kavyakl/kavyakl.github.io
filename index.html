@@ -741,7 +741,7 @@
     <script>
         // Featured Projects Data
         const featuredProjects = [
-          {
+            {
                 title: 'LitBot: AI Literature Survey Assistant',
                 description:
                   'RAG-based assistant for exploring and summarizing scientific papers using local LLM inference and FAISS-based retrieval. Supports structured queries over a personal corpus and generates draft survey sections.',
@@ -828,7 +828,27 @@
                 `
             }
         ];
-        
+
+        // Render Featured Projects
+        function renderFeaturedProjects() {
+            const container = document.getElementById('featured-projects');
+            if (!container) return;
+
+            container.innerHTML = '';
+            featuredProjects.forEach((project, index) => {
+                const card = document.createElement('div');
+                card.className = 'project-card';
+                card.setAttribute('data-index', index);
+                card.innerHTML = `
+                    <h3>${project.title}</h3>
+                    <div class="description">${project.description}</div>
+                    <div class="outcome">${project.outcome}</div>
+                `;
+                card.addEventListener('click', () => openProjectModal(index));
+                container.appendChild(card);
+            });
+        }
+
         // Project Modal Functions
         const modalEl = document.getElementById('project-modal');
         const modalTitleEl = document.getElementById('modal-title');
@@ -916,31 +936,7 @@
                     console.error('Error loading profile:', error);
                 }
                 
-                // Load projects data with specific copy
-                try {
-                    const featuredProjectsContainer = document.getElementById('featured-projects');
-                    
-                    if (featuredProjectsContainer) {
-                        featuredProjectsContainer.innerHTML = '';
-                        featuredProjects.forEach((project, idx) => {
-                            const card = document.createElement('div');
-                            card.className = 'project-card';
-                            card.innerHTML = `
-                                <h3>${project.title}</h3>
-                                <div class="description">${project.description}</div>
-                                <div class="outcome">${project.outcome}</div>
-                            `;
 
-                            // Make card clickable
-                            card.style.cursor = 'pointer';
-                            card.addEventListener('click', () => openProjectModal(idx));
-
-                            featuredProjectsContainer.appendChild(card);
-                        });
-                    }
-                } catch (error) {
-                    console.error('Error loading projects:', error);
-                }
                 
                 // Load publications data
                 try {
@@ -1028,55 +1024,12 @@
                 }
             });
         });
-        
-        // Project Modal Functions
-        const modalEl = document.getElementById('project-modal');
-        const modalTitleEl = document.getElementById('modal-title');
-        const modalBodyEl = document.getElementById('modal-body');
-        const modalCloseBtn = document.querySelector('.project-modal-close');
-        const modalBackdrop = document.querySelector('.project-modal-backdrop');
 
-        function openProjectModal(index) {
-            const project = featuredProjects[index];
-            if (!project) return;
-
-            modalTitleEl.textContent = project.title;
-            modalBodyEl.innerHTML = `
-                <p><strong>Overview</strong></p>
-                <p>${project.description}</p>
-                <p><strong>Outcome</strong></p>
-                <p>${project.outcome}</p>
-                ${project.details ? project.details : ''}
-            `;
-
-            modalEl.style.display = 'flex';
-            document.body.classList.add('modal-open');
-        }
-
-        function closeProjectModal() {
-            modalEl.style.display = 'none';
-            document.body.classList.remove('modal-open');
-        }
-
-        // Close on button click
-        if (modalCloseBtn) {
-            modalCloseBtn.addEventListener('click', closeProjectModal);
-        }
-
-        // Close on backdrop click
-        if (modalBackdrop) {
-            modalBackdrop.addEventListener('click', closeProjectModal);
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalEl.style.display === 'flex') {
-                closeProjectModal();
-            }
-        });
-        
         // Load data when page loads
-        document.addEventListener('DOMContentLoaded', loadYAMLData);
+        document.addEventListener('DOMContentLoaded', () => {
+            loadYAMLData();
+            renderFeaturedProjects();
+        });
     </script>
 </body>
 </html>
