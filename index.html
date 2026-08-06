@@ -844,56 +844,94 @@
                     <div class="description">${project.description}</div>
                     <div class="outcome">${project.outcome}</div>
                 `;
-                card.addEventListener('click', () => openProjectModal(index));
+                card.addEventListener('click', () => {
+                    console.log('Project card clicked, index:', index);
+                    if (typeof window.openProjectModal === 'function') {
+                        window.openProjectModal(index);
+                    } else {
+                        console.error('openProjectModal is not a function');
+                    }
+                });
                 container.appendChild(card);
             });
         }
 
         // Project Modal Functions
-        const modalEl = document.getElementById('project-modal');
-        const modalTitleEl = document.getElementById('modal-title');
-        const modalBodyEl = document.getElementById('modal-body');
-        const modalCloseBtn = document.querySelector('.project-modal-close');
-        const modalBackdrop = document.querySelector('.project-modal-backdrop');
+        let modalEl = null;
+        let modalTitleEl = null;
+        let modalBodyEl = null;
+        let modalCloseBtn = null;
+        let modalBackdrop = null;
 
-        function openProjectModal(index) {
-            const project = featuredProjects[index];
-            if (!project) return;
+        function initModal() {
+            modalEl = document.getElementById('project-modal');
+            modalTitleEl = document.getElementById('modal-title');
+            modalBodyEl = document.getElementById('modal-body');
+            modalCloseBtn = document.querySelector('.project-modal-close');
+            modalBackdrop = document.querySelector('.project-modal-backdrop');
 
-            modalTitleEl.textContent = project.title;
-            modalBodyEl.innerHTML = `
-                <p><strong>Overview</strong></p>
-                <p>${project.description}</p>
-                <p><strong>Outcome</strong></p>
-                <p>${project.outcome}</p>
-                ${project.details ? project.details : ''}
-            `;
-
-            modalEl.style.display = 'flex';
-            document.body.classList.add('modal-open');
-        }
-
-        function closeProjectModal() {
-            modalEl.style.display = 'none';
-            document.body.classList.remove('modal-open');
-        }
-
-        // Close on button click
-        if (modalCloseBtn) {
-            modalCloseBtn.addEventListener('click', closeProjectModal);
-        }
-
-        // Close on backdrop click
-        if (modalBackdrop) {
-            modalBackdrop.addEventListener('click', closeProjectModal);
-        }
-
-        // Close on Escape key
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape' && modalEl.style.display === 'flex') {
-                closeProjectModal();
+            if (!modalEl) {
+                console.error('Modal element #project-modal not found in DOM.');
+                return;
             }
-        });
+
+            function closeProjectModal() {
+                modalEl.style.display = 'none';
+                document.body.classList.remove('modal-open');
+            }
+
+            if (modalCloseBtn) {
+                modalCloseBtn.addEventListener('click', () => {
+                    console.log('Modal close button clicked');
+                    closeProjectModal();
+                });
+            } else {
+                console.warn('Modal close button (.project-modal-close) not found.');
+            }
+
+            if (modalBackdrop) {
+                modalBackdrop.addEventListener('click', () => {
+                    console.log('Modal backdrop clicked');
+                    closeProjectModal();
+                });
+            } else {
+                console.warn('Modal backdrop (.project-modal-backdrop) not found.');
+            }
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modalEl.style.display === 'flex') {
+                    console.log('Escape pressed, closing modal');
+                    closeProjectModal();
+                }
+            });
+
+            window.openProjectModal = function(index) {
+                if (!modalEl) {
+                    console.error('Modal not initialized.');
+                    return;
+                }
+
+                const project = featuredProjects[index];
+                if (!project) {
+                    console.error('No project found at index', index);
+                    return;
+                }
+
+                console.log('Opening modal for project:', project.title);
+
+                modalTitleEl.textContent = project.title;
+                modalBodyEl.innerHTML = `
+                    <p><strong>Overview</strong></p>
+                    <p>${project.description}</p>
+                    <p><strong>Outcome</strong></p>
+                    <p>${project.outcome}</p>
+                    ${project.details ? project.details : ''}
+                `;
+
+                modalEl.style.display = 'flex';
+                document.body.classList.add('modal-open');
+            };
+        }
         
         // Load and parse YAML data
         async function loadYAMLData() {
@@ -1027,6 +1065,7 @@
 
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', () => {
+            initModal();
             loadYAMLData();
             renderFeaturedProjects();
         });
