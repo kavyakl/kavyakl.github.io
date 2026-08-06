@@ -1,4 +1,4 @@
-import { pipeline, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
+import { AutoTokenizer, env } from 'https://cdn.jsdelivr.net/npm/@xenova/transformers@2.17.2';
 
 // Disable local models to use browser-only
 env.allowLocalModels = false;
@@ -16,8 +16,8 @@ let currentModel = null;
 async function loadTokenizer(modelId) {
   try {
     console.log('Loading tokenizer for:', modelId);
-    // Load the tokenizer using Transformers.js
-    tokenizer = await pipeline('tokenization', modelId);
+    // Load the tokenizer using AutoTokenizer
+    tokenizer = await AutoTokenizer.from_pretrained(modelId);
     currentModel = modelId;
     console.log('Tokenizer loaded successfully');
   } catch (error) {
@@ -31,7 +31,7 @@ async function tokenizeText(text) {
     await loadTokenizer(modelSelect.value);
   }
   
-  const result = await tokenizer(text);
+  const result = tokenizer.encode(text);
   return result;
 }
 
@@ -56,21 +56,31 @@ async function initialize() {
       try {
         const result = await tokenizeText(text);
         
-        if (!result || !result.tokens || result.tokens.length === 0) {
+        if (!result || !result.token_ids || result.token_ids.length === 0) {
           tokensList.innerHTML = '<div style="color:#6B7280;font-size:0.9rem;">No tokens generated.</div>';
           return;
         }
         
         // Display token count
-        tokenCount.textContent = `Total tokens: ${result.tokens.length}`;
+        tokenCount.textContent = `Total tokens: ${result.token_ids.length}`;
         
         // Display tokens
-        result.tokens.forEach((token, i) => {
-          const chip = document.createElement('div');
-          chip.className = 'token-chip';
-          chip.textContent = token;
-          tokensList.appendChild(chip);
-        });
+        if (result.tokens) {
+          result.tokens.forEach((token) => {
+            const chip = document.createElement('div');
+            chip.className = 'token-chip';
+            chip.textContent = token;
+            tokensList.appendChild(chip);
+          });
+        } else {
+          // Fallback to showing IDs if tokens not available
+          result.token_ids.forEach((id) => {
+            const chip = document.createElement('div');
+            chip.className = 'token-chip';
+            chip.textContent = `ID: ${id}`;
+            tokensList.appendChild(chip);
+          });
+        }
         
       } catch (err) {
         console.error('Tokenization error:', err);
