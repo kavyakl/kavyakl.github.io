@@ -2,41 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tokenizer Playground</title>
+  <title>Tokenizer Arena</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="stylesheet" href="styles.css" />
-  <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@1.0.1/lib/index.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@lenml/tokenizers@0.2.1/lib/index.js"></script>
 </head>
 <body>
   <header>
-    <h1>Tokenizer Playground</h1>
-    <p>Explore how different models tokenize text using real tokenizer libraries.</p>
+    <h1>Tokenizer Arena</h1>
+    <p>Compare how different LLM tokenizers handle the same input text. Fewer tokens means cheaper inference and more context window space.</p>
   </header>
 
   <main>
-    <label for="model-select">Model</label>
-    <select id="model-select">
-      <option value="gpt2">GPT-2</option>
-      <option value="gpt4">GPT-4 (cl100k_base)</option>
-      <option value="llama2">Llama 2</option>
-      <option value="llama3">Llama 3</option>
-      <option value="cohere">Cohere</option>
-      <option value="claude">Claude</option>
-    </select>
-
-    <label for="text-input">Input text</label>
-    <textarea id="text-input" rows="8" placeholder="Type or paste text here...">The quick brown fox jumps over the lazy dog.</textarea>
-
-    <button id="tokenize-btn">Tokenize</button>
+    <div class="input-section">
+      <label for="text-input">Input text</label>
+      <textarea id="text-input" rows="6" placeholder="Type or paste text here...">The quick brown fox jumps over the lazy dog.</textarea>
+      
+      <div class="tokenizer-selection">
+        <label>Select tokenizers to compare:</label>
+        <div class="checkbox-group">
+          <label><input type="checkbox" value="gpt2" checked> GPT-2</label>
+          <label><input type="checkbox" value="gpt4"> GPT-4</label>
+          <label><input type="checkbox" value="llama"> Llama 2/3</label>
+          <label><input type="checkbox" value="claude"> Claude</label>
+        </div>
+      </div>
+      
+      <button id="tokenize-btn">Compare Tokenizers</button>
+    </div>
 
     <section id="output">
-      <h2>Tokens</h2>
-      <div id="token-count"></div>
-      <div id="tokens-list"></div>
+      <h2>Results</h2>
+      <div id="summary-stats"></div>
+      <div id="tokenizer-cards"></div>
     </section>
   </main>
 
+  <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@1.0.0/dist/gpt-tokenizer.min.js"></script>
   <script src="tokenizer.js"></script>
 </body>
 </html>
