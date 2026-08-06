@@ -43,74 +43,48 @@
     </section>
   </main>
 
-  <!-- Load @lenml/tokenizers from CDN -->
-  <script type="importmap">
-  {
-    "imports": {
-      "@lenml/tokenizers": "https://www.unpkg.com/@lenml/tokenizers@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-gpt2": "https://www.unpkg.com/@lenml/tokenizer-gpt2@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-gpt4": "https://www.unpkg.com/@lenml/tokenizer-gpt4@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-llama3": "https://www.unpkg.com/@lenml/tokenizer-llama3@3.7.2/dist/main.mjs",
-      "@lenml/tokenizer-claude": "https://www.unpkg.com/@lenml/tokenizer-claude@3.7.2/dist/main.mjs"
-    }
-  }
-  </script>
+  <!-- Load gpt-tokenizer library -->
+  <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@2.4.0/dist/gpt-tokenizer.min.js"></script>
   <script type="module">
-  // Tokenizer Arena - Using @lenml/tokenizers for real tokenization
-  import { fromPreTrained as fromGPT2 } from '@lenml/tokenizer-gpt2';
-  import { fromPreTrained as fromGPT4 } from '@lenml/tokenizer-gpt4';
-  import { fromPreTrained as fromLlama3 } from '@lenml/tokenizer-llama3';
-  import { fromPreTrained as fromClaude } from '@lenml/tokenizer-claude';
-
+  // Tokenizer Arena - Using gpt-tokenizer for real tokenization
+  const { GPTTokenizer, GPT2Tokenizer, GPT3Tokenizer } = window.GPTTokenizer;
+  
   const textInput = document.getElementById('text-input');
   const tokenizeBtn = document.getElementById('tokenize-btn');
   const summaryStats = document.getElementById('summary-stats');
   const tokenizerCards = document.getElementById('tokenizer-cards');
   const loadingDiv = document.getElementById('loading');
 
-  // Tokenizer instances
-  let tokenizers = {};
-
-  // Initialize all tokenizers on page load
-  async function initializeTokenizers() {
-    loadingDiv.style.display = 'flex';
-    loadingDiv.querySelector('span').textContent = 'Loading tokenizers...';
-    
-    try {
-      console.log('Loading GPT-2 tokenizer...');
-      const gpt2 = fromGPT2();
-      console.log('GPT-2 loaded:', !!gpt2, 'Has encode:', typeof gpt2.encode);
-      
-      console.log('Loading GPT-4 tokenizer...');
-      const gpt4 = fromGPT4();
-      console.log('GPT-4 loaded:', !!gpt4, 'Has encode:', typeof gpt4.encode);
-      
-      console.log('Loading Llama 3 tokenizer...');
-      const llama3 = fromLlama3();
-      console.log('Llama 3 loaded:', !!llama3, 'Has encode:', typeof llama3.encode);
-      
-      console.log('Loading Claude tokenizer...');
-      const claude = fromClaude();
-      console.log('Claude loaded:', !!claude, 'Has encode:', typeof claude.encode);
-      
-      tokenizers = {
-        gpt2: { name: 'GPT-2', encoding: 'r50k_base', tokenizer: gpt2 },
-        gpt4: { name: 'GPT-4', encoding: 'cl100k_base', tokenizer: gpt4 },
-        llama3: { name: 'Llama 3', encoding: 'llama3', tokenizer: llama3 },
-        claude: { name: 'Claude 3', encoding: 'claude', tokenizer: claude }
-      };
-      
-      loadingDiv.style.display = 'none';
-      console.log('All tokenizers initialized successfully');
-    } catch (error) {
-      console.error('Failed to load tokenizers:', error);
-      loadingDiv.innerHTML = `
-        <div class="error-message" style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;color:#b91c1c;">
-          <strong>Error loading tokenizers:</strong> ${error.message}
-        </div>
-      `;
+  // Tokenizer definitions
+  const tokenizers = {
+    gpt2: { 
+      name: 'GPT-2', 
+      encoding: 'r50k_base',
+      tokenizer: GPT2Tokenizer ? new GPT2Tokenizer() : null
+    },
+    gpt4: { 
+      name: 'GPT-4', 
+      encoding: 'cl100k_base',
+      tokenizer: GPTTokenizer ? new GPTTokenizer('cl100k_base') : null
+    },
+    llama3: { 
+      name: 'Llama 3', 
+      encoding: 'llama3',
+      tokenizer: null // Will implement later
+    },
+    claude: { 
+      name: 'Claude 3', 
+      encoding: 'claude',
+      tokenizer: null // Will implement later
     }
-  }
+  };
+
+  console.log('Tokenizers loaded:', {
+    gpt2: !!tokenizers.gpt2.tokenizer,
+    gpt4: !!tokenizers.gpt4.tokenizer,
+    GPTTokenizer: !!window.GPTTokenizer,
+    GPT2Tokenizer: !!window.GPT2Tokenizer
+  });
 
   // Main tokenization function
   async function compareTokenizers() {
@@ -144,37 +118,20 @@
         if (!tokenizerInfo) continue;
         
         const tokenizer = tokenizerInfo.tokenizer;
-        if (!tokenizer) continue;
+        if (!tokenizer) {
+          console.error(`Tokenizer ${tokenizerId} not available`);
+          continue;
+        }
         
         const startTime = performance.now();
         
-        // Try different encode API signatures
-        let tokenIds;
-        try {
-          // Try: encode(text, options)
-          const encoded = tokenizer.encode(text, { add_special_tokens: false });
-          if (encoded && encoded.input_ids) {
-            tokenIds = encoded.input_ids;
-          } else if (Array.isArray(encoded)) {
-            tokenIds = encoded;
-          } else {
-            console.error('Unexpected encode result:', encoded);
-            throw new Error('Tokenizer encode returned unexpected format');
-          }
-        } catch (e) {
-          // Fallback: try encode(text)
-          const encoded = tokenizer.encode(text);
-          if (encoded && encoded.input_ids) {
-            tokenIds = encoded.input_ids;
-          } else if (Array.isArray(encoded)) {
-            tokenIds = encoded;
-          } else {
-            throw e;
-          }
-        }
+        // Encode text
+        const tokenIds = tokenizer.encode(text);
+        console.log(`${tokenizerId} result:`, tokenIds);
         
         const endTime = performance.now();
         
+        // Decode tokens to show actual text
         const decodedTokens = tokenIds.map(id => tokenizer.decode([id]));
         
         results.push({
@@ -236,9 +193,8 @@
   tokenizeBtn.addEventListener('click', compareTokenizers);
   
   window.addEventListener('DOMContentLoaded', () => {
-    initializeTokenizers();
     if (textInput.value.trim()) {
-      setTimeout(compareTokenizers, 1000);
+      compareTokenizers();
     }
   });
 
