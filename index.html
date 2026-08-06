@@ -548,6 +548,81 @@
           margin: 0 auto;
         }
         
+        /* Tokenizer Playground */
+        .tokenizer-container {
+            background: #F9FAFB;
+            border: 1px solid #E5E7EB;
+            border-radius: 12px;
+            padding: 24px;
+            margin-top: 20px;
+        }
+        
+        .tokenizer-controls {
+            display: grid;
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+        
+        .tokenizer-controls label {
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: #1F2937;
+        }
+        
+        .tokenizer-controls select,
+        .tokenizer-controls textarea,
+        .tokenizer-controls button {
+            width: 100%;
+            padding: 10px 12px;
+            border-radius: 8px;
+            border: 1px solid #E5E7EB;
+            font-size: 0.95rem;
+            background: #fff;
+        }
+        
+        .tokenizer-controls button {
+            background: #1F3A93;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background 0.2s ease;
+        }
+        
+        .tokenizer-controls button:hover {
+            background: #172A7A;
+        }
+        
+        .tokenizer-output {
+            background: #fff;
+            border: 1px solid #E5E7EB;
+            border-radius: 8px;
+            padding: 16px;
+        }
+        
+        .tokenizer-output h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1F2937;
+            margin: 0 0 12px 0;
+        }
+        
+        #tokenizer-tokens-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+        }
+        
+        .tokenizer-token-chip {
+            background: #EAF1FF;
+            border: 1px solid #1F3A93;
+            border-radius: 999px;
+            padding: 4px 8px;
+            font-size: 0.8rem;
+            font-family: ui-monospace, SFMonoRegular, 'Fira Code', monospace;
+            white-space: pre;
+        }
+        
         /* Ensure modal content is scrollable but page behind is not */
         body.modal-open {
           overflow: hidden;
@@ -642,6 +717,31 @@
             <a href="#" id="hero-location"><i class="fas fa-map-marker-alt"></i> Location</a>
         </div>
     </header>
+
+    <!-- Tokenizer Playground -->
+    <section class="section">
+        <h2 class="section-title">Tokenizer Playground</h2>
+        <p class="section-intro">Explore how different models tokenize text. A simple tool to understand tokenization in modern ML systems.</p>
+        
+        <div class="tokenizer-container">
+            <div class="tokenizer-controls">
+                <label for="tokenizer-model-select">Model</label>
+                <select id="tokenizer-model-select">
+                    <option value="gpt2">gpt2</option>
+                </select>
+
+                <label for="tokenizer-text-input">Input text</label>
+                <textarea id="tokenizer-text-input" rows="6" placeholder="Type or paste text here..."></textarea>
+
+                <button id="tokenizer-btn">Tokenize</button>
+            </div>
+
+            <div class="tokenizer-output">
+                <h3>Tokens</h3>
+                <div id="tokenizer-tokens-list"></div>
+            </div>
+        </div>
+    </section>
 
     <!-- Featured Projects -->
     <section class="section">
@@ -745,18 +845,7 @@
         <i class="fas fa-download"></i> Download Resume
     </a>
 
-    <!-- Project Details Modal -->
-    <div id="project-modal" class="project-modal" style="display:none;">
-      <div class="project-modal-backdrop"></div>
-      <div class="project-modal-content">
-        <button class="project-modal-close" aria-label="Close">
-          <i class="fas fa-times"></i>
-        </button>
-        <h3 id="modal-title" class="modal-title"></h3>
-        <div id="modal-body" class="modal-body"></div>
-      </div>
-    </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/@huggingface/tokenizers@0.13.3/dist/tokenizers.min.js"></script>
     <script>
         // Featured Projects Data
         const featuredProjects = [
@@ -1046,12 +1135,87 @@
                 }
             });
         });
+        
+        // Tokenizer functionality
+        let currentTokenizer = null;
+        
+        async function loadTokenizer(modelId) {
+            if (modelId === 'gpt2') {
+                const url = 'https://huggingface.co/gpt2/resolve/main/tokenizer.json';
+                const res = await fetch(url);
+                const json = await res.json();
+                // Use the global Tokenizer from the UMD build
+                if (window.Tokenizer) {
+                    try {
+                        currentTokenizer = window.Tokenizer.fromJSON(json);
+                    } catch (e) {
+                        // Try alternative constructor
+                        currentTokenizer = new window.Tokenizer(json);
+                    }
+                }
+            }
+        }
+        
+        async function initializeTokenizer() {
+            // Wait for tokenizer library to be available
+            let attempts = 0;
+            while (!window.Tokenizer && attempts < 30) {
+                await new Promise(resolve => setTimeout(resolve, 200));
+                attempts++;
+            }
+            
+            if (window.Tokenizer) {
+                const modelSelect = document.getElementById('tokenizer-model-select');
+                const textInput = document.getElementById('tokenizer-text-input');
+                const tokenizeBtn = document.getElementById('tokenizer-btn');
+                const tokensList = document.getElementById('tokenizer-tokens-list');
+                
+                async function tokenizeText(text) {
+                    if (!currentTokenizer) {
+                        await loadTokenizer(modelSelect.value);
+                    }
+                    if (!currentTokenizer) {
+                        throw new Error('Tokenizer failed to initialize');
+                    }
+                    const encoding = currentTokenizer.encode(text);
+                    return {
+                        tokens: encoding.tokens,
+                        ids: encoding.ids,
+                    };
+                }
+                
+                tokenizeBtn.addEventListener('click', async () => {
+                    const text = textInput.value;
+                    tokensList.innerHTML = '';
+                    try {
+                        const { tokens, ids } = await tokenizeText(text);
+                        tokens.forEach((tok, i) => {
+                            const chip = document.createElement('div');
+                            chip.className = 'tokenizer-token-chip';
+                            chip.textContent = `${tok} (${ids[i]})`;
+                            tokensList.appendChild(chip);
+                        });
+                    } catch (err) {
+                        console.error('Tokenizer error:', err);
+                        tokensList.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${err.message}</div>`;
+                    }
+                });
+                
+                // Load initial tokenizer
+                loadTokenizer(modelSelect.value);
+            } else {
+                console.error('Tokenizer library failed to load');
+                document.getElementById('tokenizer-tokens-list').innerHTML = 
+                    '<div style="color:#b91c1c;font-size:0.9rem;">Tokenizer library failed to load. Please refresh the page.</div>';
+            }
+        }
 
         // Load data when page loads
         document.addEventListener('DOMContentLoaded', () => {
             initModal();
             loadYAMLData();
             renderFeaturedProjects();
+            initializeTokenizer();
         });
     </script>
 </body>
