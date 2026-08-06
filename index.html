@@ -654,22 +654,34 @@
     <!-- Research -->
     <section class="section">
         <h2 class="section-title">Research</h2>
-        <p class="section-intro">My research sits at the intersection of model efficiency, inference optimization, and edge deployment. I work on methods that reduce memory footprint, improve latency, and preserve accuracy under real-world constraints.</p>
+        <p class="section-intro">
+            I build ML systems that make neural networks smaller, faster, and more energy-efficient on constrained hardware. My work connects algorithmic compression (pruning, sparsity) with compiler-level transformations and real deployment on microcontrollers and edge devices.
+        </p>
+
         <div class="research-themes">
             <div class="theme-card">
-                <h4>Sparse and Structured Pruning</h4>
-                <p>Activation-aware pruning for MLPs (ReLU, Sigmoid, Tanh) and structured pruning for CNNs. Combines correlation-regression analysis with dynamic sparse training to reduce model size while preserving accuracy.</p>
+                <h4>Activation-Aware MLP Compression</h4>
+                <p>
+                    End-to-end pipeline for pruning MLPs with ReLU, Sigmoid, and Tanh using activation profiling, correlation-regression analysis, and activation-specific thresholds. Validated on MCUs (RP2040, ESP32) with measured speed, memory, and energy benefits.
+                </p>
             </div>
             <div class="theme-card">
-                <h4>Compiler-Aware Inference</h4>
-                <p>ONNX-based model transformations and quantization-aware pipelines that translate algorithmic sparsity into deployment-ready models for edge and GPU targets.</p>
+                <h4>CNN Compression and Dynamic Sparse Training</h4>
+                <p>
+                    Structured pruning and dynamic sparse training for CNNs (LeNet-5, VGG-11), integrated with quantization and ONNX export. Focuses on deployment-ready sparsity patterns that map efficiently to edge and GPU runtimes.
+                </p>
             </div>
             <div class="theme-card">
-                <h4>Edge Deployment</h4>
-                <p>Real-hardware validation on microcontrollers (e.g., RP2040, ESP32) and distributed edge nodes. Measures speed, memory, and energy trade-offs for optimized neural networks.</p>
+                <h4>Compiler-Aware Inference and Edge Deployment</h4>
+                <p>
+                    ONNX-based model transformations, quantization-aware pipelines, and hardware-cost modeling that translate algorithmic sparsity into real latency, memory, and energy improvements on microcontrollers, GPUs, and FPGAs.
+                </p>
             </div>
         </div>
-        <p class="section-intro" style="margin-top: 24px; font-style: italic;">Recent work includes activation-aware pruning for MLPs, dynamic sparse training for CNNs, and hardware validation on microcontroller platforms.</p>
+
+        <p class="section-intro" style="margin-top: 24px; font-style: italic;">
+            The common thread is systems: turning compression ideas into measurable gains on real hardware, not just simulated FLOPs.
+        </p>
     </section>
 
     <!-- Publications -->
