@@ -111,6 +111,12 @@ async function compareTokenizers() {
     // Tokenize with each selected tokenizer
     for (const tokenizerId of selectedTokenizerIds) {
       const tokenizer = tokenizerDefs[tokenizerId];
+      
+      if (!tokenizer.tokenizer) {
+        console.error(`Tokenizer ${tokenizerId} not initialized`);
+        continue;
+      }
+      
       const startTime = performance.now();
       const tokenIds = tokenizer.tokenize(text);
       const endTime = performance.now();
@@ -166,7 +172,6 @@ async function compareTokenizers() {
       
       // Show first 30 tokens with token IDs
       const previewTokens = result.tokens.slice(0, 30);
-      const previewIds = result.tokenIds.slice(0, 30);
       const moreIndicator = result.tokens.length > 30 ? ` (+${result.tokens.length - 30} more)` : '';
       
       card.innerHTML = `
