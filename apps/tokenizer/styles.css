@@ -99,6 +99,29 @@ main {
   opacity: 0.6;
   cursor: not-allowed;
 }
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 16px;
+  padding: 12px;
+  background: #f3f4f6;
+  border-radius: 8px;
+  color: #6b7280;
+  font-size: 0.9rem;
+}
+.spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid #e5e7eb;
+  border-top-color: #1f3a93;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
 #output {
   background: #fff;
   border: 1px solid #e5e7eb;
@@ -184,6 +207,7 @@ main {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
+  margin-bottom: 12px;
 }
 .token-chip {
   background: #eaf1ff;
@@ -198,6 +222,33 @@ main {
 }
 .token-chip:hover {
   background: #dbeafe;
+}
+.token-chip.more {
+  background: #f3f4f6;
+  border-color: #9ca3af;
+  color: #6b7280;
+}
+.token-ids {
+  font-size: 0.75rem;
+  font-family: ui-monospace, SFMonoRegular, 'Fira Code', monospace;
+  color: #6b7280;
+  background: #f3f4f6;
+  padding: 8px;
+  border-radius: 4px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+.error-message {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 16px;
+  color: #b91c1c;
+  font-size: 0.9rem;
+}
+.error-message strong {
+  display: block;
+  margin-bottom: 4px;
 }
 
 @media (max-width: 768px) {

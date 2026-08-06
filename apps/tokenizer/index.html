@@ -2,13 +2,14 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Tokenizer Arena</title>
+  <title>Tokenizer Arena - Compare LLM Tokenizers</title>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Compare how different LLM tokenizers (GPT-4, Claude, Llama 3, GPT-2) handle the same input text. See real token counts and token IDs." />
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
   <header>
-    <h1>Tokenizer Arena</h1>
+    <h1>🦙 Tokenizer Arena</h1>
     <p>Compare how different LLM tokenizers handle the same input text. Fewer tokens means cheaper inference and more context window space.</p>
   </header>
 
@@ -21,13 +22,17 @@
         <label>Select tokenizers to compare:</label>
         <div class="checkbox-group">
           <label><input type="checkbox" value="gpt2" checked> GPT-2</label>
-          <label><input type="checkbox" value="gpt4"> GPT-4</label>
-          <label><input type="checkbox" value="llama"> Llama 2/3</label>
-          <label><input type="checkbox" value="claude"> Claude</label>
+          <label><input type="checkbox" value="gpt4" checked> GPT-4</label>
+          <label><input type="checkbox" value="llama3" checked> Llama 3</label>
+          <label><input type="checkbox" value="claude"> Claude 3</label>
         </div>
       </div>
       
       <button id="tokenize-btn">Compare Tokenizers</button>
+      <div id="loading" class="loading" style="display: none;">
+        <div class="spinner"></div>
+        <span>Loading tokenizers...</span>
+      </div>
     </div>
 
     <section id="output">
@@ -37,7 +42,18 @@
     </section>
   </main>
 
-  <script src="https://cdn.jsdelivr.net/npm/gpt-tokenizer@1.0.0/dist/gpt-tokenizer.min.js"></script>
-  <script src="tokenizer.js"></script>
+  <!-- Load @lenml/tokenizers from CDN -->
+  <script type="importmap">
+  {
+    "imports": {
+      "@lenml/tokenizers": "https://cdn.jsdelivr.net/npm/@lenml/tokenizers@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-gpt2": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt2@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-gpt4": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-gpt4@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-llama3": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-llama3@3.7.2/dist/main.mjs",
+      "@lenml/tokenizer-claude": "https://cdn.jsdelivr.net/npm/@lenml/tokenizer-claude@3.7.2/dist/main.mjs"
+    }
+  }
+  </script>
+  <script type="module" src="tokenizer.js"></script>
 </body>
 </html>

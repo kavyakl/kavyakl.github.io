@@ -1,98 +1,72 @@
-// Simple tokenizer implementations for different models
-// Using GPT tokenizer for GPT-2 and basic implementations for others
+// Tokenizer Arena - Using @lenml/tokenizers for real tokenization
+// Real tokenizers for GPT-4, Claude, Llama 3, GPT-2
+
+import { fromPreTrained as fromGPT2 } from '@lenml/tokenizer-gpt2';
+import { fromPreTrained as fromGPT4 } from '@lenml/tokenizer-gpt4';
+import { fromPreTrained as fromLlama3 } from '@lenml/tokenizer-llama3';
+import { fromPreTrained as fromClaude } from '@lenml/tokenizer-claude';
 
 const textInput = document.getElementById('text-input');
 const tokenizeBtn = document.getElementById('tokenize-btn');
 const summaryStats = document.getElementById('summary-stats');
 const tokenizerCards = document.getElementById('tokenizer-cards');
+const loadingDiv = document.getElementById('loading');
 
-// Simple tokenization implementations
-const tokenizers = {
+// Tokenizer definitions with real implementations
+const tokenizerDefs = {
   gpt2: {
     name: 'GPT-2',
     encoding: 'r50k_base',
-    tokenize: (text) => {
-      if (window.GPTTokenizer) {
-        const encoder = new window.GPTTokenizer();
-        const tokens = encoder.encode(text);
-        return tokens.bpe.map(t => t[0]);
-      }
-      // Fallback: simple whitespace + character-based tokenization
-      return fallbackTokenize(text, 50);
+    loader: fromGPT2,
+    tokenizer: null,
+    async init() {
+      this.tokenizer = this.loader();
+    },
+    tokenize(text) {
+      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
+      return encoded.input_ids;
     }
   },
   gpt4: {
     name: 'GPT-4',
     encoding: 'cl100k_base',
-    tokenize: (text) => {
-      // GPT-4 uses cl100k_base which is more efficient
-      // Simulate by being ~30% more efficient than GPT-2
-      const gpt2Tokens = tokenizers.gpt2.tokenize(text);
-      return gpt2Tokens.slice(0, Math.ceil(gpt2Tokens.length * 0.7));
+    loader: fromGPT4,
+    tokenizer: null,
+    async init() {
+      this.tokenizer = this.loader();
+    },
+    tokenize(text) {
+      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
+      return encoded.input_ids;
     }
   },
-  llama: {
-    name: 'Llama 2/3',
-    encoding: 'llama',
-    tokenize: (text) => {
-      // Llama uses sentencepiece-like tokenization
-      // Simulate with subword tokenization
-      return llamaTokenize(text);
+  llama3: {
+    name: 'Llama 3',
+    encoding: 'llama3',
+    loader: fromLlama3,
+    tokenizer: null,
+    async init() {
+      this.tokenizer = this.loader();
+    },
+    tokenize(text) {
+      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
+      return encoded.input_ids;
     }
   },
   claude: {
-    name: 'Claude',
+    name: 'Claude 3',
     encoding: 'claude',
-    tokenize: (text) => {
-      // Claude uses a similar approach to GPT-4
-      const gpt2Tokens = tokenizers.gpt2.tokenize(text);
-      return gpt2Tokens.slice(0, Math.ceil(gpt2Tokens.length * 0.65));
+    loader: fromClaude,
+    tokenizer: null,
+    async init() {
+      this.tokenizer = this.loader();
+    },
+    tokenize(text) {
+      const encoded = this.tokenizer.encode(text, null, { add_special_tokens: false });
+      return encoded.input_ids;
     }
   }
 };
-
-// Fallback tokenization (whitespace + common patterns)
-function fallbackTokenize(text, vocabSize) {
-  const tokens = [];
-  const words = text.split(/(\s+|[.,!?;:'"()])/);
-  
-  words.forEach(word => {
-    if (word.trim() === '') {
-      // Keep punctuation/whitespace as separate tokens
-      if (word) tokens.push(word);
-    } else if (word.length <= 4) {
-      tokens.push(word);
-    } else {
-      // Split longer words into subwords
-      for (let i = 0; i < word.length; i += 3) {
-        tokens.push(word.slice(i, i + 3));
-      }
-    }
-  });
-  
-  return tokens.filter(t => t.length > 0);
-}
-
-// Llama-style subword tokenization
-function llamaTokenize(text) {
-  const tokens = [];
-  const words = text.split(/(\s+)/);
-  
-  words.forEach(word => {
-    if (word.match(/^\s+$/)) {
-      tokens.push(word);
-    } else {
-      // Llama tends to use more subwords
-      const subwords = [];
-      for (let i = 0; i < word.length; i += 2) {
-        subwords.push(word.slice(i, i + 2));
-      }
-      tokens.push(...subwords);
-    }
-  });
-  
-  return tokens.filter(t => t.length > 0);
-}
 
 // Main tokenization function
 async function compareTokenizers() {
@@ -104,18 +78,19 @@ async function compareTokenizers() {
   }
   
   // Get selected tokenizers
-  const selectedTokenizers = [];
+  const selectedTokenizerIds = [];
   document.querySelectorAll('.checkbox-group input:checked').forEach(checkbox => {
-    selectedTokenizers.push(checkbox.value);
+    selectedTokenizerIds.push(checkbox.value);
   });
   
-  if (selectedTokenizers.length === 0) {
+  if (selectedTokenizerIds.length === 0) {
     alert('Please select at least one tokenizer');
     return;
   }
   
+  // Show loading
   tokenizeBtn.disabled = true;
-  tokenizeBtn.textContent = 'Tokenizing...';
+  loadingDiv.style.display = 'flex';
   
   // Clear previous results
   tokenizerCards.innerHTML = '';
@@ -125,19 +100,34 @@ async function compareTokenizers() {
   const results = [];
   
   try {
+    // Initialize selected tokenizers
+    for (const id of selectedTokenizerIds) {
+      const tokenizer = tokenizerDefs[id];
+      if (!tokenizer.tokenizer) {
+        await tokenizer.init();
+      }
+    }
+    
     // Tokenize with each selected tokenizer
-    for (const tokenizerId of selectedTokenizers) {
-      const tokenizer = tokenizers[tokenizerId];
+    for (const tokenizerId of selectedTokenizerIds) {
+      const tokenizer = tokenizerDefs[tokenizerId];
       const startTime = performance.now();
-      const tokens = tokenizer.tokenize(text);
+      const tokenIds = tokenizer.tokenize(text);
       const endTime = performance.now();
+      
+      // Decode tokens to show actual text
+      const decodedTokens = tokenIds.map(id => {
+        const decoded = tokenizer.tokenizer.decode([id]);
+        return decoded;
+      });
       
       results.push({
         id: tokenizerId,
         name: tokenizer.name,
         encoding: tokenizer.encoding,
-        tokens: tokens,
-        tokenCount: tokens.length,
+        tokenIds: tokenIds,
+        tokens: decodedTokens,
+        tokenCount: tokenIds.length,
         encodingTime: (endTime - startTime).toFixed(2)
       });
     }
@@ -150,6 +140,8 @@ async function compareTokenizers() {
       const bestTokenizer = results.find(r => r.tokenCount === minTokens);
       const worstTokenizer = results.find(r => r.tokenCount === maxTokens);
       
+      const savings = ((1 - minTokens / maxTokens) * 100).toFixed(1);
+      
       summaryStats.innerHTML = `
         <div class="stat-row">
           <span class="stat-label">Best (fewest tokens):</span>
@@ -160,8 +152,8 @@ async function compareTokenizers() {
           <span class="stat-value worst">${worstTokenizer.name} (${maxTokens} tokens)</span>
         </div>
         <div class="stat-row">
-          <span class="stat-label">Difference:</span>
-          <span class="stat-value">${maxTokens - minTokens} tokens (${((maxTokens / minTokens - 1) * 100).toFixed(1)}%)</span>
+          <span class="stat-label">Savings:</span>
+          <span class="stat-value">${savings}% fewer tokens with ${bestTokenizer.name}</span>
         </div>
       `;
       summaryStats.classList.add('visible');
@@ -172,8 +164,10 @@ async function compareTokenizers() {
       const card = document.createElement('div');
       card.className = 'tokenizer-card';
       
-      const previewTokens = result.tokens.slice(0, 20);
-      const moreIndicator = result.tokens.length > 20 ? ` (+${result.tokens.length - 20} more)` : '';
+      // Show first 30 tokens with token IDs
+      const previewTokens = result.tokens.slice(0, 30);
+      const previewIds = result.tokenIds.slice(0, 30);
+      const moreIndicator = result.tokens.length > 30 ? ` (+${result.tokens.length - 30} more)` : '';
       
       card.innerHTML = `
         <div class="tokenizer-card-header">
@@ -182,8 +176,15 @@ async function compareTokenizers() {
         </div>
         <div class="encoding-time">${result.encoding} • ${result.encodingTime}ms</div>
         <div class="token-preview">
-          ${previewTokens.map(t => `<span class="token-chip">${t}</span>`).join('')}
-          ${moreIndicator ? `<span class="token-chip" style="background: #f3f4f6; border-color: #9ca3af;">${moreIndicator}</span>` : ''}
+          ${previewTokens.map((t, i) => `
+            <span class="token-chip" title="Token ID: ${result.tokenIds[i]}">
+              ${escapeHtml(t)}
+            </span>
+          `).join('')}
+          ${moreIndicator ? `<span class="token-chip more">${moreIndicator}</span>` : ''}
+        </div>
+        <div class="token-ids">
+          Token IDs: [${result.tokenIds.slice(0, 15).join(', ')}${result.tokenIds.length > 15 ? '...' : ''}]
         </div>
       `;
       
@@ -192,11 +193,23 @@ async function compareTokenizers() {
     
   } catch (error) {
     console.error('Tokenization error:', error);
-    tokenizerCards.innerHTML = `<div style="color:#b91c1c;font-size:0.9rem;">Error: ${error.message}</div>`;
+    tokenizerCards.innerHTML = `
+      <div class="error-message">
+        <strong>Error:</strong> ${error.message}
+        <br><small>Check console for details</small>
+      </div>
+    `;
   } finally {
     tokenizeBtn.disabled = false;
-    tokenizeBtn.textContent = 'Compare Tokenizers';
+    loadingDiv.style.display = 'none';
   }
+}
+
+// Helper function to escape HTML
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
 }
 
 // Event listeners
@@ -205,6 +218,14 @@ tokenizeBtn.addEventListener('click', compareTokenizers);
 // Auto-tokenize on page load with sample text
 window.addEventListener('DOMContentLoaded', () => {
   if (textInput.value.trim()) {
+    compareTokenizers();
+  }
+});
+
+// Allow Enter key to trigger tokenization (with Ctrl/Cmd)
+textInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+    e.preventDefault();
     compareTokenizers();
   }
 });
