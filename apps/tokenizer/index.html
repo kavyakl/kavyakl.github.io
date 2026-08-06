@@ -53,6 +53,174 @@
     }
   }
   </script>
-  <script type="module" src="tokenizer.js"></script>
+  <script type="module">
+  // Tokenizer Arena - Using @lenml/tokenizers for real tokenization
+  import { fromPreTrained as fromGPT2 } from '@lenml/tokenizer-gpt2';
+  import { fromPreTrained as fromGPT4 } from '@lenml/tokenizer-gpt4';
+  import { fromPreTrained as fromLlama3 } from '@lenml/tokenizer-llama3';
+  import { fromPreTrained as fromClaude } from '@lenml/tokenizer-claude';
+
+  const textInput = document.getElementById('text-input');
+  const tokenizeBtn = document.getElementById('tokenize-btn');
+  const summaryStats = document.getElementById('summary-stats');
+  const tokenizerCards = document.getElementById('tokenizer-cards');
+  const loadingDiv = document.getElementById('loading');
+
+  // Tokenizer instances
+  let tokenizers = {};
+
+  // Initialize all tokenizers on page load
+  async function initializeTokenizers() {
+    loadingDiv.style.display = 'flex';
+    loadingDiv.querySelector('span').textContent = 'Loading tokenizers...';
+    
+    try {
+      console.log('Loading GPT-2 tokenizer...');
+      const gpt2 = fromGPT2();
+      console.log('GPT-2 loaded:', !!gpt2);
+      
+      console.log('Loading GPT-4 tokenizer...');
+      const gpt4 = fromGPT4();
+      console.log('GPT-4 loaded:', !!gpt4);
+      
+      console.log('Loading Llama 3 tokenizer...');
+      const llama3 = fromLlama3();
+      console.log('Llama 3 loaded:', !!llama3);
+      
+      console.log('Loading Claude tokenizer...');
+      const claude = fromClaude();
+      console.log('Claude loaded:', !!claude);
+      
+      tokenizers = {
+        gpt2: { name: 'GPT-2', encoding: 'r50k_base', tokenizer: gpt2 },
+        gpt4: { name: 'GPT-4', encoding: 'cl100k_base', tokenizer: gpt4 },
+        llama3: { name: 'Llama 3', encoding: 'llama3', tokenizer: llama3 },
+        claude: { name: 'Claude 3', encoding: 'claude', tokenizer: claude }
+      };
+      
+      loadingDiv.style.display = 'none';
+      console.log('All tokenizers initialized successfully');
+    } catch (error) {
+      console.error('Failed to load tokenizers:', error);
+      loadingDiv.innerHTML = `
+        <div class="error-message" style="background:#fef2f2;border:1px solid #fecaca;border-radius:8px;padding:12px;color:#b91c1c;">
+          <strong>Error loading tokenizers:</strong> ${error.message}
+        </div>
+      `;
+    }
+  }
+
+  // Main tokenization function
+  async function compareTokenizers() {
+    const text = textInput.value;
+    
+    if (!text.trim()) {
+      alert('Please enter some text to tokenize');
+      return;
+    }
+    
+    const selectedTokenizerIds = [];
+    document.querySelectorAll('.checkbox-group input:checked').forEach(checkbox => {
+      selectedTokenizerIds.push(checkbox.value);
+    });
+    
+    if (selectedTokenizerIds.length === 0) {
+      alert('Please select at least one tokenizer');
+      return;
+    }
+    
+    tokenizeBtn.disabled = true;
+    tokenizerCards.innerHTML = '';
+    summaryStats.innerHTML = '';
+    summaryStats.classList.remove('visible');
+    
+    const results = [];
+    
+    try {
+      for (const tokenizerId of selectedTokenizerIds) {
+        const tokenizerInfo = tokenizers[tokenizerId];
+        if (!tokenizerInfo) continue;
+        
+        const tokenizer = tokenizerInfo.tokenizer;
+        if (!tokenizer) continue;
+        
+        const startTime = performance.now();
+        const encoded = tokenizer.encode(text, null, { add_special_tokens: false });
+        const tokenIds = encoded.input_ids;
+        const endTime = performance.now();
+        
+        const decodedTokens = tokenIds.map(id => tokenizer.decode([id]));
+        
+        results.push({
+          id: tokenizerId,
+          name: tokenizerInfo.name,
+          encoding: tokenizerInfo.encoding,
+          tokenIds: tokenIds,
+          tokens: decodedTokens,
+          tokenCount: tokenIds.length,
+          encodingTime: (endTime - startTime).toFixed(2)
+        });
+      }
+      
+      if (results.length > 1) {
+        const tokenCounts = results.map(r => r.tokenCount);
+        const minTokens = Math.min(...tokenCounts);
+        const maxTokens = Math.max(...tokenCounts);
+        const bestTokenizer = results.find(r => r.tokenCount === minTokens);
+        const worstTokenizer = results.find(r => r.tokenCount === maxTokens);
+        const savings = ((1 - minTokens / maxTokens) * 100).toFixed(1);
+        
+        summaryStats.innerHTML = `
+          <div class="stat-row"><span class="stat-label">Best:</span><span class="stat-value best">${bestTokenizer.name} (${minTokens} tokens)</span></div>
+          <div class="stat-row"><span class="stat-label">Worst:</span><span class="stat-value worst">${worstTokenizer.name} (${maxTokens} tokens)</span></div>
+          <div class="stat-row"><span class="stat-label">Savings:</span><span class="stat-value">${savings}% with ${bestTokenizer.name}</span></div>
+        `;
+        summaryStats.classList.add('visible');
+      }
+      
+      results.forEach(result => {
+        const card = document.createElement('div');
+        card.className = 'tokenizer-card';
+        const preview = result.tokens.slice(0, 30);
+        const more = result.tokens.length > 30 ? ` (+${result.tokens.length - 30} more)` : '';
+        
+        card.innerHTML = `
+          <div class="tokenizer-card-header"><span class="tokenizer-name">${result.name}</span><span class="token-count">${result.tokenCount}</span></div>
+          <div class="encoding-time">${result.encoding} • ${result.encodingTime}ms</div>
+          <div class="token-preview">${preview.map((t, i) => `<span class="token-chip" title="ID: ${result.tokenIds[i]}">${escapeHtml(t)}</span>`).join('')}${more ? `<span class="token-chip more">${more}</span>` : ''}</div>
+          <div class="token-ids">IDs: [${result.tokenIds.slice(0, 15).join(', ')}${result.tokenIds.length > 15 ? '...' : ''}]</div>
+        `;
+        tokenizerCards.appendChild(card);
+      });
+    } catch (error) {
+      console.error('Tokenization error:', error);
+      tokenizerCards.innerHTML = `<div class="error-message"><strong>Error:</strong> ${error.message}</div>`;
+    } finally {
+      tokenizeBtn.disabled = false;
+    }
+  }
+
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  tokenizeBtn.addEventListener('click', compareTokenizers);
+  
+  window.addEventListener('DOMContentLoaded', () => {
+    initializeTokenizers();
+    if (textInput.value.trim()) {
+      setTimeout(compareTokenizers, 1000);
+    }
+  });
+
+  textInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      compareTokenizers();
+    }
+  });
+  </script>
 </body>
 </html>
