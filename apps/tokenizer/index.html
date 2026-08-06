@@ -148,12 +148,11 @@
         
         const startTime = performance.now();
         
-        // Encode text - use _encode_text for simple tokenization
-        const encoded = tokenizer._encode_text(text);
-        const tokenIds = encoded;
+        // Use correct API: tokenizer.encode(text, text_pair, options)
+        const encoded = tokenizer.encode(text, null, { add_special_tokens: false });
+        const tokenIds = encoded.input_ids;
         const endTime = performance.now();
         
-        // Decode tokens to show actual text
         const decodedTokens = tokenIds.map(id => tokenizer.decode([id]));
         
         results.push({
