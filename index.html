@@ -718,50 +718,25 @@
         </div>
     </header>
 
-    <!-- Tokenizer Playground -->
-    <section class="section">
-        <h2 class="section-title">Tokenizer Playground</h2>
-        <p class="section-intro">Explore how different models tokenize text. A simple tool to understand tokenization in modern ML systems.</p>
-        
-        <div class="tokenizer-container">
-            <div class="tokenizer-controls">
-                <label for="tokenizer-model-select">Model</label>
-                <select id="tokenizer-model-select">
-                    <option value="Xenova/gpt2">GPT-2</option>
-                    <option value="Xenova/bert-base-uncased">BERT</option>
-                    <option value="Xenova/roberta-base">RoBERTa</option>
-                </select>
-
-                <label for="tokenizer-text-input">Input text</label>
-                <textarea id="tokenizer-text-input" rows="6" placeholder="Type or paste text here...">The quick brown fox jumps over the lazy dog.</textarea>
-
-                <button id="tokenizer-btn">Tokenize</button>
-            </div>
-
-            <div class="tokenizer-output">
-                <h3>Tokens</h3>
-                <div id="tokenizer-tokens-list"></div>
-            </div>
-        </div>
-        
-        <div class="tokenizer-cli-section" style="margin-top: 20px; padding: 16px; background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;">
-            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; font-weight: 600; color: #1F2937;">Try tokenizer-arena CLI</h4>
-            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6B7280; line-height: 1.5;">
-                For comprehensive tokenizer comparison with detailed metrics, try the 
-                <a href="https://github.com/amaljithkuttamath/tokenizer-arena" target="_blank" style="color: #1F3A93; text-decoration: none;">tokenizer-arena CLI tool</a>.
-                Compare how different LLM tokenizers handle the same input text with detailed metrics including bytes/token, tokens/word, and encoding names.
-            </p>
-            <p style="margin: 0 0 8px 0; font-size: 0.85rem; color: #6B7280; line-height: 1.5;">
-                Also try the <a href="apps/tokenizer/" target="_blank" style="color: #1F3A93; text-decoration: none;">web tokenizer playground</a> for interactive tokenization in your browser.
-            </p>
-            <div style="font-size: 0.8rem; color: #9CA3AF; font-family: ui-monospace, SFMonoRegular, 'Fira Code', monospace;">
-                cargo install --git https://github.com/amaljithkuttamath/tokenizer-arena
-            </div>
-        </div>
-    </section>
-
     <!-- Featured Projects -->
     <section class="section">
+        <h2 class="section-title">Featured Projects</h2>
+        <p class="section-intro">Production ML systems and MLOps infrastructure for retrieval, local LLM deployment, and reproducible benchmarking with measured performance and operational metrics.</p>
+        
+        <div class="tokenizer-quick-link" style="margin-bottom: 24px; padding: 16px; background: #F9FAFB; border-radius: 8px; border: 1px solid #E5E7EB;">
+            <h4 style="margin: 0 0 8px 0; font-size: 0.95rem; font-weight: 600; color: #1F2937;">Try the Tokenizer Arena</h4>
+            <p style="margin: 0 0 12px 0; font-size: 0.85rem; color: #6B7280; line-height: 1.5;">
+                Compare how different LLM tokenizers handle the same input text. See token counts, encoding efficiency, and model differences in real-time.
+            </p>
+            <a href="apps/tokenizer/" target="_blank" style="display: inline-block; padding: 8px 16px; background: #1F3A93; color: white; text-decoration: none; border-radius: 6px; font-size: 0.85rem; font-weight: 600; transition: background 0.2s ease;">
+                Open Tokenizer Arena →
+            </a>
+        </div>
+        
+        <div class="featured-projects" id="featured-projects">
+            <!-- Featured projects will be loaded here -->
+        </div>
+    </section>
         <h2 class="section-title">Featured Projects</h2>
         <p class="section-intro">Production ML systems and MLOps infrastructure for retrieval, local LLM deployment, and reproducible benchmarking with measured performance and operational metrics.</p>
         <div class="featured-projects" id="featured-projects">
