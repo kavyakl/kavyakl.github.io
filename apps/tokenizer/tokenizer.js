@@ -1,11 +1,8 @@
 // Tokenizer Arena - Using simple tokenization patterns for demo
 // Simulated tokenization for different LLM tokenizers
 
-const textInput = document.getElementById('text-input');
-const tokenizeBtn = document.getElementById('tokenize-btn');
-const summaryStats = document.getElementById('summary-stats');
-const tokenizerCards = document.getElementById('tokenizer-cards');
-const loadingDiv = document.getElementById('loading');
+// DOM elements (will be initialized when DOM is ready)
+let textInput, tokenizeBtn, summaryStats, tokenizerCards, loadingDiv;
 
 // Simulated tokenizer patterns based on real tokenizer behaviors
 const tokenizerPatterns = {
@@ -119,6 +116,13 @@ let tokenizers = {};
 
 // Initialize all tokenizers on page load
 async function initializeTokenizers() {
+  // Get DOM elements
+  textInput = document.getElementById('text-input');
+  tokenizeBtn = document.getElementById('tokenize-btn');
+  summaryStats = document.getElementById('summary-stats');
+  tokenizerCards = document.getElementById('tokenizer-cards');
+  loadingDiv = document.getElementById('loading');
+  
   loadingDiv.style.display = 'flex';
   loadingDiv.querySelector('span').textContent = 'Loading tokenizers...';
   
@@ -278,23 +282,37 @@ async function compareTokenizers() {
   }
 }
 
-// Event listeners
-tokenizeBtn.addEventListener('click', compareTokenizers);
+// Helper function to escape HTML
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
 
 // Initialize tokenizers on page load
 window.addEventListener('DOMContentLoaded', () => {
+  // Get DOM elements first
+  textInput = document.getElementById('text-input');
+  tokenizeBtn = document.getElementById('tokenize-btn');
+  summaryStats = document.getElementById('summary-stats');
+  tokenizerCards = document.getElementById('tokenizer-cards');
+  loadingDiv = document.getElementById('loading');
+  
+  // Set up event listeners
+  tokenizeBtn.addEventListener('click', compareTokenizers);
+  
+  textInput.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
+      e.preventDefault();
+      compareTokenizers();
+    }
+  });
+  
+  // Initialize tokenizers
   initializeTokenizers();
   
   // Auto-tokenize if there's text after tokenizers load
   if (textInput.value.trim()) {
     setTimeout(compareTokenizers, 1000);
-  }
-});
-
-// Allow Enter key to trigger tokenization (with Ctrl/Cmd)
-textInput.addEventListener('keydown', (e) => {
-  if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
-    e.preventDefault();
-    compareTokenizers();
   }
 });
