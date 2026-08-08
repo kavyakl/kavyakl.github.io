@@ -10,7 +10,6 @@ const textInput = document.getElementById('text-input');
 const tokenizeBtn = document.getElementById('tokenize-btn');
 const summaryStats = document.getElementById('summary-stats');
 const tokenizerCards = document.getElementById('tokenizer-cards');
-const loadingDiv = document.getElementById('loading');
 
 // Tokenizer instances
 let tokenizers = {};
